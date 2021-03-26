@@ -1,0 +1,33 @@
+Тэг table сверху.
+	Атрибуты: border = 1
+		  class-table=table-bordered
+	Дети:
+		Node #text
+			Атрибуты:
+				text=
+		
+		Node tr
+			Дети:
+				#text
+				td
+
+
+Тег td: атрибуты - colspan=13, t=z, id=sjs-A5
+	
+
+
+_________________________________________________
+
+Тег p
+
+	Атрибуты:
+		style=text-align: right;
+	Дети:
+		span
+			Атрибуты:
+				style=font-size: 18px
+			Дети:
+				#text
+					Атрибуты:
+						text=Главный инженер
+		br

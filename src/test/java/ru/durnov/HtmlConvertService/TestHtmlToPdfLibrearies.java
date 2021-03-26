@@ -7,9 +7,13 @@ import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.styledxmlparser.css.media.MediaDeviceDescription;
 import com.itextpdf.styledxmlparser.css.media.MediaType;
+import com.itextpdf.styledxmlparser.jsoup.Jsoup;
+import com.itextpdf.styledxmlparser.jsoup.nodes.Document;
 import org.junit.jupiter.api.Test;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 
 public class TestHtmlToPdfLibrearies {
@@ -72,5 +76,10 @@ public class TestHtmlToPdfLibrearies {
                 )
                 ,pdfDocument
         );
+    }
+
+    @Test
+    public void testItextJsoup() throws IOException {
+
     }
 }

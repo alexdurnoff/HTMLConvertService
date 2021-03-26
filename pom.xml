@@ -72,10 +72,23 @@
 			<artifactId>grabzit</artifactId>
 			<version>3.4.5.1</version>
 		</dependency>
-
-
-
-
+		<!-- https://mvnrepository.com/artifact/org.docx4j/docx4j-ImportXHTML -->
+		<dependency>
+			<groupId>org.docx4j</groupId>
+			<artifactId>docx4j-ImportXHTML</artifactId>
+			<version>8.2.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>5.0.0</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.jsoup/jsoup -->
+		<dependency>
+			<groupId>org.jsoup</groupId>
+			<artifactId>jsoup</artifactId>
+			<version>1.13.1</version>
+		</dependency>
 
 	</dependencies>
 
