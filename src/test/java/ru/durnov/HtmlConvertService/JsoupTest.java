@@ -8,10 +8,12 @@ import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
 import org.junit.jupiter.api.Test;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class JsoupTest {
@@ -64,8 +66,32 @@ public class JsoupTest {
     public void testWritePNodeToXWPFDocument() throws IOException {
         XWPFDocument document = new XWPFDocument();
         List<Node> pNodeList = pNodeListFrom2HTML();
+        System.out.println(pNodeList.size());
         XWPFParagraph paragraph = document.createParagraph();
+        for (Node node : pNodeList){
+            XWPFRun run = paragraph.createRun();
+            run.setText(textFromPNode(node));
+        }
+        document.write(new FileOutputStream("Test/docx/pNodeWrite1.docx"));
+    }
 
+    private String textFromPNode(Node node) {
+        Attributes attributes = node.attributes();
+        Iterator<Attribute> iterator = attributes.iterator();
+        while (iterator.hasNext()){
+            Attribute attribute = iterator.next();
+            if (attribute.getKey().equals("text")){
+                return attribute.getValue();
+            } else {
+                StringBuilder stringBuilder = new StringBuilder();
+                List<Node> nodeList = node.childNodes();
+                for (Node node1 : nodeList){
+                    return textFromPNode(node1);
+                }
+            }
+
+        }
+        return "не нашел";
     }
 
     private List<Node> pNodeListFrom2HTML() throws IOException {
