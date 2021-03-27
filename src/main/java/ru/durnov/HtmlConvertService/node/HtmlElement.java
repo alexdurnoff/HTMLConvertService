@@ -1,5 +1,5 @@
 package ru.durnov.HtmlConvertService.node;
 
-public interface HtmlNode {
+public interface HtmlElement {
     void addToXWPFDocument();
 }

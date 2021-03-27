@@ -76,22 +76,13 @@ public class JsoupTest {
     }
 
     private String textFromPNode(Node node) {
-        Attributes attributes = node.attributes();
-        Iterator<Attribute> iterator = attributes.iterator();
-        while (iterator.hasNext()){
-            Attribute attribute = iterator.next();
-            if (attribute.getKey().equals("text")){
-                return attribute.getValue();
-            } else {
-                StringBuilder stringBuilder = new StringBuilder();
-                List<Node> nodeList = node.childNodes();
-                for (Node node1 : nodeList){
-                    return textFromPNode(node1);
-                }
-            }
-
-        }
-        return "не нашел";
+       StringBuilder stringBuilder = new StringBuilder();
+        String text = node.attributes().get("text");
+        if (text != null) stringBuilder.append(text);
+        node.childNodes().forEach(node1 -> {
+            stringBuilder.append(textFromPNode(node1));
+        });
+        return stringBuilder.toString();
     }
 
     private List<Node> pNodeListFrom2HTML() throws IOException {
@@ -105,4 +96,6 @@ public class JsoupTest {
         }
         return pNodeList;
     }
+
+
 }

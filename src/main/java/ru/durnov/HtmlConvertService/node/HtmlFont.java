@@ -1,25 +1,34 @@
 package ru.durnov.HtmlConvertService.node;
 
 import org.jsoup.nodes.Attribute;
+import org.jsoup.nodes.Attributes;
+import ru.durnov.HtmlConvertService.style.FontSize;
+import ru.durnov.HtmlConvertService.style.FontWeight;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.List;
 
 public class HtmlFont {
-    private final Attribute attribute;
+    private final FontSize fontSize;
+    private final FontWeight fontWeight;
 
-    public HtmlFont(Attribute attribute) {
-        if (!(attribute.getValue().equals("font-size") || attribute.getValue().equals("font-weight"))){
-            throw new IllegalArgumentException("Attribute must be font-size or font-weight");
-        }
-        this.attribute = attribute;
+    public HtmlFont(FontSize fontSize, FontWeight fontWeight) {
+        this.fontSize = fontSize;
+        this.fontWeight = fontWeight;
     }
 
-    public int fontSize(){
-        return new FontSize(attribute).value();
+    public FontSize fontSize(){
+        return this.fontSize;
     }
 
-    public String fontWeight(){
-        return new FontWeight(attribute).value();
+    public FontWeight fontWeight(){
+       return this.fontWeight;
+    }
+
+    public HtmlFont withFontSize(FontSize fontSize){
+        return new HtmlFont(fontSize, this.fontWeight);
+    }
+
+    public HtmlFont withFontWeight(FontWeight fontWeight){
+        return new HtmlFont(this.fontSize, fontWeight);
     }
 }

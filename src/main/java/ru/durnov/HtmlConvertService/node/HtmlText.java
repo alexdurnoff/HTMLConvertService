@@ -1,19 +1,24 @@
 package ru.durnov.HtmlConvertService.node;
 
+import org.jsoup.nodes.Attribute;
 import org.jsoup.nodes.Attributes;
+import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
 
+import java.util.List;
 import java.util.Optional;
 
 public class HtmlText {
-    private final Node spanNode;
+    private final Element element;
 
-    public HtmlText(Node spanNode) {
-        this.spanNode = spanNode;
+    public HtmlText(Element element) {
+        this.element = element;
     }
 
-    public Optional<String> text(){
-        String text = spanNode.attributes().get("text");
-        return Optional.of(text);
+    public String text(){
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(element.text());
+        return stringBuilder.toString();
     }
+
 }

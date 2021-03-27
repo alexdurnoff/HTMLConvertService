@@ -21,11 +21,12 @@ _________________________________________________
 Тег p
 
 	Атрибуты:
-		style=text-align: right;
+		style=text-align: right; или вот так: style=text-align: right; margin-left: 100px;
 	Дети:
 		span
 			Атрибуты:
 				style=font-size: 18px
+				или так: style=background-color: rgb(255, 255, 0); font-size: 18px;
 			Дети:
 				#text
 					Атрибуты:
