@@ -9,7 +9,7 @@ import ru.durnov.HtmlConvertService.style.HtmlStyle;
  * Поэтому его пока не используем.
  */
 @Deprecated
-public class SpanElement implements HtmlElement {
+public class SpanElement implements DocxElement {
     private final Element element;
     private final XWPFDocument document;
     private final HtmlStyle htmlStyle;

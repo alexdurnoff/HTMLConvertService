@@ -9,7 +9,7 @@ import ru.durnov.HtmlConvertService.style.HtmlStyle;
 /**
  * Класс инкапсулирует в себе элемент со своим собственным текстом.
  */
-public class SimplePElement implements HtmlElement {
+public class SimplePElement implements DocxElement {
     private final Element pNodeElement;
     private final XWPFDocument document;
     private final HtmlStyle htmlStyle;

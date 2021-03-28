@@ -4,7 +4,7 @@ import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.jsoup.nodes.Element;
 import ru.durnov.HtmlConvertService.style.HtmlStyle;
 
-public class LiElement implements HtmlElement{
+public class LiElement implements DocxElement {
     private final int number;
     private final Element element;
     private final XWPFDocument xwpfDocument;

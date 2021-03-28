@@ -4,7 +4,7 @@ import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.jsoup.nodes.Element;
 import ru.durnov.HtmlConvertService.style.HtmlStyle;
 
-public class TableElement implements HtmlElement {
+public class TableElement implements DocxElement {
     private final Element element;
     private final XWPFDocument document;
     private final HtmlStyle htmlStyle;

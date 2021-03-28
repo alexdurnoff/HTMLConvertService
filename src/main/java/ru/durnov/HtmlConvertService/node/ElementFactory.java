@@ -3,6 +3,7 @@ package ru.durnov.HtmlConvertService.node;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
+import ru.durnov.HtmlConvertService.docx.DocxTable;
 import ru.durnov.HtmlConvertService.style.HtmlStyle;
 
 public class ElementFactory {
@@ -37,11 +38,14 @@ public class ElementFactory {
     }
 
 
-    public HtmlElement elementByName(){
-        if (element.nodeName().equals("p") || element.nodeName().equals("span")) return new TextElement(element, document, htmlStyle);
+    public DocxElement elementByName(){
+        if (element.nodeName().equals("p") || element.nodeName().equals("span")){
+            return new TextElement(element, document, htmlStyle);
+        }
         if (element.nodeName().equals("br")) return new BRElement(element, document, htmlStyle);
         if (element.nodeName().equals("td")) return new TableElement(element, document, htmlStyle);
         if (element.nodeName().equals("h2")) return new H2Element(element,document);
+        if (element.nodeName().equals("td")) return new DocxTable(new HtmlTable(element,htmlStyle),document);
         return new EmptyElement();
     }
 }

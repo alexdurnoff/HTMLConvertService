@@ -10,7 +10,7 @@ import ru.durnov.HtmlConvertService.style.*;
  * для тегов p и span будем использовать этот класс.
  * Класс SpanElement объявляем пока deprecated.
  */
-public class TextElement implements HtmlElement {
+public class TextElement implements DocxElement {
     protected final Element element;
     protected final XWPFDocument document;
     protected final HtmlStyle htmlStyle;
