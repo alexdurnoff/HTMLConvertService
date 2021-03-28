@@ -1,11 +1,4 @@
-package ru.durnov.HtmlConvertService.node;
-
-import org.jsoup.nodes.Attribute;
-import org.jsoup.nodes.Attributes;
-import ru.durnov.HtmlConvertService.style.FontSize;
-import ru.durnov.HtmlConvertService.style.FontWeight;
-
-import java.util.List;
+package ru.durnov.HtmlConvertService.style;
 
 public class HtmlFont {
     private final FontSize fontSize;
@@ -31,4 +24,14 @@ public class HtmlFont {
     public HtmlFont withFontWeight(FontWeight fontWeight){
         return new HtmlFont(this.fontSize, fontWeight);
     }
+
+    @Override
+    public String toString() {
+        return "HtmlFont{" +
+                "fontSize=" + fontSize +
+                ", fontWeight=" + fontWeight +
+                '}';
+    }
+
+
 }

@@ -21,6 +21,6 @@ class DocxDocumentTest {
 
     @Test
     void save() throws IOException {
-        this.docxDocument.  save();
+        this.docxDocument.save();
     }
 }

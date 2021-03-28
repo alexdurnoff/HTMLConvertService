@@ -2,16 +2,12 @@ package ru.durnov.HtmlConvertService.style;
 
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
-import org.docx4j.model.properties.run.HighlightColor;
 import org.jsoup.nodes.Attribute;
 import org.jsoup.nodes.Attributes;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.STHighlightColor;
-import ru.durnov.HtmlConvertService.node.HtmlFont;
 import ru.durnov.HtmlConvertService.node.Style;
-import ru.durnov.HtmlConvertService.style.FontSize;
-import ru.durnov.HtmlConvertService.style.FontWeight;
-import ru.durnov.HtmlConvertService.style.HtmlAlignment;
-import ru.durnov.HtmlConvertService.style.HtmlBackGround;
+
+import java.util.List;
 
 public class HtmlStyle implements Style {
     private final HtmlFont htmlFont;
@@ -49,6 +45,33 @@ public class HtmlStyle implements Style {
     }
 
     @Override
+    public HtmlStyle withAttributes(Attributes attributes) {
+        HtmlStyle htmlStyle1 = this;
+        List<Attribute> attributeList = attributes.asList();
+        for (Attribute attribute : attributeList) {
+            if (attribute.getValue().contains("font-")){
+                htmlStyle1 = htmlStyle1.withFont(
+                        new HtmlFont(
+                                new FontSize(attributes),
+                                new FontWeight(attributes)
+                        )
+                );
+            }
+            if (attribute.getValue().contains("text-align")){
+                htmlStyle1 = htmlStyle1.withAlignment(
+                        new HtmlAlignment(attributes)
+                );
+            }
+            if (attribute.getValue().contains("background-color")){
+                htmlStyle1 = htmlStyle1.withBackGround(
+                        new HtmlBackGround(attributes)
+                );
+            }
+        }
+        return htmlStyle1;
+    }
+
+    @Override
     public void applyToRun(XWPFRun xwpfRun) {
         xwpfRun.setFontFamily("Times new Roman");
         xwpfRun.setFontSize(this.htmlFont.fontSize().value());
@@ -56,5 +79,14 @@ public class HtmlStyle implements Style {
         XWPFParagraph xwpfParagraph = (XWPFParagraph) xwpfRun.getParent();
         xwpfParagraph.setAlignment(this.htmlAlignment.paragraphAlignment());
         if (!htmlBackGround.value().equals("auto"))xwpfRun.getCTR().addNewRPr().addNewHighlight().setVal(STHighlightColor.YELLOW);
+    }
+
+    @Override
+    public String toString() {
+        return "HtmlStyle{" +
+                "htmlFont=" + htmlFont +
+                ", htmlAlignment=" + htmlAlignment +
+                ", htmlBackGround=" + htmlBackGround +
+                '}';
     }
 }

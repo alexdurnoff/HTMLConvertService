@@ -12,16 +12,23 @@ import ru.durnov.HtmlConvertService.style.HtmlStyle;
 public class SimplePElement implements HtmlElement {
     private final Element pNodeElement;
     private final XWPFDocument document;
+    private final HtmlStyle htmlStyle;
+
+
     public SimplePElement(Element pNodeElement, XWPFDocument document) {
         this.pNodeElement = pNodeElement;
         this.document = document;
+        this.htmlStyle = new HtmlStyle(this.pNodeElement.attributes());
+    }
+
+    public SimplePElement(Element pNodeElement, XWPFDocument document, HtmlStyle htmlStyle) {
+        this.pNodeElement = pNodeElement;
+        this.document = document;
+        this.htmlStyle = htmlStyle.withAttributes(this.pNodeElement.attributes());
     }
 
     @Override
     public void addToXWPFDocument() {
-        HtmlStyle htmlStyle = new HtmlStyle(
-                this.pNodeElement.attributes()
-        );
         XWPFParagraph paragraph = document.createParagraph();
         XWPFRun run = paragraph.createRun();
         htmlStyle.applyToRun(run);

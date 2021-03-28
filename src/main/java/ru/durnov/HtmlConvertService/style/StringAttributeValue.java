@@ -1,4 +1,4 @@
-package ru.durnov.HtmlConvertService.node;
+package ru.durnov.HtmlConvertService.style;
 
 import org.jsoup.nodes.Attribute;
 import org.jsoup.nodes.Attributes;

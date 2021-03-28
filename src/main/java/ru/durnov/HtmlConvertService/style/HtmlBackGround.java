@@ -2,7 +2,6 @@ package ru.durnov.HtmlConvertService.style;
 
 import org.jsoup.nodes.Attribute;
 import org.jsoup.nodes.Attributes;
-import ru.durnov.HtmlConvertService.node.StringAttributeValue;
 
 import java.util.List;
 import java.util.regex.Matcher;
@@ -35,5 +34,10 @@ public class HtmlBackGround extends StringAttributeValue {
             }
         }
         return "auto";
+    }
+
+    @Override
+    public String toString() {
+        return "BackGround is " + this.value();
     }
 }

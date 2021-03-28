@@ -1,10 +1,23 @@
 package ru.durnov.HtmlConvertService.node;
 
-import ru.durnov.HtmlConvertService.style.HtmlStyle;
+import org.apache.poi.xwpf.usermodel.XWPFDocument;
+import org.jsoup.nodes.Element;
 
-public class HElement implements HtmlElement {
-    @Override
-    public void addToXWPFDocument() {
+/**
+ * Общий элемент для заголовков тэг "h".
+ * Будет абстактный метод setupFont, который мы переопределим
+ * у наследников. Все остальное не переопределяем.
+ */
+public abstract class HElement extends TextElement{
 
+
+
+
+    public HElement(Element element) {
+        super(element);
+    }
+
+    public HElement(Element element, XWPFDocument document) {
+        super(element, document);
     }
 }
