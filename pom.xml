@@ -73,11 +73,20 @@
 			<version>3.4.5.1</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.docx4j/docx4j-ImportXHTML -->
-		<dependency>
+		<!-- https://mvnrepository.com/artifact/org.docx4j/docx4j-ImportXHTML -->
+		<!--<dependency>
 			<groupId>org.docx4j</groupId>
 			<artifactId>docx4j-ImportXHTML</artifactId>
 			<version>8.2.0</version>
+		</dependency>-->
+		<!-- https://mvnrepository.com/artifact/com.github.hiwepy/docx4j-template-xhtml -->
+		<dependency>
+			<groupId>com.github.hiwepy</groupId>
+			<artifactId>docx4j-template-xhtml</artifactId>
+			<version>1.0.1.RELEASE</version>
 		</dependency>
+
+
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi-ooxml</artifactId>
