@@ -13,7 +13,7 @@ import ru.durnov.HtmlConvertService.style.*;
 public class TextElement implements DocxElement {
     protected final Element element;
     protected final XWPFDocument document;
-    protected final HtmlStyle htmlStyle;
+    protected final Style htmlStyle;
 
     public TextElement(Element element) {
         this.element = element;
@@ -27,7 +27,7 @@ public class TextElement implements DocxElement {
         this.htmlStyle = new HtmlStyle(element.attributes());
     }
 
-    public TextElement(Element element, XWPFDocument document, HtmlStyle htmlStyle){
+    public TextElement(Element element, XWPFDocument document, Style htmlStyle){
         this.element = element;
         this.document = document;
         this.htmlStyle = htmlStyle.withAttributes(element.attributes());

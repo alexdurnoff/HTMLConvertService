@@ -4,6 +4,7 @@ import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
 import ru.durnov.HtmlConvertService.style.HtmlStyle;
+import ru.durnov.HtmlConvertService.style.Style;
 
 import java.util.List;
 
@@ -17,7 +18,7 @@ public class OlElement extends TextElement {
         super(element, document);
     }
 
-    public OlElement(Element element, XWPFDocument document, HtmlStyle htmlStyle) {
+    public OlElement(Element element, XWPFDocument document, Style htmlStyle) {
         super(element, document, htmlStyle);
     }
 

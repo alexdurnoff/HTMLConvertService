@@ -1,42 +1,44 @@
 package ru.durnov.HtmlConvertService.node;
 
+import org.jsoup.nodes.Attributes;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import ru.durnov.HtmlConvertService.docx.HtmlTableStyle;
 import ru.durnov.HtmlConvertService.style.HtmlStyle;
+import ru.durnov.HtmlConvertService.style.Style;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Optional;
 
 /**
- * Этот класс представляет таблицу Html,
- * но не имплементирует HtmlElement, поскольку
- * надо будет писать как в docx, так и в xlsx.
- * Для записи мы этот элемент завернем.
+ * Таблица в html. Создает HtmlTableBody и возвращает стиль таблицы.
  */
 public class HtmlTable {
-    private final Element htmlTableElement;
-    private final HtmlStyle htmlStyle;
+    private final Element element;
+    private final Style style;
 
-
-    public HtmlTable(Element htmlTableElement, HtmlStyle htmlStyle) {
-        this.htmlTableElement = htmlTableElement;
-        this.htmlStyle = htmlStyle;
+    public HtmlTable (Element element){
+        if (! element.nodeName().equals("table")){
+            throw new IllegalArgumentException("element must be table");
+        }
+        this.element = element;
+        this.style = new HtmlStyle(element.attributes());
     }
 
-    public List<HtmlTableRow> htmlTableRowsList(){
-        List<HtmlTableRow> htmlTableRowList = new ArrayList<>();
-        this.htmlTableElement.childNodes().forEach(node -> {
-            if (node.nodeName().equals("tr")){
-                htmlTableRowList.add(new HtmlTableRow(
-                        (Element) node,
-                        htmlStyle
-                ));
+    public Optional<HtmlTableBody> htmlBody(){
+        Elements allElements = element.getAllElements();
+        for (Element element1 : allElements) {
+            if (element1.nodeName().equals("tbody")){
+                return Optional.of(
+                        new HtmlTableBody(
+                                element1,
+                                style.withAttributes(element1.attributes())
+                        )
+                );
             }
-        });
-        return htmlTableRowList;
+        }
+        return Optional.empty();
     }
 
-    public HtmlStyle htmlStyle(){
-        return this.htmlStyle;
-    }
+    public HtmlTableStyle htmlTableStyle(){return new HtmlTableStyle(element, style);}
+
 }

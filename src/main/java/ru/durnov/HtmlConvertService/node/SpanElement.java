@@ -3,6 +3,7 @@ package ru.durnov.HtmlConvertService.node;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.jsoup.nodes.Element;
 import ru.durnov.HtmlConvertService.style.HtmlStyle;
+import ru.durnov.HtmlConvertService.style.Style;
 
 /**
  * По сути класс оказался таким же, как и класс для тэга p.
@@ -12,7 +13,7 @@ import ru.durnov.HtmlConvertService.style.HtmlStyle;
 public class SpanElement implements DocxElement {
     private final Element element;
     private final XWPFDocument document;
-    private final HtmlStyle htmlStyle;
+    private final Style htmlStyle;
 
 
     public SpanElement(Element element, XWPFDocument document) {

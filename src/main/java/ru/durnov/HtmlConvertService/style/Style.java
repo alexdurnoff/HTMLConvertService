@@ -1,4 +1,4 @@
-package ru.durnov.HtmlConvertService.node;
+package ru.durnov.HtmlConvertService.style;
 
 import org.apache.poi.xwpf.usermodel.XWPFRun;
 import org.jsoup.nodes.Attributes;
@@ -8,13 +8,13 @@ import ru.durnov.HtmlConvertService.style.HtmlFont;
 import ru.durnov.HtmlConvertService.style.HtmlStyle;
 
 public interface Style {
-   HtmlStyle withFont(HtmlFont font);
+   Style withFont(HtmlFont font);
 
-   HtmlStyle withAlignment(HtmlAlignment alignment);
+   Style withAlignment(HtmlAlignment alignment);
 
-   HtmlStyle withBackGround(HtmlBackGround backGround);
+   Style withBackGround(HtmlBackGround backGround);
 
-   HtmlStyle withAttributes(Attributes attributes);
+   Style withAttributes(Attributes attributes);
 
    void applyToRun(XWPFRun xwpfRun);
 }

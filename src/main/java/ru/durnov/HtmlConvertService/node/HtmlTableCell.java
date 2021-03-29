@@ -2,17 +2,18 @@ package ru.durnov.HtmlConvertService.node;
 
 import org.jsoup.nodes.Element;
 import ru.durnov.HtmlConvertService.style.HtmlStyle;
+import ru.durnov.HtmlConvertService.style.Style;
 
 /**
  * Класс представляет собой ячейку в html-таблице.
  */
 public class HtmlTableCell {
     private final Element htmlTableCell;
-    private final HtmlStyle htmlStyle;
+    private final Style htmlStyle;
 
-    public HtmlTableCell(Element htmlTableCell, HtmlStyle htmlStyle) {
+    public HtmlTableCell(Element htmlTableCell, Style style) {
         this.htmlTableCell = htmlTableCell;
-        this.htmlStyle = htmlStyle.withAttributes(this.htmlTableCell.attributes());
+        this.htmlStyle = style.withAttributes(this.htmlTableCell.attributes());
     }
 
     public HtmlTableCell(Element htmlTableCell){
@@ -24,7 +25,7 @@ public class HtmlTableCell {
         return htmlTableCell.text();
     }
 
-    public HtmlStyle htmlStyle(){
+    public Style htmlStyle(){
         return htmlStyle;
     }
 }

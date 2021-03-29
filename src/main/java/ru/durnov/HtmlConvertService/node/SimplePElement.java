@@ -5,6 +5,7 @@ import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
 import org.jsoup.nodes.Element;
 import ru.durnov.HtmlConvertService.style.HtmlStyle;
+import ru.durnov.HtmlConvertService.style.Style;
 
 /**
  * Класс инкапсулирует в себе элемент со своим собственным текстом.
@@ -12,7 +13,7 @@ import ru.durnov.HtmlConvertService.style.HtmlStyle;
 public class SimplePElement implements DocxElement {
     private final Element pNodeElement;
     private final XWPFDocument document;
-    private final HtmlStyle htmlStyle;
+    private final Style htmlStyle;
 
 
     public SimplePElement(Element pNodeElement, XWPFDocument document) {
@@ -21,7 +22,7 @@ public class SimplePElement implements DocxElement {
         this.htmlStyle = new HtmlStyle(this.pNodeElement.attributes());
     }
 
-    public SimplePElement(Element pNodeElement, XWPFDocument document, HtmlStyle htmlStyle) {
+    public SimplePElement(Element pNodeElement, XWPFDocument document, Style htmlStyle) {
         this.pNodeElement = pNodeElement;
         this.document = document;
         this.htmlStyle = htmlStyle.withAttributes(this.pNodeElement.attributes());

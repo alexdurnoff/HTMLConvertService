@@ -5,7 +5,6 @@ import org.apache.poi.xwpf.usermodel.XWPFRun;
 import org.jsoup.nodes.Attribute;
 import org.jsoup.nodes.Attributes;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.STHighlightColor;
-import ru.durnov.HtmlConvertService.node.Style;
 
 import java.util.List;
 
@@ -30,23 +29,23 @@ public class HtmlStyle implements Style {
     }
 
     @Override
-    public HtmlStyle withFont(HtmlFont font){
+    public Style withFont(HtmlFont font){
         return new HtmlStyle(font, this.htmlAlignment, this.htmlBackGround);
     }
 
     @Override
-    public HtmlStyle withAlignment(HtmlAlignment alignment){
+    public Style withAlignment(HtmlAlignment alignment){
         return new HtmlStyle(this.htmlFont, alignment, this.htmlBackGround);
     }
 
     @Override
-    public HtmlStyle withBackGround(HtmlBackGround backGround){
+    public Style withBackGround(HtmlBackGround backGround){
         return new HtmlStyle(this.htmlFont, htmlAlignment, backGround);
     }
 
     @Override
-    public HtmlStyle withAttributes(Attributes attributes) {
-        HtmlStyle htmlStyle1 = this;
+    public Style withAttributes(Attributes attributes) {
+        Style htmlStyle1 = this;
         List<Attribute> attributeList = attributes.asList();
         for (Attribute attribute : attributeList) {
             if (attribute.getValue().contains("font-")){

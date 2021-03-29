@@ -3,6 +3,7 @@ package ru.durnov.HtmlConvertService.node;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import ru.durnov.HtmlConvertService.style.HtmlStyle;
+import ru.durnov.HtmlConvertService.style.Style;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,12 +13,12 @@ import java.util.List;
  */
 public class HtmlTableRow {
     private final Element htmlTableRow;
-    private final HtmlStyle htmlStyle;
+    private final Style htmlStyle;
 
 
-    public HtmlTableRow(Element htmlTableRow, HtmlStyle htmlStyle) {
+    public HtmlTableRow(Element htmlTableRow, Style style) {
         this.htmlTableRow = htmlTableRow;
-        this.htmlStyle = htmlStyle.withAttributes(this.htmlTableRow.attributes());
+        this.htmlStyle = style.withAttributes(this.htmlTableRow.attributes());
     }
 
     public HtmlTableRow(Element htmlTableRow){
@@ -38,7 +39,7 @@ public class HtmlTableRow {
         return htmlTableCellList;
     };
 
-    public HtmlStyle htmlStyle(){
+    public Style htmlStyle(){
         return this.htmlStyle;
     }
 

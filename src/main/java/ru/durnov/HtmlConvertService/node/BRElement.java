@@ -5,6 +5,7 @@ import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
 import org.jsoup.nodes.Element;
 import ru.durnov.HtmlConvertService.style.HtmlStyle;
+import ru.durnov.HtmlConvertService.style.Style;
 
 /**
  * Чтобы не плодить копи-пасту отнаследовались от TextElement.
@@ -21,7 +22,7 @@ public class BRElement extends TextElement{
         super(pNodeElement, document);
     }
 
-    public BRElement(Element pNodeElement, XWPFDocument document, HtmlStyle htmlStyle) {
+    public BRElement(Element pNodeElement, XWPFDocument document, Style htmlStyle) {
         super(pNodeElement, document, htmlStyle);
     }
 

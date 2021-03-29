@@ -5,11 +5,12 @@ import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
 import ru.durnov.HtmlConvertService.docx.DocxTable;
 import ru.durnov.HtmlConvertService.style.HtmlStyle;
+import ru.durnov.HtmlConvertService.style.Style;
 
 public class ElementFactory {
     private final Element element;
     private final XWPFDocument document;
-    private final HtmlStyle htmlStyle;
+    private final Style htmlStyle;
 
     public ElementFactory(Element element, XWPFDocument document) {
         this.element = element;
@@ -24,7 +25,7 @@ public class ElementFactory {
         this.htmlStyle = new HtmlStyle(element.attributes());
     }
 
-    public ElementFactory(Node node, XWPFDocument document, HtmlStyle htmlStyle){
+    public ElementFactory(Node node, XWPFDocument document, Style htmlStyle){
         if (node.getClass() != Element.class) throw new IllegalArgumentException("node must be element");
         this.element = (Element) node;
         this.document = document;
@@ -45,7 +46,11 @@ public class ElementFactory {
         if (element.nodeName().equals("br")) return new BRElement(element, document, htmlStyle);
         if (element.nodeName().equals("td")) return new TableElement(element, document, htmlStyle);
         if (element.nodeName().equals("h2")) return new H2Element(element,document);
-        if (element.nodeName().equals("td")) return new DocxTable(new HtmlTable(element,htmlStyle),document);
+        if (element.nodeName().equals("table")) {
+            return new DocxTable(
+                    new HtmlTable(element),
+                    document);
+        }
         return new EmptyElement();
     }
 }

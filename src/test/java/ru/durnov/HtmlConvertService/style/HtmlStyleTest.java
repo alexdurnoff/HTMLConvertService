@@ -24,7 +24,7 @@ class HtmlStyleTest {
                 new FontSize(attributes1),
                 new FontWeight(attributes1)
         );
-        HtmlStyle htmlStyle1 = this.htmlStyle.withFont(htmlFont);
+        Style htmlStyle1 = this.htmlStyle.withFont(htmlFont);
         Assertions.assertTrue(htmlStyle1.toString().contains("fontSize is 24"));
         Assertions.assertTrue(htmlStyle1.toString().contains("font weight is bolder"));
     }
@@ -33,7 +33,7 @@ class HtmlStyleTest {
     void withAlignment() {
         Attributes attributes1 = new Attributes();
         attributes1.add("style", "text-alignment: left;");
-        HtmlStyle htmlStyle1 = this.htmlStyle.withAlignment(new HtmlAlignment(attributes1));
+        Style htmlStyle1 = this.htmlStyle.withAlignment(new HtmlAlignment(attributes1));
         Assertions.assertTrue(htmlStyle1.toString().contains("Alignment is left"));
     }
 
@@ -41,7 +41,7 @@ class HtmlStyleTest {
     void withBackGround() {
         Attributes attributes1 = new Attributes();
         attributes1.add("style", "background-color: rgb(0, 255, 0);");
-        HtmlStyle htmlStyle1 = this.htmlStyle.withBackGround(new HtmlBackGround(attributes1));
+        Style htmlStyle1 = this.htmlStyle.withBackGround(new HtmlBackGround(attributes1));
         Assertions.assertTrue(htmlStyle.toString().contains("BackGround is ffff00"));
         Assertions.assertTrue(htmlStyle1.toString().contains("BackGround is 00ff00"));
         Assertions.assertNotEquals(htmlStyle1.toString(), htmlStyle.toString());
@@ -51,7 +51,7 @@ class HtmlStyleTest {
     void withAttributesWithNewFontSize() {
         Attributes attributes1 = new Attributes();
         attributes1.add("style", "font-size: 24px;");
-        HtmlStyle htmlStyle1 = this.htmlStyle.withAttributes(attributes1);
+        Style htmlStyle1 = this.htmlStyle.withAttributes(attributes1);
         Assertions.assertTrue(htmlStyle1.toString().contains("fontSize is 24"));
         Assertions.assertTrue(htmlStyle1.toString().contains("Alignment is center"));
         Assertions.assertTrue(htmlStyle1.toString().contains("BackGround is ffff00"));
@@ -62,7 +62,7 @@ class HtmlStyleTest {
     public void withAttributesWithNewFontWeight(){
         Attributes attributes1 = new Attributes();
         attributes1.add("style", "font-weight: bolder;");
-        HtmlStyle htmlStyle1 = this.htmlStyle.withAttributes(attributes1);
+        Style htmlStyle1 = this.htmlStyle.withAttributes(attributes1);
         Assertions.assertTrue(htmlStyle1.toString().contains("fontSize is 16"));
         Assertions.assertTrue(htmlStyle1.toString().contains("Alignment is center"));
         Assertions.assertTrue(htmlStyle1.toString().contains("BackGround is ffff00"));
@@ -74,7 +74,7 @@ class HtmlStyleTest {
     public void withAttributeWithNewAlignment(){
         Attributes attributes1 = new Attributes();
         attributes1.add("style", "text-alignment: left;");
-        HtmlStyle htmlStyle1 = this.htmlStyle.withAttributes(attributes1);
+        Style htmlStyle1 = this.htmlStyle.withAttributes(attributes1);
         Assertions.assertTrue(htmlStyle1.toString().contains("fontSize is 16"));
         Assertions.assertTrue(htmlStyle1.toString().contains("Alignment is left"));
         Assertions.assertTrue(htmlStyle1.toString().contains("BackGround is ffff00"));
@@ -86,7 +86,7 @@ class HtmlStyleTest {
     public void withAttributesWithNewBackGround(){
         Attributes attributes1 = new Attributes();
         attributes1.add("style", "background-color: rgb(0, 255, 0);");
-        HtmlStyle htmlStyle1 = this.htmlStyle.withAttributes(attributes1);
+        Style htmlStyle1 = this.htmlStyle.withAttributes(attributes1);
         Assertions.assertTrue(htmlStyle1.toString().contains("fontSize is 16"));
         Assertions.assertTrue(htmlStyle1.toString().contains("Alignment is center"));
         Assertions.assertTrue(htmlStyle1.toString().contains("BackGround is 00ff00"));

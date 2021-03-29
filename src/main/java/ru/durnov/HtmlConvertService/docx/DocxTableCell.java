@@ -13,15 +13,17 @@ import ru.durnov.HtmlConvertService.node.HtmlTableCell;
 public class DocxTableCell {
     private final HtmlTableCell htmlTableCell;
     private final XWPFTableRow xwpfTableRow;
+    private final int cellNumber;
 
-    public DocxTableCell(HtmlTableCell htmlTableCell, XWPFTableRow xwpfTableRow) {
+    public DocxTableCell(HtmlTableCell htmlTableCell, XWPFTableRow xwpfTableRow, int cellNumber) {
         this.htmlTableCell = htmlTableCell;
         this.xwpfTableRow = xwpfTableRow;
+        this.cellNumber = cellNumber;
     }
 
 
     public void addToXWPFRow() {
-        XWPFTableCell xwpfTableCell = xwpfTableRow.createCell();
+        XWPFTableCell xwpfTableCell = new NewXWPFTableCell(xwpfTableRow, cellNumber).createCellByNumber();
         XWPFParagraph xwpfParagraph = xwpfTableCell.addParagraph();
         XWPFRun xwpfRun = xwpfParagraph.createRun();
         htmlTableCell.htmlStyle().applyToRun(xwpfRun);
