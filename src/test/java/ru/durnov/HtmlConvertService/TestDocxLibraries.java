@@ -95,7 +95,7 @@ public class TestDocxLibraries {
         }
     }
 
-    @Test
+    //@Test
     public
     void testPoi5() throws OpenXML4JException, IOException {
         
@@ -154,7 +154,7 @@ public class TestDocxLibraries {
         mlPackageOut.save(new File("Test/docx/docx4j.docx"));
     }
 
-    @Test
+    //@Test
     public void testDocx4j4() throws Docx4JException, IOException {
         WordprocessingMLPackage wordprocessingMLPackage = WordprocessingMLPackage.createPackage();
         String html = Files.readString(Path.of("Test/4.html"));
@@ -173,7 +173,7 @@ public class TestDocxLibraries {
         wordprocessingMLPackage.save(new File("Test/docx/docx4jSecondTEst.docx"));
     }
 
-    @Test
+    //@Test
     public void testConvertHtmlToXhtml() throws IOException {
         String html = Files.readString(Path.of("Test/4.html"));
         String xhtml = "Test/4.xhtml";

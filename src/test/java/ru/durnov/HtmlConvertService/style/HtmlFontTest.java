@@ -22,7 +22,7 @@ class HtmlFontTest {
     @Test
     void withFontSize() {
         Attributes attributes1 = new Attributes();
-        attributes1.add("font-size", "24");
+        attributes1.add("style", "font-size: 24px;");
         FontSize fontSize = new FontSize(attributes1);
         System.out.println(fontSize);
         HtmlFont htmlFont = this.htmlFont.withFontSize(
@@ -36,7 +36,7 @@ class HtmlFontTest {
     @Test
     void withFontWeight() {
         Attributes attributes1 = new Attributes();
-        attributes1.add("font-weight", "bolder");
+        attributes1.add("style", "font-weight: bolder;");
         FontWeight fontWeight = new FontWeight(attributes1);
         System.out.println(fontWeight);
         HtmlFont htmlFont = this.htmlFont.withFontWeight(
