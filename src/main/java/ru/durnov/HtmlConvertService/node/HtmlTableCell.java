@@ -1,8 +1,11 @@
 package ru.durnov.HtmlConvertService.node;
 
+import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
 import org.jsoup.nodes.Element;
+import ru.durnov.HtmlConvertService.style.DocxTableCellStyle;
 import ru.durnov.HtmlConvertService.style.HtmlStyle;
 import ru.durnov.HtmlConvertService.style.Style;
+import ru.durnov.HtmlConvertService.style.TableCellCollSpan;
 
 /**
  * Класс представляет собой ячейку в html-таблице.
@@ -25,7 +28,8 @@ public class HtmlTableCell {
         return htmlTableCell.text();
     }
 
-    public Style htmlStyle(){
-        return htmlStyle;
+    public DocxTableCellStyle docxTableCellStyle(){
+        return new DocxTableCellStyle(htmlTableCell, htmlStyle);
     }
+
 }

@@ -4,6 +4,7 @@ import org.apache.poi.xwpf.usermodel.XWPFTable;
 import org.apache.poi.xwpf.usermodel.XWPFTableRow;
 import ru.durnov.HtmlConvertService.node.HtmlTableCell;
 import ru.durnov.HtmlConvertService.node.HtmlTableRow;
+import ru.durnov.HtmlConvertService.style.TableCellCollSpan;
 
 import java.util.List;
 

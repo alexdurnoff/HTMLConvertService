@@ -35,4 +35,10 @@ class DocxDocumentTest {
         String htmlContent = Files.readString(Path.of("Test/2.html"));
         new DocxDocument(htmlContent, "Test/docx/2html with 1920x1080 landscape.docx").save();
     }
+
+    @Test
+    public void test1HtmlFile() throws IOException {
+        String htmlContent = Files.readString(Path.of("Test/1.html"));
+        new DocxDocument(htmlContent, "Test/docx/1html with 1920x1080 landscape.docx").save();
+    }
 }

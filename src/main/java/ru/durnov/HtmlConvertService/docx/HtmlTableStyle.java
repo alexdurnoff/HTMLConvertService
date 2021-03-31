@@ -59,6 +59,8 @@ public class HtmlTableStyle implements Style {
         xwpfTable.setLeftBorder(this.tableBorder.borderType(), 12, 8, "auto");
         xwpfTable.setRightBorder(this.tableBorder.borderType(), 12, 8, "auto");
         xwpfTable.setTopBorder(this.tableBorder.borderType(), 12, 8, "auto");
+        xwpfTable.setInsideHBorder(this.tableBorder.borderType(), 12, 8, "auto");
+        xwpfTable.setInsideVBorder(this.tableBorder.borderType(), 12, 8, "auto");
     }
 
 }

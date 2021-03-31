@@ -26,10 +26,11 @@ public class TableBorder {
         this.attributes = attributes;
         this.map = new HashMap<>();
         this.map.put(1, XWPFTable.XWPFBorderType.SINGLE);
+        this.map.put(0, XWPFTable.XWPFBorderType.NIL);
     }
 
     public XWPFTable.XWPFBorderType borderType(){
-        int border = 1;//Значение по умолчанию
+        int border = 0;//Значение по умолчанию
         List<Attribute> attributes = this.attributes.asList();
         for (Attribute attribute : attributes) {
             if (attribute.getKey().equals("border")){
@@ -41,6 +42,6 @@ public class TableBorder {
         }
         XWPFTable.XWPFBorderType borderType = map.get(border);
         if (borderType != null) return borderType;
-        return XWPFTable.XWPFBorderType.SINGLE;
+        return XWPFTable.XWPFBorderType.NONE;
     }
 }

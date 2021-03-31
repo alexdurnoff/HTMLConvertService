@@ -1,6 +1,7 @@
 package ru.durnov.HtmlConvertService.style;
 
 import org.apache.poi.xwpf.usermodel.XWPFRun;
+import org.apache.poi.xwpf.usermodel.XWPFTableCell;
 import org.jsoup.nodes.Attributes;
 import ru.durnov.HtmlConvertService.style.HtmlAlignment;
 import ru.durnov.HtmlConvertService.style.HtmlBackGround;
@@ -17,4 +18,5 @@ public interface Style {
    Style withAttributes(Attributes attributes);
 
    void applyToRun(XWPFRun xwpfRun);
+
 }
