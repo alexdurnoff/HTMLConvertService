@@ -40,7 +40,7 @@ public class ElementFactory {
 
 
     public DocxElement elementByName(){
-        if (element.nodeName().equals("p") || element.nodeName().equals("span")){
+        if (element.nodeName().equals("p") || element.nodeName().equals("span") || element.nodeName().equals("label")){
             return new TextElement(element, document, htmlStyle);
         }
         if (element.nodeName().equals("br")) return new BRElement(element, document, htmlStyle);
@@ -51,6 +51,7 @@ public class ElementFactory {
                     new HtmlTable(element),
                     document);
         }
+        if (element.nodeName().equals("strong")) return new StrongElement(element,document,htmlStyle);
         return new EmptyElement();
     }
 }
