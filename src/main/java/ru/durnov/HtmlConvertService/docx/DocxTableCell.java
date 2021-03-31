@@ -23,22 +23,15 @@ public class DocxTableCell {
 
 
     public void addToXWPFRow() {
-        int span = this.htmlTableCell.docxTableCellStyle().tableCellCollSpan().collspan();
-        XWPFTableCell xwpfTableCell = new NewXWPFTableCell(xwpfTableRow, cellNumber).createCellByNumber();
+        XWPFTableCell xwpfTableCell = xwpfTableRow.addNewTableCell();
+        int span = htmlTableCell.docxTableCellStyle().tableCellCollSpan().collspan();
+        if (span > 1){
+            xwpfTableCell.getCTTc().addNewTcPr().addNewGridSpan().setVal(BigInteger.valueOf(span));
+        }
         XWPFParagraph xwpfParagraph = xwpfTableCell.addParagraph();
         XWPFRun xwpfRun = xwpfParagraph.createRun();
         htmlTableCell.docxTableCellStyle().htmlStyle().applyToRun(xwpfRun);
         xwpfParagraph.setAlignment(htmlTableCell.docxTableCellStyle().alignment());
         xwpfRun.setText(htmlTableCell.content());
-        if (span > 1){
-            CTHMerge cthMerge = CTHMerge.Factory.newInstance();
-            cthMerge.setVal(STMerge.Enum.forString("continue"));
-            xwpfTableCell.getCTTc().addNewTcPr().setHMerge(cthMerge);
-            for (int i = 0; i<span; i++) {
-                XWPFTableCell xwpfTableCell1 = xwpfTableRow.addNewTableCell();
-                xwpfTableCell1.getCTTc().addNewTcPr().setHMerge(cthMerge);
-            }
-            //xwpfTableCell.getCTTc().addNewTcPr().addNewGridSpan().setVal(BigInteger.valueOf(span));
-        }
     }
 }
