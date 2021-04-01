@@ -25,14 +25,15 @@ public class DocxTableCell {
     public void addToXWPFRow() {
         XWPFTableCell xwpfTableCell = new NewXWPFTableCell(xwpfTableRow, cellNumber).createCellByNumber();
         int span = htmlTableCell.docxTableCellStyle().tableCellCollSpan().collspan();
-        if (span > 1){
-            xwpfTableCell.getCTTc().addNewTcPr().addNewGridSpan().setVal(BigInteger.valueOf(span));
-        }
+        if (span > 1) xwpfTableCell.getCTTc().addNewTcPr().addNewGridSpan().setVal(BigInteger.valueOf(span));
         XWPFParagraph xwpfParagraph = xwpfTableCell.addParagraph();
+        xwpfParagraph.setAlignment(htmlTableCell.docxTableCellStyle().alignment());
+        htmlTableCell.addTextToXWPFTableCell(xwpfParagraph);
+        /*XWPFParagraph xwpfParagraph = xwpfTableCell.addParagraph();
         XWPFRun xwpfRun = xwpfParagraph.createRun();
         htmlTableCell.docxTableCellStyle().htmlStyle().applyToRun(xwpfRun);
         xwpfParagraph.setAlignment(htmlTableCell.docxTableCellStyle().alignment());
-        //htmlTableCell.addTextToXWPFTableCell(xwpfRun);
-        xwpfRun.setText(htmlTableCell.content());
+        xwpfRun.setText(htmlTableCell.content());*/
+
     }
 }

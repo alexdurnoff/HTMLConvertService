@@ -2,6 +2,7 @@ package ru.durnov.HtmlConvertService.docx;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import ru.durnov.HtmlConvertService.style.Page;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -40,5 +41,25 @@ class DocxDocumentTest {
     public void test1HtmlFile() throws IOException {
         String htmlContent = Files.readString(Path.of("Test/1.html"));
         new DocxDocument(htmlContent, "Test/docx/1html with 1920x1080 landscape.docx").save();
+    }
+
+    @Test
+    public void testWithSmallPage() throws IOException {
+        String htmlContent = Files.readString(Path.of("Test/1.html"));
+        new DocxDocument(
+                htmlContent,
+                "Test/docx/1html with small landscape.docx",
+                new Page() {
+                    @Override
+                    public int width() {
+                        return 1190;
+                    }
+
+                    @Override
+                    public int heigth() {
+                        return 842;
+                    }
+                }
+        ).save();
     }
 }

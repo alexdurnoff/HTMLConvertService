@@ -30,9 +30,10 @@ public class HtmlTableCell {
         return htmlTableCell.text();
     }
 
-    public void addTextToXWPFTableCell(XWPFRun xwpfRun){
+    public void addTextToXWPFTableCell(XWPFParagraph xwpfParagraph){
         this.htmlTableCell.childNodes().forEach(node -> {
             if (node.getClass() == Element.class){
+                XWPFRun xwpfRun = xwpfParagraph.createRun();
                 new ElementTableFactory(
                         node,
                         xwpfRun,
