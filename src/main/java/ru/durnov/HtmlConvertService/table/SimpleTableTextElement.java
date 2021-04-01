@@ -3,6 +3,8 @@ package ru.durnov.HtmlConvertService.table;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
 import org.apache.poi.xwpf.usermodel.XWPFTableCell;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import ru.durnov.HtmlConvertService.style.Style;
 
@@ -19,6 +21,13 @@ public class SimpleTableTextElement implements DocxTableCellElement{
     @Override
     public void addToXWPFRun() {
         style.applyToRun(xwpfRun);
-        xwpfRun.setText(element.text());
+        String html = this.element.toString().replace("<br>", "nnnnn");
+        Document document = Jsoup.parse(html);
+        String[] strings =document.text().split("nnnnn");
+        for (String string : strings){
+            xwpfRun.setText(string);
+            xwpfRun.addBreak();
+        }
+        //xwpfRun.setText(element.text());
     }
 }

@@ -1,6 +1,7 @@
 package ru.durnov.HtmlConvertService.table;
 
 import org.apache.poi.xwpf.usermodel.*;
+import org.jsoup.Jsoup;
 import org.jsoup.nodes.Attribute;
 import org.jsoup.nodes.Attributes;
 import org.jsoup.nodes.Element;
@@ -31,15 +32,17 @@ public class HtmlTableCell {
     }
 
     public void addTextToXWPFTableCell(XWPFParagraph xwpfParagraph){
-        this.htmlTableCell.childNodes().forEach(node -> {
-            if (node.getClass() == Element.class){
-                XWPFRun xwpfRun = xwpfParagraph.createRun();
-                new ElementTableFactory(
-                        node,
-                        xwpfRun,
-                        htmlStyle
-                ).elementByName().addToXWPFRun();
-            }
+        XWPFRun xwpfRun = xwpfParagraph.createRun();
+        this.htmlStyle.applyToRun(xwpfRun);
+        Elements allElements = this.htmlTableCell.getAllElements();
+        allElements.remove(this.htmlTableCell);
+        allElements.forEach(element -> {
+            System.out.println(element);
+            new ElementTableFactory(
+                    element,
+                    xwpfRun,
+                    htmlStyle
+            ).elementByName().addToXWPFRun();
         });
     }
 

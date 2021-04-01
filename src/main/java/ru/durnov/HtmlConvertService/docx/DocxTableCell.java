@@ -34,6 +34,5 @@ public class DocxTableCell {
         htmlTableCell.docxTableCellStyle().htmlStyle().applyToRun(xwpfRun);
         xwpfParagraph.setAlignment(htmlTableCell.docxTableCellStyle().alignment());
         xwpfRun.setText(htmlTableCell.content());*/
-
     }
 }

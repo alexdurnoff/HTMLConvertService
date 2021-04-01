@@ -45,7 +45,7 @@ public class ElementFactory {
             return new TextParagraphElement(element, document, htmlStyle);
         }
         if (element.nodeName().equals("br")) return new BRParagraphElement(element, document, htmlStyle);
-        if (element.nodeName().equals("td")) return new TableParagraphElement(element, document, htmlStyle);
+        //if (element.nodeName().equals("td")) return new TableParagraphElement(element, document, htmlStyle);
         if (element.nodeName().equals("h2")) return new H2ParagraphElement(element,document);
         if (element.nodeName().equals("table")) {
             return new DocxParagraphTable(

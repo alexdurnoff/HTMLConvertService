@@ -98,5 +98,15 @@ public class JsoupTest {
         return pNodeList;
     }
 
+    @Test
+    public void parsePElementStructure() throws IOException {
+        Document document = Jsoup.parse(Files.readString(Path.of("Test/1.html")));
+        Element body = document.body();
+           body.select("p").forEach(element -> {
+               System.out.println(element.toString());
+               System.out.println("-----------------------------------------------");
+           });
+    }
+
 
 }
