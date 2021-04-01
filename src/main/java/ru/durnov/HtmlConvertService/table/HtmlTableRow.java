@@ -1,4 +1,4 @@
-package ru.durnov.HtmlConvertService.node;
+package ru.durnov.HtmlConvertService.table;
 
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -38,6 +38,25 @@ public class HtmlTableRow {
         });
         return htmlTableCellList;
     };
+
+    /**
+     * Метод нужен для того, чтобы определить, используется ли строка таблицы для реальных данных,
+     * или эта строка нужна для того, чтобы изобразить границу таблицы.
+     * @return boolean
+     */
+    public  boolean isBorderRow(){
+        Elements elementsTd = this.htmlTableRow.getElementsByTag("td");
+        for (Element element : elementsTd) {
+            if (element.nodeName().equals("td")){
+                HtmlTableCell htmlTableCell = new HtmlTableCell(
+                        element,
+                        this.htmlStyle.withAttributes(element.attributes())
+                );
+                if (! htmlTableCell.isBorderCell()) return false;
+            }
+        }
+        return true;
+    }
 
     public Style htmlStyle(){
         return this.htmlStyle;

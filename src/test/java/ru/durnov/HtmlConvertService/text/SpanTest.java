@@ -1,4 +1,4 @@
-package ru.durnov.HtmlConvertService.node;
+package ru.durnov.HtmlConvertService.text;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

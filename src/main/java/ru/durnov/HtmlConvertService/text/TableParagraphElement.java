@@ -1,22 +1,22 @@
-package ru.durnov.HtmlConvertService.node;
+package ru.durnov.HtmlConvertService.text;
 
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.jsoup.nodes.Element;
 import ru.durnov.HtmlConvertService.style.HtmlStyle;
 import ru.durnov.HtmlConvertService.style.Style;
 
-public class TableElement implements DocxElement {
+public class TableParagraphElement implements DocxParagraphElement {
     private final Element element;
     private final XWPFDocument document;
     private final Style htmlStyle;
 
-    public TableElement(Element element, XWPFDocument document) {
+    public TableParagraphElement(Element element, XWPFDocument document) {
         this.element = element;
         this.document = document;
         this.htmlStyle = new HtmlStyle(element.attributes());
     }
 
-    public TableElement(Element element, XWPFDocument document, Style htmlStyle) {
+    public TableParagraphElement(Element element, XWPFDocument document, Style htmlStyle) {
         this.element = element;
         this.document = document;
         this.htmlStyle = htmlStyle.withAttributes(element.attributes());

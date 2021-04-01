@@ -1,4 +1,4 @@
-package ru.durnov.HtmlConvertService.node;
+package ru.durnov.HtmlConvertService.text;
 
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
@@ -10,19 +10,19 @@ import ru.durnov.HtmlConvertService.style.Style;
 /**
  * Класс инкапсулирует в себе элемент со своим собственным текстом.
  */
-public class SimplePElement implements DocxElement {
+public class SimplePParagraphElement implements DocxParagraphElement {
     private final Element pNodeElement;
     private final XWPFDocument document;
     private final Style htmlStyle;
 
 
-    public SimplePElement(Element pNodeElement, XWPFDocument document) {
+    public SimplePParagraphElement(Element pNodeElement, XWPFDocument document) {
         this.pNodeElement = pNodeElement;
         this.document = document;
         this.htmlStyle = new HtmlStyle(this.pNodeElement.attributes());
     }
 
-    public SimplePElement(Element pNodeElement, XWPFDocument document, Style htmlStyle) {
+    public SimplePParagraphElement(Element pNodeElement, XWPFDocument document, Style htmlStyle) {
         this.pNodeElement = pNodeElement;
         this.document = document;
         this.htmlStyle = htmlStyle.withAttributes(this.pNodeElement.attributes());

@@ -1,8 +1,6 @@
-package ru.durnov.HtmlConvertService.node;
+package ru.durnov.HtmlConvertService.table;
 
 import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
-import ru.durnov.HtmlConvertService.style.HtmlStyle;
 import ru.durnov.HtmlConvertService.style.Style;
 
 import java.util.ArrayList;

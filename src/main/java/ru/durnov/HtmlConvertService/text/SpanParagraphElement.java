@@ -1,4 +1,4 @@
-package ru.durnov.HtmlConvertService.node;
+package ru.durnov.HtmlConvertService.text;
 
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.jsoup.nodes.Element;
@@ -10,19 +10,19 @@ import ru.durnov.HtmlConvertService.style.Style;
  * Поэтому его пока не используем.
  */
 @Deprecated
-public class SpanElement implements DocxElement {
+public class SpanParagraphElement implements DocxParagraphElement {
     private final Element element;
     private final XWPFDocument document;
     private final Style htmlStyle;
 
 
-    public SpanElement(Element element, XWPFDocument document) {
+    public SpanParagraphElement(Element element, XWPFDocument document) {
         this.element = element;
         this.document = document;
         this.htmlStyle = new HtmlStyle(element.attributes());
     }
 
-    public SpanElement(Element element, XWPFDocument document, HtmlStyle htmlStyle) {
+    public SpanParagraphElement(Element element, XWPFDocument document, HtmlStyle htmlStyle) {
         System.out.println(htmlStyle);
         this.element = element;
         this.document = document;
@@ -32,7 +32,7 @@ public class SpanElement implements DocxElement {
     @Override
     public void addToXWPFDocument() {
         if (!element.ownText().equals("")){
-            new SimplePElement(element, document, htmlStyle).addToXWPFDocument();
+            new SimplePParagraphElement(element, document, htmlStyle).addToXWPFDocument();
         }
         element.childNodes().forEach(node -> {
             if (node.getClass() == Element.class){

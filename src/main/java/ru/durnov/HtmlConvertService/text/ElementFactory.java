@@ -1,11 +1,12 @@
-package ru.durnov.HtmlConvertService.node;
+package ru.durnov.HtmlConvertService.text;
 
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
-import ru.durnov.HtmlConvertService.docx.DocxTable;
+import ru.durnov.HtmlConvertService.docx.DocxParagraphTable;
 import ru.durnov.HtmlConvertService.style.HtmlStyle;
 import ru.durnov.HtmlConvertService.style.Style;
+import ru.durnov.HtmlConvertService.table.HtmlTable;
 
 public class ElementFactory {
     private final Element element;
@@ -39,19 +40,19 @@ public class ElementFactory {
     }
 
 
-    public DocxElement elementByName(){
+    public DocxParagraphElement elementByName(){
         if (element.nodeName().equals("p") || element.nodeName().equals("span") || element.nodeName().equals("label")){
-            return new TextElement(element, document, htmlStyle);
+            return new TextParagraphElement(element, document, htmlStyle);
         }
-        if (element.nodeName().equals("br")) return new BRElement(element, document, htmlStyle);
-        if (element.nodeName().equals("td")) return new TableElement(element, document, htmlStyle);
-        if (element.nodeName().equals("h2")) return new H2Element(element,document);
+        if (element.nodeName().equals("br")) return new BRParagraphElement(element, document, htmlStyle);
+        if (element.nodeName().equals("td")) return new TableParagraphElement(element, document, htmlStyle);
+        if (element.nodeName().equals("h2")) return new H2ParagraphElement(element,document);
         if (element.nodeName().equals("table")) {
-            return new DocxTable(
+            return new DocxParagraphTable(
                     new HtmlTable(element),
                     document);
         }
-        if (element.nodeName().equals("strong")) return new StrongElement(element,document,htmlStyle);
-        return new EmptyElement();
+        if (element.nodeName().equals("strong")) return new StrongParagraphElement(element,document,htmlStyle);
+        return new EmptyParagraphElement();
     }
 }

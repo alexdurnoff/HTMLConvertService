@@ -4,7 +4,7 @@ import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-import ru.durnov.HtmlConvertService.node.ElementFactory;
+import ru.durnov.HtmlConvertService.text.ElementFactory;
 import ru.durnov.HtmlConvertService.style.CTDocumentWithPageSize;
 import ru.durnov.HtmlConvertService.style.DocxPage;
 import ru.durnov.HtmlConvertService.style.Page;

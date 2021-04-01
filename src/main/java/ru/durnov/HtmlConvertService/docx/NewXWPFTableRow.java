@@ -20,7 +20,10 @@ public class NewXWPFTableRow {
 
 
     public XWPFTableRow createRowByNumber(){
-        if(rowNumber == 0) return xwpfTable.getRow(0);
-        return xwpfTable.createRow();
+       /* if(rowNumber == 0) return xwpfTable.getRow(0);
+        return xwpfTable.createRow();*/
+        XWPFTableRow xwpfTableRow = xwpfTable.getRow(rowNumber);
+        if (xwpfTableRow == null) return xwpfTable.createRow();
+        return xwpfTableRow;
     }
 }

@@ -2,8 +2,8 @@ package ru.durnov.HtmlConvertService.docx;
 
 import org.apache.poi.xwpf.usermodel.XWPFTable;
 import org.apache.poi.xwpf.usermodel.XWPFTableRow;
-import ru.durnov.HtmlConvertService.node.HtmlTableCell;
-import ru.durnov.HtmlConvertService.node.HtmlTableRow;
+import ru.durnov.HtmlConvertService.table.HtmlTableCell;
+import ru.durnov.HtmlConvertService.table.HtmlTableRow;
 
 import java.util.List;
 

@@ -1,24 +1,23 @@
-package ru.durnov.HtmlConvertService.node;
+package ru.durnov.HtmlConvertService.text;
 
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
-import ru.durnov.HtmlConvertService.style.HtmlStyle;
 import ru.durnov.HtmlConvertService.style.Style;
 
 import java.util.List;
 
-public class OlElement extends TextElement {
+public class OlParagraphElement extends TextParagraphElement {
 
-    public OlElement(Element element) {
+    public OlParagraphElement(Element element) {
         super(element);
     }
 
-    public OlElement(Element element, XWPFDocument document) {
+    public OlParagraphElement(Element element, XWPFDocument document) {
         super(element, document);
     }
 
-    public OlElement(Element element, XWPFDocument document, Style htmlStyle) {
+    public OlParagraphElement(Element element, XWPFDocument document, Style htmlStyle) {
         super(element, document, htmlStyle);
     }
 
@@ -26,12 +25,12 @@ public class OlElement extends TextElement {
     public void addToXWPFDocument() {
         int number = 1;
         if (!element.ownText().equals("")){
-            new SimplePElement(element, document, this.htmlStyle).addToXWPFDocument();
+            new SimplePParagraphElement(element, document, this.htmlStyle).addToXWPFDocument();
         }
         List<Node> nodeList = element.childNodes();
         for (Node node : nodeList){
             if (node.nodeName().equals("li")) {
-                new LiElement(
+                new LiParagraphElement(
                         number,
                         (Element) node,
                         document,

@@ -1,8 +1,8 @@
 package ru.durnov.HtmlConvertService.docx;
 
 import org.apache.poi.xwpf.usermodel.*;
-import org.openxmlformats.schemas.wordprocessingml.x2006.main.*;
-import ru.durnov.HtmlConvertService.node.HtmlTableCell;
+import ru.durnov.HtmlConvertService.table.ElementTableFactory;
+import ru.durnov.HtmlConvertService.table.HtmlTableCell;
 
 import java.math.BigInteger;
 
@@ -23,7 +23,7 @@ public class DocxTableCell {
 
 
     public void addToXWPFRow() {
-        XWPFTableCell xwpfTableCell = xwpfTableRow.addNewTableCell();
+        XWPFTableCell xwpfTableCell = new NewXWPFTableCell(xwpfTableRow, cellNumber).createCellByNumber();
         int span = htmlTableCell.docxTableCellStyle().tableCellCollSpan().collspan();
         if (span > 1){
             xwpfTableCell.getCTTc().addNewTcPr().addNewGridSpan().setVal(BigInteger.valueOf(span));
@@ -32,6 +32,7 @@ public class DocxTableCell {
         XWPFRun xwpfRun = xwpfParagraph.createRun();
         htmlTableCell.docxTableCellStyle().htmlStyle().applyToRun(xwpfRun);
         xwpfParagraph.setAlignment(htmlTableCell.docxTableCellStyle().alignment());
+        //htmlTableCell.addTextToXWPFTableCell(xwpfRun);
         xwpfRun.setText(htmlTableCell.content());
     }
 }

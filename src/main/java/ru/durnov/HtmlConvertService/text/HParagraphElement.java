@@ -1,4 +1,4 @@
-package ru.durnov.HtmlConvertService.node;
+package ru.durnov.HtmlConvertService.text;
 
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.jsoup.nodes.Element;
@@ -8,16 +8,16 @@ import org.jsoup.nodes.Element;
  * Будет абстактный метод setupFont, который мы переопределим
  * у наследников. Все остальное не переопределяем.
  */
-public abstract class HElement extends TextElement{
+public abstract class HParagraphElement extends TextParagraphElement {
 
 
 
 
-    public HElement(Element element) {
+    public HParagraphElement(Element element) {
         super(element);
     }
 
-    public HElement(Element element, XWPFDocument document) {
+    public HParagraphElement(Element element, XWPFDocument document) {
         super(element, document);
     }
 }

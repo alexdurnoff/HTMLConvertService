@@ -17,6 +17,6 @@ public class NewXWPFTableCell {
 
     public XWPFTableCell createCellByNumber(){
         if (xwpfTableRow.getCell(cellNumber) != null) return xwpfTableRow.getCell(cellNumber);
-        return xwpfTableRow.createCell();
+        return xwpfTableRow.addNewTableCell();
     }
 }

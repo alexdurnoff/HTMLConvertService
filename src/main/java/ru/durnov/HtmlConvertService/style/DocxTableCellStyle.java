@@ -2,7 +2,7 @@ package ru.durnov.HtmlConvertService.style;
 
 import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
 import org.jsoup.nodes.Element;
-import ru.durnov.HtmlConvertService.node.CellAllignment;
+import ru.durnov.HtmlConvertService.text.CellAllignment;
 
 /**
  * Класс отвечает за форматирование ячейки таблицы

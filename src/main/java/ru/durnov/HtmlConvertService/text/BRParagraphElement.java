@@ -1,28 +1,27 @@
-package ru.durnov.HtmlConvertService.node;
+package ru.durnov.HtmlConvertService.text;
 
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
 import org.jsoup.nodes.Element;
-import ru.durnov.HtmlConvertService.style.HtmlStyle;
 import ru.durnov.HtmlConvertService.style.Style;
 
 /**
  * Чтобы не плодить копи-пасту отнаследовались от TextElement.
  * Вместо текста вставляем перевод строки.
  */
-public class BRElement extends TextElement{
+public class BRParagraphElement extends TextParagraphElement {
 
 
-    public BRElement(Element pNodeElement) {
+    public BRParagraphElement(Element pNodeElement) {
         super(pNodeElement);
     }
 
-    public BRElement(Element pNodeElement, XWPFDocument document) {
+    public BRParagraphElement(Element pNodeElement, XWPFDocument document) {
         super(pNodeElement, document);
     }
 
-    public BRElement(Element pNodeElement, XWPFDocument document, Style htmlStyle) {
+    public BRParagraphElement(Element pNodeElement, XWPFDocument document, Style htmlStyle) {
         super(pNodeElement, document, htmlStyle);
     }
 
