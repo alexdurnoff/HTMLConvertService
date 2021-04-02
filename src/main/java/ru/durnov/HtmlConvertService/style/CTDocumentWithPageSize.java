@@ -2,6 +2,7 @@ package ru.durnov.HtmlConvertService.style;
 
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.*;
+import org.openxmlformats.schemas.wordprocessingml.x2006.main.impl.CTPageMarImpl;
 
 import java.math.BigInteger;
 

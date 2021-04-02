@@ -29,7 +29,7 @@ class XWPFDocumentWithPackagePartTest {
         new XWPFDocumentWithPackagePart(
                 htmlSourcePath,
                 xwpfDocument
-        ).xwpfDocument().write(new FileOutputStream("Test/docx/1.docx"));
+        ).xwpfDocument().write(new FileOutputStream("Test/docx/1-2.docx"));
     }
 
     @Test
@@ -41,7 +41,7 @@ class XWPFDocumentWithPackagePartTest {
         new XWPFDocumentWithPackagePart(
                 source,
                 xwpfDocument
-        ).xwpfDocument().write(new FileOutputStream("Test/docx/2.docx"));
+        ).xwpfDocument().write(new FileOutputStream("Test/docx/2-2.docx"));
 
     }
 
@@ -54,7 +54,7 @@ class XWPFDocumentWithPackagePartTest {
         new XWPFDocumentWithPackagePart(
                 source,
                 xwpfDocument
-        ).xwpfDocument().write(new FileOutputStream("Test/docx/3.docx"));
+        ).xwpfDocument().write(new FileOutputStream("Test/docx/3-2.docx"));
 
     }
 
@@ -67,7 +67,7 @@ class XWPFDocumentWithPackagePartTest {
         new XWPFDocumentWithPackagePart(
                 source,
                 xwpfDocument
-        ).xwpfDocument().write(new FileOutputStream("Test/docx/4.docx"));
+        ).xwpfDocument().write(new FileOutputStream("Test/docx/4-2.docx"));
 
     }
 

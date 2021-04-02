@@ -17,7 +17,7 @@ public class XWPFDocumentWithPackagePart {
 
     public XWPFDocumentWithPackagePart(String htmlSourcePath) {
         this.htmlSourcePath = htmlSourcePath;
-        this.id = Path.of(htmlSourcePath).getFileName().toString();
+        this.id = "htmlDoc1.html";
         this.xwpfDocument = new XWPFDocument();
     }
 
@@ -28,8 +28,15 @@ public class XWPFDocumentWithPackagePart {
 
     public XWPFDocumentWithPackagePart(String htmlSourcePath, XWPFDocument xwpfDocument){
         this.htmlSourcePath = htmlSourcePath;
-        this.id = Path.of(htmlSourcePath).getFileName().toString();
+        //this.id = Path.of(htmlSourcePath).getFileName().toString();
+        this.id = "htmlDoc1.html";
         this.xwpfDocument = xwpfDocument;
+    }
+
+    public XWPFDocumentWithPackagePart(String htmlSourcePath, XWPFDocument xwpfDocument, int idNumber){
+        this.htmlSourcePath = htmlSourcePath;
+        this.xwpfDocument = xwpfDocument;
+        this.id = "htmlDoc" + idNumber + ".html";
     }
 
     public XWPFDocument xwpfDocument() throws InvalidFormatException {

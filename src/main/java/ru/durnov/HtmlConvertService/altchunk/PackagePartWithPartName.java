@@ -24,7 +24,7 @@ public class PackagePartWithPartName {
      * @throws InvalidFormatException - кидает исключение при неправильном формате
      */
     PackagePart packagePart() throws InvalidFormatException {
-        PackagePartName partName = PackagingURIHelper.createPartName("/word/" + id + ".html");
+        PackagePartName partName = PackagingURIHelper.createPartName("/word/" + id);
         return opcPackage.createPart(partName, "text/html");
     }
 }

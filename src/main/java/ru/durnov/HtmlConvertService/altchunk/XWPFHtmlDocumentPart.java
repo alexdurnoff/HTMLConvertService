@@ -41,13 +41,13 @@ public class XWPFHtmlDocumentPart extends POIXMLDocumentPart {
 
     @Override
     protected void commit() throws IOException {
-        PackagePart part = getPackagePart();
-        String content = Files.readString(Path.of(sourceFilePath));
-        try (OutputStream outputStream = part.getOutputStream();
-             Writer writer = new OutputStreamWriter(
-                     outputStream, "UTF-8"
-             )) {
+            PackagePart part = getPackagePart();
+            String content = Files.readString(Path.of(sourceFilePath));
+            OutputStream outputStream = part.getOutputStream();
+            Writer writer = new OutputStreamWriter(outputStream, "UTF-8");
             writer.write(content);
-        }
+            writer.close();
+            outputStream.close();
     }
+
 }
