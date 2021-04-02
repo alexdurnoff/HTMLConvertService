@@ -2,6 +2,7 @@ package ru.durnov.HtmlConvertService;
 
 import it.grabz.grabzit.GrabzItClient;
 import it.grabz.grabzit.parameters.DOCXOptions;
+import org.apache.poi.hwpf.HWPFDocument;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.openxml4j.exceptions.OpenXML4JException;
 import org.apache.poi.openxml4j.opc.*;
@@ -30,6 +31,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.GeneralSecurityException;
+import java.util.List;
 import java.util.zip.ZipOutputStream;
 
 public class TestDocxLibraries {
@@ -38,15 +40,14 @@ public class TestDocxLibraries {
     public void testPOI1() throws IOException {
         POIFSFileSystem fileSystem = new POIFSFileSystem();
         DirectoryEntry directoryEntry = fileSystem.getRoot();
-        try (OutputStream out = new FileOutputStream("Test/docx/1.docx")
+        try (OutputStream out = new FileOutputStream("Test/docx/1.doc")
              ; InputStream in = new FileInputStream("Test/1.html")){
             directoryEntry.createDocument(
-                    "wordDocument",
+                    "WordDocument",
                     in
             );
             fileSystem.writeFilesystem(out);
         }
-
 
     }
 
@@ -207,6 +208,11 @@ public class TestDocxLibraries {
         options.setPageWidth(1920);
         grabzItClient.HTMLToDOCX(html, options);
         grabzItClient.SaveTo("Test/docx/grabzit-1.docx");
+    }
+
+    @Test
+    public void testConvertOldToNew() throws IOException {
+
     }
 
 }

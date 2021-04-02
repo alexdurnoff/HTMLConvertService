@@ -90,4 +90,9 @@ class DocxDocumentTest {
         document.addRelation(myXWPFHtmlDocument.getId(), new XWPFHtmlRelation(), myXWPFHtmlDocument);*/
     }
 
+    @Test
+    public void testDocToDocxConvertion(){
+
+    }
+
 }
