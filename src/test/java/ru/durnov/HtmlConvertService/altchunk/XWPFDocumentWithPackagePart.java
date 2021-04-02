@@ -13,7 +13,7 @@ import java.nio.file.Path;
 public class XWPFDocumentWithPackagePart {
     private final String htmlSourcePath;
     private final String id;
-    private XWPFDocument xwpfDocument;
+    private final XWPFDocument xwpfDocument;
 
     public XWPFDocumentWithPackagePart(String htmlSourcePath) {
         this.htmlSourcePath = htmlSourcePath;

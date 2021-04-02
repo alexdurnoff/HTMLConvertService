@@ -22,33 +22,53 @@ class XWPFDocumentWithPackagePartTest {
     private final String htmlSourcePath = "Test/1.html";
 
     @Test
-    void xwpfDocument() throws InvalidFormatException, IOException {
-        XWPFDocument xwpfDocument = new XWPFDocumentWithPackagePart(
-                htmlSourcePath,
-                new Page() {
-                    @Override
-                    public int width() {
-                        return 1920;
-                    }
-
-                    @Override
-                    public int heigth() {
-                        return 1080;
-                    }
-                }
-        ).xwpfDocument();
-        xwpfDocument.write(new FileOutputStream("Test/docx/testXWPFDocumentWithPart.docx"));
-    }
-
-    @Test
-    void test2() throws IOException, InvalidFormatException {
+    void test1html() throws IOException, InvalidFormatException {
         XWPFDocument xwpfDocument = new XWPFDocument();
         Page page = new DocxPage("landshaft");
         new CTDocumentWithPageSize(xwpfDocument,page).setUpPageSize();
         new XWPFDocumentWithPackagePart(
                 htmlSourcePath,
                 xwpfDocument
-        ).xwpfDocument().write(new FileOutputStream("Test/docx/testXWPFDocumentWithPart.docx"));
+        ).xwpfDocument().write(new FileOutputStream("Test/docx/1.docx"));
+    }
+
+    @Test
+    public void test2html() throws InvalidFormatException, IOException {
+        String source = "Test/2.html";
+        XWPFDocument xwpfDocument = new XWPFDocument();
+        Page page = new DocxPage("landshaft");
+        new CTDocumentWithPageSize(xwpfDocument,page).setUpPageSize();
+        new XWPFDocumentWithPackagePart(
+                source,
+                xwpfDocument
+        ).xwpfDocument().write(new FileOutputStream("Test/docx/2.docx"));
+
+    }
+
+    @Test
+    public void test3html() throws InvalidFormatException, IOException {
+        String source = "Test/3.html";
+        XWPFDocument xwpfDocument = new XWPFDocument();
+        Page page = new DocxPage("landshaft");
+        new CTDocumentWithPageSize(xwpfDocument,page).setUpPageSize();
+        new XWPFDocumentWithPackagePart(
+                source,
+                xwpfDocument
+        ).xwpfDocument().write(new FileOutputStream("Test/docx/3.docx"));
+
+    }
+
+    @Test
+    public void test4html() throws InvalidFormatException, IOException {
+        String source = "Test/4.html";
+        XWPFDocument xwpfDocument = new XWPFDocument();
+        Page page = new DocxPage("landshaft");
+        new CTDocumentWithPageSize(xwpfDocument,page).setUpPageSize();
+        new XWPFDocumentWithPackagePart(
+                source,
+                xwpfDocument
+        ).xwpfDocument().write(new FileOutputStream("Test/docx/4.docx"));
+
     }
 
 
