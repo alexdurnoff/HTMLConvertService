@@ -16,33 +16,25 @@ import java.nio.file.Path;
  * Класс представляет вложение в XWPFDocument
  */
 public class XWPFHtmlDocumentPart extends POIXMLDocumentPart {
-    private final String sourceFilePath;
+    private final String content;
     private final String id;
 
-    public XWPFHtmlDocumentPart(PackagePart part, String sourceFilePath, String id)
-            throws InvalidFormatException {
+    public XWPFHtmlDocumentPart(PackagePart part, Path sourceFilePath, String id)
+            throws InvalidFormatException, IOException {
         super(part);
-        this.sourceFilePath = sourceFilePath;
+        this.content = Files.readString(sourceFilePath);
         this.id = id;
     }
 
-
-
-
-
-    public XWPFHtmlDocumentPart(PackagePart part, String sourceFilePath) throws InvalidFormatException {
+    public XWPFHtmlDocumentPart(PackagePart part, String content, String id) throws InvalidFormatException, IOException {
        super(part);
-       this.sourceFilePath = sourceFilePath;
-       this.id = Path.of(sourceFilePath).getFileName().toString();
+       this.content = content;
+       this.id = id;
     }
-
-
-
 
     @Override
     protected void commit() throws IOException {
             PackagePart part = getPackagePart();
-            String content = Files.readString(Path.of(sourceFilePath));
             OutputStream outputStream = part.getOutputStream();
             Writer writer = new OutputStreamWriter(outputStream, "UTF-8");
             writer.write(content);

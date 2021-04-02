@@ -132,18 +132,6 @@ public class TestDocxLibraries {
         mlPackageOut.save(new File("Test/docx/docx4j.docx"));
     }
 
-    @Test
-    public void testDocx4j2() throws Docx4JException, IOException {
-        WordprocessingMLPackage wordprocessingMLPackage = WordprocessingMLPackage.load(new File("Test/docx/template.docx"));
-        MainDocumentPart documentPart = wordprocessingMLPackage.getMainDocumentPart();
-        String xhtml = Files.readString(Paths.get("Test/4.html"));
-        documentPart.createParagraphOfText("Paragraph 1");
-        documentPart.addAltChunk(AltChunkType.Html,xhtml.getBytes());
-        WordprocessingMLPackage mlPackageOut = documentPart.convertAltChunks();
-        documentPart.createParagraphOfText("Paragraph 2");
-        mlPackageOut.save(new File("Test/docx/docx4jFromTemplate.docx"));
-    }
-
 
     @Test
     public void testDocx4j3() throws IOException, Docx4JException {

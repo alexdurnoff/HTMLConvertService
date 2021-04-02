@@ -1,8 +1,11 @@
 package ru.durnov.HtmlConvertService.text;
 
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.jsoup.nodes.Element;
 import ru.durnov.HtmlConvertService.style.*;
+
+import java.io.IOException;
 
 /**
  * Так получилось, что p и span у нас парсятся одинаково.
@@ -34,19 +37,23 @@ public class TextParagraphElement implements DocxParagraphElement {
     }
 
     @Override
-    public void addToXWPFDocument() {
+    public void addToXWPFDocument() throws IOException, InvalidFormatException {
         if (!element.ownText().equals("")){
             new SimplePParagraphElement(element, document, this.htmlStyle).addToXWPFDocument();
         }
         element.childNodes().forEach(node -> {
             if (node.getClass() == Element.class){
-                new ElementFactory(
-                        node,
-                        document,
-                        htmlStyle
-                )
-                        .elementByName()
-                        .addToXWPFDocument();
+                try {
+                    new ElementFactory(
+                            node,
+                            document,
+                            htmlStyle
+                    )
+                            .elementByName()
+                            .addToXWPFDocument();
+                } catch (IOException | InvalidFormatException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }

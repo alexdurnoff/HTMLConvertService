@@ -39,5 +39,6 @@ public class HtmlTable {
     }
 
     public HtmlTableStyle htmlTableStyle(){return new HtmlTableStyle(element, style);}
+    public String content(){return element.outerHtml();}
 
 }

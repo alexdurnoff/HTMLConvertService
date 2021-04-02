@@ -1,10 +1,12 @@
 package ru.durnov.HtmlConvertService.text;
 
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
 import ru.durnov.HtmlConvertService.style.Style;
 
+import java.io.IOException;
 import java.util.List;
 
 public class OlParagraphElement extends TextParagraphElement {
@@ -22,7 +24,7 @@ public class OlParagraphElement extends TextParagraphElement {
     }
 
     @Override
-    public void addToXWPFDocument() {
+    public void addToXWPFDocument() throws IOException, InvalidFormatException {
         int number = 1;
         if (!element.ownText().equals("")){
             new SimplePParagraphElement(element, document, this.htmlStyle).addToXWPFDocument();

@@ -17,6 +17,8 @@ import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTDocument1;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.impl.CTBodyImpl;
 import ru.durnov.HtmlConvertService.style.Page;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -34,30 +36,30 @@ class DocxDocumentTest {
 
 
     @Test
-    void save() throws IOException {
+    void save() throws IOException, InvalidFormatException {
         this.docxDocument.save();
     }
 
     @Test
-    public void test3HtmlFile() throws IOException {
+    public void test3HtmlFile() throws IOException, InvalidFormatException {
         String htmlContent = Files.readString(Path.of("Test/3.html"));
         new DocxDocument(htmlContent, "Test/docx/3html with 1920x1080 landscape.docx").save();
     }
 
     @Test
-    public void test2HtmlFile() throws IOException {
+    public void test2HtmlFile() throws IOException, InvalidFormatException {
         String htmlContent = Files.readString(Path.of("Test/2.html"));
         new DocxDocument(htmlContent, "Test/docx/2html with 1920x1080 landscape.docx").save();
     }
 
     @Test
-    public void test1HtmlFile() throws IOException {
+    public void test1HtmlFile() throws IOException, InvalidFormatException {
         String htmlContent = Files.readString(Path.of("Test/1.html"));
         new DocxDocument(htmlContent, "Test/docx/1html with 1920x1080 landscape.docx").save();
     }
 
     @Test
-    public void testWithSmallPage() throws IOException {
+    public void testWithSmallPage() throws IOException, InvalidFormatException {
         String htmlContent = Files.readString(Path.of("Test/1.html"));
         new DocxDocument(
                 htmlContent,
@@ -91,7 +93,13 @@ class DocxDocumentTest {
     }
 
     @Test
-    public void testDocToDocxConvertion(){
+    public void testReadSavedDocument() throws IOException {
+        XWPFDocument xwpfDocument =
+                new XWPFDocument(new FileInputStream("Test/docx/1html with 1920x1080 landscape.docx"));
+        System.out.println(xwpfDocument.getTables().size());
+        xwpfDocument.getTables().forEach(xwpfTable -> {
+            System.out.println(xwpfTable.getRows().size());
+        });
 
     }
 

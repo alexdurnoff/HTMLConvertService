@@ -15,6 +15,8 @@ import ru.durnov.HtmlConvertService.style.Page;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -23,11 +25,12 @@ class XWPFDocumentWithPackagePartTest {
 
     @Test
     void test1html() throws IOException, InvalidFormatException {
+        String content = Files.readString(Path.of(htmlSourcePath));
         XWPFDocument xwpfDocument = new XWPFDocument();
         Page page = new DocxPage("landshaft");
         new CTDocumentWithPageSize(xwpfDocument,page).setUpPageSize();
         new XWPFDocumentWithPackagePart(
-                htmlSourcePath,
+                content,
                 xwpfDocument
         ).xwpfDocument().write(new FileOutputStream("Test/docx/1-2.docx"));
     }
@@ -35,11 +38,12 @@ class XWPFDocumentWithPackagePartTest {
     @Test
     public void test2html() throws InvalidFormatException, IOException {
         String source = "Test/2.html";
+        String content = Files.readString(Path.of(source));
         XWPFDocument xwpfDocument = new XWPFDocument();
         Page page = new DocxPage("landshaft");
         new CTDocumentWithPageSize(xwpfDocument,page).setUpPageSize();
         new XWPFDocumentWithPackagePart(
-                source,
+                content,
                 xwpfDocument
         ).xwpfDocument().write(new FileOutputStream("Test/docx/2-2.docx"));
 
@@ -48,11 +52,12 @@ class XWPFDocumentWithPackagePartTest {
     @Test
     public void test3html() throws InvalidFormatException, IOException {
         String source = "Test/3.html";
+        String content = Files.readString(Path.of(source));
         XWPFDocument xwpfDocument = new XWPFDocument();
         Page page = new DocxPage("landshaft");
         new CTDocumentWithPageSize(xwpfDocument,page).setUpPageSize();
         new XWPFDocumentWithPackagePart(
-                source,
+                content,
                 xwpfDocument
         ).xwpfDocument().write(new FileOutputStream("Test/docx/3-2.docx"));
 
@@ -61,14 +66,38 @@ class XWPFDocumentWithPackagePartTest {
     @Test
     public void test4html() throws InvalidFormatException, IOException {
         String source = "Test/4.html";
+        String content = Files.readString(Path.of(source));
         XWPFDocument xwpfDocument = new XWPFDocument();
         Page page = new DocxPage("landshaft");
         new CTDocumentWithPageSize(xwpfDocument,page).setUpPageSize();
         new XWPFDocumentWithPackagePart(
-                source,
+                content,
                 xwpfDocument
         ).xwpfDocument().write(new FileOutputStream("Test/docx/4-2.docx"));
 
+    }
+
+    @Test
+    public void testSmallPage() throws InvalidFormatException, IOException {
+        String source = "Test/4.html";
+        String content = Files.readString(Path.of(source));
+        XWPFDocument xwpfDocument = new XWPFDocument();
+        Page page = new Page() {
+            @Override
+            public int width() {
+                return 842;
+            }
+
+            @Override
+            public int heigth() {
+                return 594;
+            }
+        };
+        new CTDocumentWithPageSize(xwpfDocument,page).setUpPageSize();
+        new XWPFDocumentWithPackagePart(
+                content,
+                xwpfDocument
+        ).xwpfDocument().write(new FileOutputStream("Test/docx/smallChunk.docx"));
     }
 
 

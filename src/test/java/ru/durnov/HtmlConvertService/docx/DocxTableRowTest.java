@@ -1,5 +1,6 @@
 package ru.durnov.HtmlConvertService.docx;
 
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -28,7 +29,11 @@ class DocxTableRowTest {
             HtmlTable htmlTable = new HtmlTable(element);
             XWPFDocument xwpfDocument = new XWPFDocument();
             DocxParagraphTable docxParagraphTable = new DocxParagraphTable(htmlTable,xwpfDocument);
-            docxParagraphTable.addToXWPFDocument();
+            try {
+                docxParagraphTable.addToXWPFDocument();
+            } catch (IOException | InvalidFormatException e) {
+                e.printStackTrace();
+            }
             try {
                 xwpfDocument.write(new FileOutputStream("Test/one row table test.docx"));
             } catch (IOException e) {
