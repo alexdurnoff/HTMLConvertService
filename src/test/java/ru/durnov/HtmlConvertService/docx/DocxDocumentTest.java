@@ -1,7 +1,20 @@
 package ru.durnov.HtmlConvertService.docx;
 
+import org.apache.poi.ooxml.POIXMLRelation;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.openxml4j.opc.OPCPackage;
+import org.apache.poi.openxml4j.opc.PackagePart;
+import org.apache.poi.openxml4j.opc.PackagePartName;
+import org.apache.poi.openxml4j.opc.PackagingURIHelper;
+import org.apache.poi.xwpf.usermodel.XWPFDocument;
+import org.apache.xmlbeans.XmlObject;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTAltChunk;
+import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTDocument1;
+import org.openxmlformats.schemas.wordprocessingml.x2006.main.impl.CTBodyImpl;
 import ru.durnov.HtmlConvertService.style.Page;
 
 import java.io.IOException;
@@ -62,4 +75,19 @@ class DocxDocumentTest {
                 }
         ).save();
     }
+
+    @Test
+    public void testSetBody() throws IOException, InvalidFormatException {
+        String htmlContent = Files.readString(Path.of("Test/1.html"));
+        Document document = Jsoup.parse(htmlContent);
+        XWPFDocument xwpfDocument = new XWPFDocument();
+        CTDocument1 document1 = xwpfDocument.getDocument();
+        OPCPackage oPCPackage = xwpfDocument.getPackage();
+        PackagePartName partName = PackagingURIHelper.createPartName("/word/" + "1" + ".html");
+        PackagePart part = oPCPackage.createPart(partName, "text/html");
+
+        /*MyXWPFHtmlDocument myXWPFHtmlDocument = new MyXWPFHtmlDocument(part, id);
+        document.addRelation(myXWPFHtmlDocument.getId(), new XWPFHtmlRelation(), myXWPFHtmlDocument);*/
+    }
+
 }

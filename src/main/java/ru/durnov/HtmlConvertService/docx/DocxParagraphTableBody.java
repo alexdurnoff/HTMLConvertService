@@ -27,6 +27,7 @@ public class DocxParagraphTableBody implements DocxParagraphElement {
     @Override
     public void addToXWPFDocument() {
         XWPFTable xwpfTable = xwpfDocument.createTable();
+        xwpfTable.setWidth("auto");
         this.style.applyToXWPFTable(xwpfTable);
         List<HtmlTableRow> htmlTableRows = this.htmlTableBody
                 .htmlTableRowsList()
