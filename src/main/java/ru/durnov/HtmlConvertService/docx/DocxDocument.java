@@ -5,8 +5,6 @@ import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-import org.jsoup.nodes.Node;
-import ru.durnov.HtmlConvertService.altchunk.XWPFDocumentWithPackagePart;
 import ru.durnov.HtmlConvertService.text.ElementFactory;
 import ru.durnov.HtmlConvertService.style.CTDocumentWithPageSize;
 import ru.durnov.HtmlConvertService.style.DocxPage;
@@ -14,7 +12,7 @@ import ru.durnov.HtmlConvertService.style.Page;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.List;
+
 
 public class DocxDocument implements OutputDocument{
     private final String htmlContent;
