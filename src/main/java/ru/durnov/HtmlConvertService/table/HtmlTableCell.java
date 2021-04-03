@@ -1,12 +1,12 @@
 package ru.durnov.HtmlConvertService.table;
 
+import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xwpf.usermodel.*;
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Attribute;
 import org.jsoup.nodes.Attributes;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import ru.durnov.HtmlConvertService.style.DocxTableCellStyle;
+import ru.durnov.HtmlConvertService.style.TableCellStyle;
 import ru.durnov.HtmlConvertService.style.HtmlStyle;
 import ru.durnov.HtmlConvertService.style.Style;
 
@@ -26,7 +26,7 @@ public class HtmlTableCell {
         this.htmlTableCell = htmlTableCell;
         this.htmlStyle = new HtmlStyle(this.htmlTableCell.attributes());
     }
-
+    @Deprecated
     public String content(){
         return htmlTableCell.text();
     }
@@ -37,7 +37,6 @@ public class HtmlTableCell {
         Elements allElements = this.htmlTableCell.getAllElements();
         allElements.remove(this.htmlTableCell);
         allElements.forEach(element -> {
-            System.out.println(element);
             new ElementTableFactory(
                     element,
                     xwpfRun,
@@ -46,8 +45,23 @@ public class HtmlTableCell {
         });
     }
 
-    public DocxTableCellStyle docxTableCellStyle(){
-        return new DocxTableCellStyle(htmlTableCell, htmlStyle);
+    public void addTextToXSSFCell(XSSFCell xssfCell){
+        new XlsxCellStyle(
+                htmlTableCell.attributes(),
+                xssfCell
+                        .getRow()
+                        .getSheet()
+                        .getWorkbook()
+        ).applyToXlsxTableCell(xssfCell);
+        xssfCell.getSheet().setColumnWidth(
+                xssfCell.getColumnIndex(),
+                new MinimimColumnWidth(htmlTableCell.text()).columnLength()
+        );
+        xssfCell.setCellValue(htmlTableCell.text());
+    }
+
+    public TableCellStyle docxTableCellStyle(){
+        return new TableCellStyle(htmlTableCell, htmlStyle);
     }
 
     /**

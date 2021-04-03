@@ -24,7 +24,7 @@ public class HtmlTableStyle implements Style {
 
     public HtmlTableStyle(Element element, Style style, TableBorder tableBorder){
         this.element = element;
-        this.style =style;
+        this.style = style;
         this.tableBorder = tableBorder;
     }
 

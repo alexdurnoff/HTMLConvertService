@@ -1,5 +1,6 @@
 package ru.durnov.HtmlConvertService.style;
 
+import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
 import org.apache.poi.xwpf.usermodel.XWPFTableCell;
 import org.jsoup.nodes.Attributes;

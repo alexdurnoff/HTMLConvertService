@@ -7,12 +7,12 @@ import ru.durnov.HtmlConvertService.text.CellAllignment;
 /**
  * Класс отвечает за форматирование ячейки таблицы
  */
-public class DocxTableCellStyle {
+public class TableCellStyle {
     private final Element htmlTableCell;
     private final Style htmlStyle;
 
 
-    public DocxTableCellStyle(Element htmlTableCell, Style htmlStyle) {
+    public TableCellStyle(Element htmlTableCell, Style htmlStyle) {
         this.htmlTableCell = htmlTableCell;
         this.htmlStyle = htmlStyle;
     }

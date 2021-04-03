@@ -15,12 +15,6 @@ public class XLSXTable implements XlxsElement {
     private final XSSFWorkbook xssfWorkbook;
     private final XlsxStyle xlsxStyle;
 
-    public XLSXTable(HtmlTable htmlTable, XSSFWorkbook xssfWorkbook) {
-        this.htmlTable = htmlTable;
-        this.xssfWorkbook = xssfWorkbook;
-        this.xlsxStyle = null;
-    }
-
     public XLSXTable(HtmlTable htmlTable, XSSFWorkbook xssfWorkbook, XlsxStyle xlsxStyle) {
         this.htmlTable = htmlTable;
         this.xssfWorkbook = xssfWorkbook;

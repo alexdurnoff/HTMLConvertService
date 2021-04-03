@@ -1,5 +1,6 @@
 package ru.durnov.HtmlConvertService.style;
 
+import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.xwpf.usermodel.XWPFTable;
 import org.jsoup.nodes.Attribute;
 import org.jsoup.nodes.Attributes;
@@ -8,14 +9,14 @@ import org.jsoup.nodes.Element;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 /**
  * Параметры обрамления таблицы.
  */
 public class TableBorder {
     private final Attributes attributes;
-    private final Map<Integer, XWPFTable.XWPFBorderType> map;
+    private final Map<Integer, XWPFTable.XWPFBorderType> docxMap;
+    private final Map<Integer, BorderStyle> xlsxMap;
 
 
     public TableBorder(Element element) {
@@ -24,9 +25,15 @@ public class TableBorder {
 
     public TableBorder(Attributes attributes) {
         this.attributes = attributes;
-        this.map = new HashMap<>();
-        this.map.put(1, XWPFTable.XWPFBorderType.SINGLE);
-        this.map.put(0, XWPFTable.XWPFBorderType.NIL);
+        this.docxMap = new HashMap<>();
+        this.xlsxMap = new HashMap<>();
+        this.docxMap.put(1, XWPFTable.XWPFBorderType.SINGLE);
+        this.docxMap.put(2, XWPFTable.XWPFBorderType.THICK);
+        this.docxMap.put(0, XWPFTable.XWPFBorderType.NIL);
+        this.xlsxMap.put(0, BorderStyle.NONE);
+        this.xlsxMap.put(1, BorderStyle.THIN);
+        this.xlsxMap.put(2,BorderStyle.MEDIUM);
+        this.xlsxMap.put(3, BorderStyle.THICK);
     }
 
     public XWPFTable.XWPFBorderType borderType(){
@@ -40,8 +47,24 @@ public class TableBorder {
                 }
             }
         }
-        XWPFTable.XWPFBorderType borderType = map.get(border);
+        XWPFTable.XWPFBorderType borderType = docxMap.get(border);
         if (borderType != null) return borderType;
         return XWPFTable.XWPFBorderType.NONE;
+    }
+
+    public BorderStyle borderStyle(){
+        int border = 0;
+        List<Attribute> attributes = this.attributes.asList();
+        for (Attribute attribute : attributes) {
+            if (attribute.getKey().equals("border")){
+                try {
+                    border = Integer.parseInt(attribute.getValue());
+                } catch (NumberFormatException ignored) {
+                }
+            }
+        }
+        BorderStyle borderStyle = xlsxMap.get(border);
+        if (borderStyle != null) return borderStyle;
+        return BorderStyle.NONE;
     }
 }

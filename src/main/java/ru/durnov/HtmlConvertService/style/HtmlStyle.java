@@ -1,17 +1,19 @@
 package ru.durnov.HtmlConvertService.style;
 
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
 import org.jsoup.nodes.Attribute;
 import org.jsoup.nodes.Attributes;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.STHighlightColor;
+import ru.durnov.HtmlConvertService.table.XlsxCellStyle;
 
 import java.util.List;
 
 public class HtmlStyle implements Style {
-    private final HtmlFont htmlFont;
-    private final HtmlAlignment htmlAlignment;
-    private final HtmlBackGround htmlBackGround;
+    protected final HtmlFont htmlFont;
+    protected final HtmlAlignment htmlAlignment;
+    protected final HtmlBackGround htmlBackGround;
 
     public HtmlStyle(Attributes attributes){
         this.htmlFont = new HtmlFont(
@@ -42,6 +44,8 @@ public class HtmlStyle implements Style {
     public Style withBackGround(HtmlBackGround backGround){
         return new HtmlStyle(this.htmlFont, htmlAlignment, backGround);
     }
+
+
 
     @Override
     public Style withAttributes(Attributes attributes) {
