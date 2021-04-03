@@ -55,7 +55,7 @@ public class HtmlTableCell {
         ).applyToXlsxTableCell(xssfCell);
         xssfCell.getSheet().setColumnWidth(
                 xssfCell.getColumnIndex(),
-                new MinimimColumnWidth(htmlTableCell.text()).columnLength()
+                new MinimumColumnWidth(htmlTableCell.text()).columnLength()
         );
         xssfCell.setCellValue(htmlTableCell.text());
     }

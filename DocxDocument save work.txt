@@ -1,0 +1,19 @@
+ @Override
+    public void save() throws IOException, InvalidFormatException {
+        new CTDocumentWithPageSize(xwpfDocument,page).setUpPageSize();
+        Document document = Jsoup.parse(htmlContent);
+        document.body().childNodes().forEach(node -> {
+            if (node.getClass() == Element.class){
+                Element element = (Element) node;
+                try {
+                    new ElementFactory(element, xwpfDocument)
+                            .elementByName()
+                            .addToXWPFDocument();
+                } catch (IOException | InvalidFormatException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
+        xwpfDocument.write(new FileOutputStream(pathToOutputFile));
+    }

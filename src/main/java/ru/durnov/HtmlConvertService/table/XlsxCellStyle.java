@@ -1,6 +1,7 @@
 package ru.durnov.HtmlConvertService.table;
 
 import org.apache.poi.ss.usermodel.BorderStyle;
+import org.apache.poi.ss.usermodel.VerticalAlignment;
 import org.apache.poi.xssf.usermodel.*;
 import org.jsoup.nodes.Attributes;
 import ru.durnov.HtmlConvertService.style.*;
@@ -50,6 +51,7 @@ public class XlsxCellStyle extends HtmlStyle implements XlsxStyle {
         xssfCellStyle.setAlignment(new XlsxCellAlignment(this.htmlAlignment).horizontalAlignment());
         xssfCellStyle.setFont(new XlsxCellFont(this.htmlFont).font());
         xssfCellStyle.setFillBackgroundColor(new XlsxCellBackGround(this.htmlBackGround).indexedValue());
+        xssfCellStyle.setVerticalAlignment(VerticalAlignment.CENTER);
         xssfCellStyle.setWrapText(true);
         xssfCellStyle.setBorderLeft(tableBorder.borderStyle());
         xssfCellStyle.setBorderRight(tableBorder.borderStyle());

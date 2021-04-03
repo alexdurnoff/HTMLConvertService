@@ -10,7 +10,7 @@ public class DocxPage implements Page{
     /**
      * Если в конструктор пришло не "portrait",
      * всегда возвращаеь параметры страницы landscape.
-     * @param orientation
+     * @param orientation - ориентация страницы
      */
     public DocxPage(String orientation) {
         this.orientation = orientation;

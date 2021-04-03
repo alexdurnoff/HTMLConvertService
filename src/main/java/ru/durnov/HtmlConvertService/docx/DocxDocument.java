@@ -18,13 +18,13 @@ public class DocxDocument implements OutputDocument{
     private final String htmlContent;
     private final String pathToOutputFile;
     private final Page page;
-    private XWPFDocument xwpfDocument;
+    private final XWPFDocument xwpfDocument;
 
 
     public DocxDocument(String htmlContent, String pathToOutputFile) {
         this.htmlContent = htmlContent;
         this.pathToOutputFile = pathToOutputFile;
-        this.page = new DocxPage("landshaft");
+        this.page = new DocxPage("landscape");
         this.xwpfDocument = new XWPFDocument();
     }
 
