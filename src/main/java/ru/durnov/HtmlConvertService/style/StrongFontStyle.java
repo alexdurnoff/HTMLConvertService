@@ -39,6 +39,16 @@ public class StrongFontStyle implements Style{
     }
 
     @Override
+    public HtmlFont font() {
+        return this.style
+                .font()
+                .withFontWeight(new FontWeight(
+                        new StrongAttaributes().attributes()
+                        )
+                );
+    }
+
+    @Override
     public void applyToRun(XWPFRun xwpfRun) {
         style.applyToRun(xwpfRun);
         xwpfRun.setBold(true);

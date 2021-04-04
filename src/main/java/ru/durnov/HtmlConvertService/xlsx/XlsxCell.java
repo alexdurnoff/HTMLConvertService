@@ -62,7 +62,6 @@ public class XlsxCell {
         );
         if (isHeader) xlsxCellStyle = xlsxCellStyle.withFontWeight(new FontWeight(new StrongAttaributes().attributes()));
         xlsxCellStyle.applyToXlsxTableCell(xssfCell);
-        System.out.println(content);
         xssfCell.setCellValue(content);
     }
 

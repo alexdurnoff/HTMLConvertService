@@ -67,4 +67,11 @@ public class TableBorder {
         if (borderStyle != null) return borderStyle;
         return BorderStyle.NONE;
     }
+
+    @Override
+    public String toString() {
+        return "TableBorder{" +
+                "attributes=" + attributes +
+                '}';
+    }
 }

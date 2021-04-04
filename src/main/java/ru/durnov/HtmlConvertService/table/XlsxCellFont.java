@@ -20,11 +20,12 @@ public class XlsxCellFont {
         this.fontWeight = htmlFont.fontWeight();
     }
 
-    public Font font() {
-        XSSFFont xssfFont = new XSSFFont();
-        xssfFont.setFontHeight(fontSize.value());
-        xssfFont.setFamily(FontFamily.ROMAN);
-        if (fontWeight.value().equals("bold")) xssfFont.setBold(true);
-        return xssfFont;
+    public void setupFont(XSSFFont font) {
+        font.setFontHeight(fontSize.value());
+        font.setFontHeight(fontSize.value());
+        font.setFontName("Times New Roman");
+        if (fontWeight.value().contains("bold")) font.setBold(true);
     }
+
+
 }

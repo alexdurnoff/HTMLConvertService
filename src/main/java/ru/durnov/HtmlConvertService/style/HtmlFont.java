@@ -1,5 +1,8 @@
 package ru.durnov.HtmlConvertService.style;
 
+import org.apache.poi.ss.usermodel.FontFamily;
+import org.apache.poi.xssf.usermodel.XSSFFont;
+
 public class HtmlFont {
     private final FontSize fontSize;
     private final FontWeight fontWeight;
@@ -32,6 +35,7 @@ public class HtmlFont {
                 ", fontWeight=" + fontWeight +
                 '}';
     }
+
 
 
 }

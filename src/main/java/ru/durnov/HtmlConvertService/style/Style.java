@@ -20,6 +20,8 @@ public interface Style {
 
    Style withWidth(HtmlWidth htmlWidth);
 
+   HtmlFont font();
+
    void applyToRun(XWPFRun xwpfRun);
 
 }

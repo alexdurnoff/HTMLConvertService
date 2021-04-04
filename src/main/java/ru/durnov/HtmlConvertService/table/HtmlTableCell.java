@@ -51,12 +51,10 @@ public class HtmlTableCell {
                 xssfCell
                         .getRow()
                         .getSheet()
-                        .getWorkbook()
+                        .getWorkbook(),
+                this.htmlStyle.font()
         ).applyToXlsxTableCell(xssfCell);
-        xssfCell.getSheet().setColumnWidth(
-                xssfCell.getColumnIndex(),
-                new MinimumColumnWidth(cellElement.text()).columnLength()
-        );
+        xssfCell.getSheet().setColumnWidth(xssfCell.getColumnIndex(), new MinimumColumnWidth(cellElement.text()).columnLength());
         xssfCell.setCellValue(cellElement.text());
     }
 
@@ -80,5 +78,7 @@ public class HtmlTableCell {
         }
         return false;
     }
+
+
 
 }

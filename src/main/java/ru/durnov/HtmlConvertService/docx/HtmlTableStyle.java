@@ -55,6 +55,11 @@ public class HtmlTableStyle implements Style {
     }
 
     @Override
+    public HtmlFont font() {
+        return this.style.font();
+    }
+
+    @Override
     public void applyToRun(XWPFRun xwpfRun) {
         this.style.applyToRun(xwpfRun);
     }

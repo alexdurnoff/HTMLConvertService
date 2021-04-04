@@ -54,6 +54,11 @@ public class HtmlStyle implements Style {
     }
 
     @Override
+    public HtmlFont font() {
+        return this.htmlFont;
+    }
+
+    @Override
     public Style withAttributes(Attributes attributes) {
         Style htmlStyle1 = this;
         List<Attribute> attributeList = attributes.asList();
