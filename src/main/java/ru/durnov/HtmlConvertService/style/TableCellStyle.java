@@ -28,4 +28,5 @@ public class TableCellStyle {
     public TableCellCollSpan tableCellCollSpan(){
         return new TableCellCollSpan(this.htmlTableCell);
     }
+    public TableRowSpan tableRowSpan(){return new TableRowSpan(this.htmlTableCell);}
 }

@@ -78,19 +78,6 @@ class DocxDocumentTest {
         ).save();
     }
 
-    @Test
-    public void testSetBody() throws IOException, InvalidFormatException {
-        String htmlContent = Files.readString(Path.of("Test/1.html"));
-        Document document = Jsoup.parse(htmlContent);
-        XWPFDocument xwpfDocument = new XWPFDocument();
-        CTDocument1 document1 = xwpfDocument.getDocument();
-        OPCPackage oPCPackage = xwpfDocument.getPackage();
-        PackagePartName partName = PackagingURIHelper.createPartName("/word/" + "1" + ".html");
-        PackagePart part = oPCPackage.createPart(partName, "text/html");
-
-        /*MyXWPFHtmlDocument myXWPFHtmlDocument = new MyXWPFHtmlDocument(part, id);
-        document.addRelation(myXWPFHtmlDocument.getId(), new XWPFHtmlRelation(), myXWPFHtmlDocument);*/
-    }
 
     @Test
     public void testReadSavedDocument() throws IOException {

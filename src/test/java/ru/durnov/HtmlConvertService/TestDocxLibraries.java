@@ -70,7 +70,7 @@ public class TestDocxLibraries {
     public void testPOI3() throws IOException {
         POIFSFileSystem fileSystem = new POIFSFileSystem();
         DirectoryEntry directoryEntry = fileSystem.getRoot();
-        try (OutputStream out = new FileOutputStream("Test/docx/3.docx")
+        try (OutputStream out = new FileOutputStream("Test/docx/3.doc")
              ; InputStream in = new FileInputStream("Test/3.html")){
             directoryEntry.createDocument(
                     "wordDocument",
@@ -85,7 +85,7 @@ public class TestDocxLibraries {
     public void testPOI4() throws IOException {
         POIFSFileSystem fileSystem = new POIFSFileSystem();
         DirectoryEntry directoryEntry = fileSystem.getRoot();
-        try (OutputStream out = new FileOutputStream("Test/docx/4.docx")
+        try (OutputStream out = new FileOutputStream("Test/docx/4.doc")
              ; InputStream in = new FileInputStream("Test/4.html")){
             directoryEntry.createDocument(
                     "wordDocument",
@@ -96,12 +96,6 @@ public class TestDocxLibraries {
         }
     }
 
-    //@Test
-    public
-    void testPoi5() throws OpenXML4JException, IOException {
-        
-
-    }
 
     @Test
     public void testPoiWhitDocXFormat() throws IOException, GeneralSecurityException {
@@ -109,7 +103,7 @@ public class TestDocxLibraries {
         XWPFParagraph paragraph = document.createParagraph();
         XWPFRun run = paragraph.createRun();
         run.setText(Files.readString(Path.of("Test/4.html")));
-        FileOutputStream fileOutputStream = new FileOutputStream("Test/docx/6.docx");
+        FileOutputStream fileOutputStream = new FileOutputStream("Test/docx/6.doc");
         document.write(fileOutputStream);
         fileOutputStream.close();
         document.close();

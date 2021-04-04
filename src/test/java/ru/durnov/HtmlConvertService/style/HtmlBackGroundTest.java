@@ -4,6 +4,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Attribute;
 import org.jsoup.nodes.Attributes;
 import org.jsoup.nodes.Document;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -51,7 +52,21 @@ class HtmlBackGroundTest {
     public void testDefaultValue(){
         String expression = "background-color: rgb(0, 0, 0);";
         String regExp = "^background-color:\\srgb\\(([0-9]{1,3}),\\s?([0-9]{1,3}),\\s?([0-9]{1,3})\\);$";
+    }
 
+    @Test
+    public void testBackGroungWithRGBValue(){
+        Attributes attributes = new Attributes();
+        attributes.add("style", "background-color: rgb(255, 255, 0);");
+        HtmlBackGround htmlBackGround = new HtmlBackGround(attributes);
+        Assertions.assertTrue(htmlBackGround.toString().contains("ffff00"));
+    }
 
+    @Test
+    public void testBackGroungWithColorStringvalue(){
+        Attributes attributes = new Attributes();
+        attributes.add("style", "background-color: green");
+        HtmlBackGround htmlBackGround = new HtmlBackGround(attributes);
+        Assertions.assertTrue(htmlBackGround.toString().contains("green"));
     }
 }

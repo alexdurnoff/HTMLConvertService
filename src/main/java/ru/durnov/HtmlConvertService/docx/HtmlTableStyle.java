@@ -50,6 +50,11 @@ public class HtmlTableStyle implements Style {
     }
 
     @Override
+    public Style withWidth(HtmlWidth htmlWidth) {
+        return this.style.withWidth(htmlWidth);
+    }
+
+    @Override
     public void applyToRun(XWPFRun xwpfRun) {
         this.style.applyToRun(xwpfRun);
     }

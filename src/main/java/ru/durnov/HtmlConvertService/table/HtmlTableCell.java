@@ -14,28 +14,28 @@ import ru.durnov.HtmlConvertService.style.Style;
  * Класс представляет собой ячейку в html-таблице.
  */
 public class HtmlTableCell {
-    private final Element htmlTableCell;
+    private final Element cellElement;
     private final Style htmlStyle;
 
-    public HtmlTableCell (Element htmlTableCell, Style style) {
-        this.htmlTableCell = htmlTableCell;
-        this.htmlStyle = style.withAttributes(this.htmlTableCell.attributes());
+    public HtmlTableCell (Element element, Style style) {
+        this.cellElement = element;
+        this.htmlStyle = style.withAttributes(this.cellElement.attributes());
     }
 
-    public HtmlTableCell(Element htmlTableCell){
-        this.htmlTableCell = htmlTableCell;
-        this.htmlStyle = new HtmlStyle(this.htmlTableCell.attributes());
+    public HtmlTableCell(Element cellElement){
+        this.cellElement = cellElement;
+        this.htmlStyle = new HtmlStyle(this.cellElement.attributes());
     }
     @Deprecated
     public String content(){
-        return htmlTableCell.text();
+        return cellElement.text();
     }
 
     public void addTextToXWPFTableCell(XWPFParagraph xwpfParagraph){
         XWPFRun xwpfRun = xwpfParagraph.createRun();
         this.htmlStyle.applyToRun(xwpfRun);
-        Elements allElements = this.htmlTableCell.getAllElements();
-        allElements.remove(this.htmlTableCell);
+        Elements allElements = this.cellElement.getAllElements();
+        allElements.remove(this.cellElement);
         allElements.forEach(element -> {
             new ElementTableFactory(
                     element,
@@ -47,7 +47,7 @@ public class HtmlTableCell {
 
     public void addTextToXSSFCell(XSSFCell xssfCell){
         new XlsxCellStyle(
-                htmlTableCell.attributes(),
+                cellElement.attributes(),
                 xssfCell
                         .getRow()
                         .getSheet()
@@ -55,13 +55,13 @@ public class HtmlTableCell {
         ).applyToXlsxTableCell(xssfCell);
         xssfCell.getSheet().setColumnWidth(
                 xssfCell.getColumnIndex(),
-                new MinimumColumnWidth(htmlTableCell.text()).columnLength()
+                new MinimumColumnWidth(cellElement.text()).columnLength()
         );
-        xssfCell.setCellValue(htmlTableCell.text());
+        xssfCell.setCellValue(cellElement.text());
     }
 
     public TableCellStyle docxTableCellStyle(){
-        return new TableCellStyle(htmlTableCell, htmlStyle);
+        return new TableCellStyle(cellElement, htmlStyle);
     }
 
     /**
@@ -72,7 +72,7 @@ public class HtmlTableCell {
      * @return
      */
     public boolean isBorderCell(){
-        Attributes attributes = htmlTableCell.attributes();
+        Attributes attributes = cellElement.attributes();
         for (Attribute attribute : attributes) {
             if (attribute.getKey().equals("t")){
                 if (attribute.getValue().equals("z")) return true;

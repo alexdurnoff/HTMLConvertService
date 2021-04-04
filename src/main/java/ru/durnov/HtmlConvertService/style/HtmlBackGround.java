@@ -10,30 +10,18 @@ import java.util.regex.Pattern;
 public class HtmlBackGround extends StringAttributeValue {
 
     public HtmlBackGround(Attributes attributes) {
-        super("^background-color:\\srgb\\(([0-9]{1,3}),\\s?([0-9]{1,3}),\\s?([0-9]{1,3})\\);$", "auto", attributes);
+        super("^background-color:\\s?(.{1,})$", "auto", attributes);
     }
 
 
 
     @Override
     public String value() {
-        Pattern pattern = Pattern.compile(this.regExp);
-        List<Attribute> attributeList = this.attributes.asList();
-
-        for (Attribute attribute : attributeList) {
-            if (attribute.getKey().equals("style")){
-                String value = attribute.getValue();
-                if (value != null){
-                    Matcher matcher = pattern.matcher(value);
-                    if (matcher.matches()){
-                        return new StringForColor(matcher.group(1)).colorString()
-                                + new StringForColor(matcher.group(2)).colorString()
-                                + new StringForColor(matcher.group(3)).colorString();
-                    }
-                }
-            }
+        String value = super.value();
+        if (value.contains("rgb")){
+            return new HtmlBackGroundFromRgb(attributes).value();
         }
-        return "auto";
+        return new HtmlBackGroundFromColorName(attributes).value();
     }
 
     @Override

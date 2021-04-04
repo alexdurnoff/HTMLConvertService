@@ -18,6 +18,8 @@ public interface Style {
 
    Style withAttributes(Attributes attributes);
 
+   Style withWidth(HtmlWidth htmlWidth);
+
    void applyToRun(XWPFRun xwpfRun);
 
 }

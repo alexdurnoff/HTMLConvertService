@@ -3,34 +3,29 @@ package ru.durnov.HtmlConvertService.style;
 import org.jsoup.nodes.Attribute;
 import org.jsoup.nodes.Attributes;
 import org.jsoup.nodes.Element;
-
 /**
  * Класс инкапсулирует ячейку строки таблицы
  * и возвращает число объединенных ячеек.
  */
-public class TableCellCollSpan {
-    private final Attributes attributes;
+public class TableRowSpan {
+    private final Element htmlCell;
 
-    public TableCellCollSpan(Element htmlCell) {
-        this.attributes = htmlCell.attributes();
+
+    public TableRowSpan(Element htmlCell) {
+        this.htmlCell = htmlCell;
     }
 
-    public TableCellCollSpan(Attributes attributes){
-        this.attributes = attributes;
-    }
-
-    public int collspan(){
-        int colspan = 1;
+    public int rowspan(){
+        int rowspan = 1;
+        Attributes attributes = htmlCell.attributes();
         for (Attribute attribute : attributes) {
-            if (attribute.getKey().equals("colspan")) {
+            if (attribute.getKey().equals("rowspan")) {
                 try {
-                    colspan = Integer.parseInt(attribute.getValue());
+                    rowspan = Integer.parseInt(attribute.getValue());
                 } catch (NumberFormatException ignored) {
                 }
             }
         }
-        return colspan;
+        return rowspan;
     }
-
-
 }

@@ -17,11 +17,13 @@ public class XlsxTableBody implements XlxsElement {
     private final HtmlTableBody htmlTableBody;
     private final XSSFWorkbook xssfWorkbook;
     private final XlsxStyle xlsxStyle;
+    private final CurrentRowNumber currentRowNumber;
 
     public XlsxTableBody(HtmlTableBody htmlTableBody, XSSFWorkbook xssfWorkbook, XlsxStyle xlsxStyle) {
         this.htmlTableBody = htmlTableBody;
         this.xssfWorkbook = xssfWorkbook;
         this.xlsxStyle = xlsxStyle;
+        this.currentRowNumber = new CurrentRowNumber();
     }
 
 
@@ -39,7 +41,7 @@ public class XlsxTableBody implements XlxsElement {
             new XlsxTableRow(
                     htmlTableRow,
                     xssfSheet,
-                    rowNumber,
+                    currentRowNumber,
                     xlsxStyle
             ).addToXSSFWorkBook();
             rowNumber++;

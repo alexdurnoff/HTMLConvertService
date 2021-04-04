@@ -5,7 +5,7 @@ import org.jsoup.nodes.Attributes;
 public class FontWeight extends StringAttributeValue {
 
     public FontWeight(Attributes attributes) {
-        super("font-weight:\\s(.*);", "normal", attributes);
+        super("font-weight:\\s?(.*);", "normal", attributes);
     }
 
     @Override

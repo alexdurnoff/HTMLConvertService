@@ -34,6 +34,11 @@ public class StrongFontStyle implements Style{
     }
 
     @Override
+    public Style withWidth(HtmlWidth htmlWidth) {
+        return new StrongFontStyle(style.withWidth(htmlWidth));
+    }
+
+    @Override
     public void applyToRun(XWPFRun xwpfRun) {
         style.applyToRun(xwpfRun);
         xwpfRun.setBold(true);

@@ -6,7 +6,7 @@ import org.jsoup.nodes.Attributes;
 public class HtmlAlignment extends StringAttributeValue {
     public HtmlAlignment(Attributes attributes) {
 
-        super("text-align:\\s(.*);", "left", attributes);
+        super("text-align:\\s?(.*);", "left", attributes);
     }
 
     public ParagraphAlignment paragraphAlignment(){

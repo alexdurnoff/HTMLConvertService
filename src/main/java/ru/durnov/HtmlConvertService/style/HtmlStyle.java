@@ -14,6 +14,7 @@ public class HtmlStyle implements Style {
     protected final HtmlFont htmlFont;
     protected final HtmlAlignment htmlAlignment;
     protected final HtmlBackGround htmlBackGround;
+    private final HtmlWidth htmlWidth;
 
     public HtmlStyle(Attributes attributes){
         this.htmlFont = new HtmlFont(
@@ -22,30 +23,35 @@ public class HtmlStyle implements Style {
         );
         this.htmlAlignment = new HtmlAlignment(attributes);
         this.htmlBackGround = new HtmlBackGround(attributes);
+        this.htmlWidth = new HtmlWidth(attributes);
     }
 
-    public HtmlStyle(HtmlFont htmlFont, HtmlAlignment htmlAlignment, HtmlBackGround htmlBackGround) {
+    public HtmlStyle(HtmlFont htmlFont, HtmlAlignment htmlAlignment, HtmlBackGround htmlBackGround, HtmlWidth htmlWidth) {
         this.htmlFont = htmlFont;
         this.htmlAlignment = htmlAlignment;
         this.htmlBackGround = htmlBackGround;
+        this.htmlWidth = htmlWidth;
     }
 
     @Override
     public Style withFont(HtmlFont font){
-        return new HtmlStyle(font, this.htmlAlignment, this.htmlBackGround);
+        return new HtmlStyle(font, this.htmlAlignment, this.htmlBackGround, this.htmlWidth);
     }
 
     @Override
     public Style withAlignment(HtmlAlignment alignment){
-        return new HtmlStyle(this.htmlFont, alignment, this.htmlBackGround);
+        return new HtmlStyle(this.htmlFont, alignment, this.htmlBackGround, this.htmlWidth);
     }
 
     @Override
     public Style withBackGround(HtmlBackGround backGround){
-        return new HtmlStyle(this.htmlFont, htmlAlignment, backGround);
+        return new HtmlStyle(this.htmlFont, htmlAlignment, backGround, this.htmlWidth);
     }
 
-
+    @Override
+    public Style withWidth(HtmlWidth htmlWidth) {
+        return new HtmlStyle(this.htmlFont, this.htmlAlignment, this.htmlBackGround, htmlWidth);
+    }
 
     @Override
     public Style withAttributes(Attributes attributes) {
@@ -74,6 +80,8 @@ public class HtmlStyle implements Style {
         return htmlStyle1;
     }
 
+
+
     @Override
     public void applyToRun(XWPFRun xwpfRun) {
         xwpfRun.setFontFamily("Times new Roman");
@@ -90,6 +98,7 @@ public class HtmlStyle implements Style {
                 "htmlFont=" + htmlFont +
                 ", htmlAlignment=" + htmlAlignment +
                 ", htmlBackGround=" + htmlBackGround +
+                ", htmlWidth = " + htmlWidth +
                 '}';
     }
 }

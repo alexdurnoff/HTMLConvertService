@@ -3,11 +3,12 @@ package ru.durnov.HtmlConvertService.table;
 import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.VerticalAlignment;
 import org.apache.poi.xssf.usermodel.*;
+import org.jsoup.nodes.Attribute;
 import org.jsoup.nodes.Attributes;
 import ru.durnov.HtmlConvertService.style.*;
 import ru.durnov.HtmlConvertService.xlsx.XlsxStyle;
 
-import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 /**
  * Параметры стиля таблицы в xlsx-документе;
@@ -17,6 +18,7 @@ public class XlsxCellStyle extends HtmlStyle implements XlsxStyle {
     private final HtmlAlignment htmlAlignment;
     private final HtmlBackGround htmlBackGround;
     private final HtmlFont htmlFont;
+    private final HtmlWidth htmlWidth;
     private final TableBorder tableBorder;
 
     public XlsxCellStyle(Attributes attributes, XSSFWorkbook xssfWorkbook) {
@@ -29,18 +31,21 @@ public class XlsxCellStyle extends HtmlStyle implements XlsxStyle {
                 new FontSize(attributes),
                 new FontWeight(attributes)
         );
+        this.htmlWidth = new HtmlWidth(attributes);
     }
 
     public XlsxCellStyle(HtmlFont htmlFont,
                          HtmlAlignment htmlAlignment,
                          HtmlBackGround htmlBackGround,
+                         HtmlWidth htmlWidth,
                          TableBorder tableBorder,
                          XSSFWorkbook xssfWorkbook) {
-        super(htmlFont, htmlAlignment, htmlBackGround);
+        super(htmlFont, htmlAlignment, htmlBackGround, htmlWidth);
         this.xssfWorkbook = xssfWorkbook;
         this.htmlFont = htmlFont;
         this.htmlAlignment = htmlAlignment;
         this.htmlBackGround = htmlBackGround;
+        this.htmlWidth = htmlWidth;
         this.tableBorder = tableBorder;
     }
 
@@ -57,6 +62,7 @@ public class XlsxCellStyle extends HtmlStyle implements XlsxStyle {
         xssfCellStyle.setBorderRight(tableBorder.borderStyle());
         xssfCellStyle.setBorderTop(tableBorder.borderStyle());
         xssfCellStyle.setBorderBottom(tableBorder.borderStyle());
+        xssfCellStyle.setFillBackgroundColor(new BackGroundColor(htmlBackGround).color());
         xssfCell.setCellStyle(xssfCellStyle);
     }
 
@@ -81,8 +87,18 @@ public class XlsxCellStyle extends HtmlStyle implements XlsxStyle {
 
     @Override
     public XlsxCellStyle withStyle(XlsxStyle xlsxStyle) {
-
-
         return null;
+    }
+
+    public XlsxCellStyle withFontWeight(FontWeight fontWeight){
+        HtmlFont htmlFont = this.htmlFont.withFontWeight(fontWeight);
+        return new XlsxCellStyle(
+                htmlFont,
+                this.htmlAlignment,
+                this.htmlBackGround,
+                this.htmlWidth,
+                this.tableBorder,
+                this.xssfWorkbook
+        );
     }
 }

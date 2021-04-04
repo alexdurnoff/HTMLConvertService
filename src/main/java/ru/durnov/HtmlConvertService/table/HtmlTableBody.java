@@ -24,13 +24,11 @@ public class HtmlTableBody {
 
     public List<HtmlTableRow> htmlTableRowsList(){
         List<HtmlTableRow> htmlTableRowList = new ArrayList<>();
-        this.htmlTableElement.childNodes().forEach(node -> {
-            if (node.nodeName().equals("tr")){
-                htmlTableRowList.add(new HtmlTableRow(
-                        (Element) node,
-                        htmlStyle
-                ));
-            }
+        this.htmlTableElement.getElementsByTag("tr").forEach(element -> {
+            htmlTableRowList.add(new HtmlTableRow(
+                    element,
+                    htmlStyle
+            ));
         });
         return htmlTableRowList;
     }

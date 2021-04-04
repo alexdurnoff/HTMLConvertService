@@ -10,26 +10,30 @@ public class XlsxTableCell implements XlxsElement {
     private final HtmlTableCell htmlTableCell;
     private final XSSFRow xssfRow;
     private final CurrentColumnNumber columnNumber;
+    private final CurrentRowNumber rowNumber;
 
 
-    public XlsxTableCell(HtmlTableCell htmlTableCell, XSSFRow xssfRow, CurrentColumnNumber columnNumber) {
+    public XlsxTableCell(HtmlTableCell htmlTableCell,
+                         XSSFRow xssfRow,
+                         CurrentColumnNumber columnNumber,
+                         CurrentRowNumber rowNumber) {
         this.htmlTableCell = htmlTableCell;
         this.xssfRow = xssfRow;
         this.columnNumber = columnNumber;
+        this.rowNumber = rowNumber;
     }
 
     @Override
     public void addToXSSFWorkBook() {
-        //XSSFCell xssfCell = new NewXSSFtableCell(xssfRow,cellNumber).createCellByNumber();
         XSSFCell xssfCell = xssfRow.createCell(columnNumber.columnNumber());
-        int span = htmlTableCell
+        int collspan = htmlTableCell
                 .docxTableCellStyle()
                 .tableCellCollSpan()
                 .collspan();
-        if (span > 1){
+        if (collspan > 1){
             int firstRow = xssfRow.getRowNum();
             int firstColumn = xssfCell.getColumnIndex();
-            int lastColumn = firstColumn + span - 1;
+            int lastColumn = firstColumn + collspan - 1;
             xssfRow.getSheet().addMergedRegion(
                     new CellRangeAddress(
                             firstRow,
@@ -38,7 +42,7 @@ public class XlsxTableCell implements XlxsElement {
                             lastColumn
                     )
             );
-            columnNumber.increaseColumnNumber(span);
+            columnNumber.increaseColumnNumber(collspan);
         } else {
             columnNumber.increaseColumnNumber(1);
         }

@@ -48,6 +48,14 @@ class HtmlStyleTest {
     }
 
     @Test
+    void testWithWidth(){
+        Attributes attributes1 = new Attributes();
+        attributes1.add("style", "width:30px;");
+        Style htmlStyle1 = this.htmlStyle.withWidth(new HtmlWidth(attributes1));
+        Assertions.assertTrue(htmlStyle1.toString().contains("width is 30"));
+    }
+
+    @Test
     void withAttributesWithNewFontSize() {
         Attributes attributes1 = new Attributes();
         attributes1.add("style", "font-size: 24px;");

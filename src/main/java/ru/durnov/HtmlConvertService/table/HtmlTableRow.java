@@ -1,43 +1,52 @@
 package ru.durnov.HtmlConvertService.table;
 
+import org.jsoup.nodes.Attributes;
 import org.jsoup.nodes.Element;
+import org.jsoup.nodes.Node;
 import org.jsoup.select.Elements;
+import ru.durnov.HtmlConvertService.style.HtmlFont;
 import ru.durnov.HtmlConvertService.style.HtmlStyle;
+import ru.durnov.HtmlConvertService.style.StrongAttaributes;
 import ru.durnov.HtmlConvertService.style.Style;
+import ru.durnov.HtmlConvertService.xlsx.XlsxCell;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Класс представляет собой строку в html-таблице.
  */
 public class HtmlTableRow {
     private final Element htmlTableRow;
-    private final Style htmlStyle;
-
+    private final Style style;
+    private boolean isHeader;
 
     public HtmlTableRow(Element htmlTableRow, Style style) {
         this.htmlTableRow = htmlTableRow;
-        this.htmlStyle = style.withAttributes(this.htmlTableRow.attributes());
-    }
-
-    public HtmlTableRow(Element htmlTableRow){
-        this.htmlTableRow = htmlTableRow;
-        this.htmlStyle = new HtmlStyle(this.htmlTableRow.attributes());
+        this.style = style;
     }
 
     public List<HtmlTableCell> htmlTableCellList(){
         List<HtmlTableCell> htmlTableCellList = new ArrayList<>();
-        this.htmlTableRow.childNodes().forEach(node -> {
-            if (node.nodeName().equals("td")){
-                htmlTableCellList.add(new HtmlTableCell(
-                        (Element) node,
-                        htmlStyle
-                ));
-            }
+        htmlTableRow.getElementsByTag("th").forEach(element -> {
+            htmlTableCellList.add(new HtmlTableCell(
+                    element,
+                    style.withAttributes(new StrongAttaributes().attributes())
+            ));
+        });
+        htmlTableRow.getElementsByTag("td").forEach(element -> {
+            htmlTableCellList.add(
+                    new HtmlTableCell(
+                            element,
+                            style
+                    )
+            );
         });
         return htmlTableCellList;
-    };
+    }
+
+
 
     /**
      * Метод нужен для того, чтобы определить, используется ли строка таблицы для реальных данных,
@@ -50,16 +59,15 @@ public class HtmlTableRow {
             if (element.nodeName().equals("td")){
                 HtmlTableCell htmlTableCell = new HtmlTableCell(
                         element,
-                        this.htmlStyle.withAttributes(element.attributes())
+                        new HtmlStyle(element.attributes())
                 );
                 if (! htmlTableCell.isBorderCell()) return false;
             }
         }
+        Elements elementsTh = this.htmlTableRow.getElementsByTag("th");
+        if (elementsTh.size() > 0) return false;
         return true;
     }
 
-    public Style htmlStyle(){
-        return this.htmlStyle;
-    }
 
 }
