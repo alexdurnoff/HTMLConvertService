@@ -28,5 +28,10 @@ public class CTDocumentWithPageSize {
         CTPageSz pageSz = sectPr.addNewPgSz();
         pageSz.setH(BigInteger.valueOf(height* 20L));
         pageSz.setW(BigInteger.valueOf(width* 20L));
+        CTPageMar pageMar = sectPr.addNewPgMar();
+        pageMar.setLeft(BigInteger.valueOf(700));
+        pageMar.setRight(BigInteger.TEN);
+        pageMar.setTop(BigInteger.TEN);
+        pageMar.setBottom(BigInteger.TEN);
     }
 }
