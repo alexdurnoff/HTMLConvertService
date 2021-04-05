@@ -1,5 +1,6 @@
 package ru.durnov.HtmlConvertService.style;
 
+import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
@@ -96,6 +97,7 @@ public class HtmlStyle implements Style {
         xwpfParagraph.setAlignment(this.htmlAlignment.paragraphAlignment());
         if (!htmlBackGround.value().equals("auto"))xwpfRun.getCTR().addNewRPr().addNewHighlight().setVal(STHighlightColor.YELLOW);
     }
+
 
     @Override
     public String toString() {

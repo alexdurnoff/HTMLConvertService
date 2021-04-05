@@ -6,6 +6,7 @@ import org.jsoup.nodes.Element;
 import ru.durnov.HtmlConvertService.style.FontWeight;
 import ru.durnov.HtmlConvertService.style.StrongAttaributes;
 import ru.durnov.HtmlConvertService.style.Style;
+import ru.durnov.HtmlConvertService.xlsx.XlsxStyle;
 
 public class HtmlTableHeaderRow extends HtmlTableCell{
     private final String content;
@@ -24,7 +25,7 @@ public class HtmlTableHeaderRow extends HtmlTableCell{
     }
 
     @Override
-    public void addTextToXSSFCell(XSSFCell xssfCell) {
+    public void addTextToXSSFCell(XSSFCell xssfCell, XlsxStyle xlsxStyle) {
         new XlsxCellStyle(
                 attributes,
                 xssfCell

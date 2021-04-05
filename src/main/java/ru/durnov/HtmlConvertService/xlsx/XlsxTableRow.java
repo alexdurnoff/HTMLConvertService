@@ -24,6 +24,7 @@ public class XlsxTableRow implements XlxsElement {
     @Override
     public void addToXSSFWorkBook() {
         XSSFRow xssfRow = new NewXSSFRow(xssfSheet, rowNumber.rowNumber()).createRowByNumber();
+        this.xlsxStyle.applyToXlsxTableRow(xssfRow);
         rowNumber.increaseRowNumber(1);
         List<HtmlTableCell> htmlTableCells = htmlTableRow.htmlTableCellList();
         CurrentColumnNumber columnNumber = new CurrentColumnNumber();
@@ -32,7 +33,8 @@ public class XlsxTableRow implements XlxsElement {
                     htmlTableCell,
                     xssfRow,
                     columnNumber,
-                    rowNumber
+                    rowNumber,
+                    xlsxStyle
             ).addToXSSFWorkBook();
         }
     }

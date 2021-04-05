@@ -72,6 +72,7 @@ public class TableBorder {
     public String toString() {
         return "TableBorder{" +
                 "attributes=" + attributes +
+                "border style=" + this.borderStyle() +
                 '}';
     }
 }

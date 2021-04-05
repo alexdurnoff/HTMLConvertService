@@ -9,6 +9,7 @@ import org.jsoup.select.Elements;
 import ru.durnov.HtmlConvertService.style.TableCellStyle;
 import ru.durnov.HtmlConvertService.style.HtmlStyle;
 import ru.durnov.HtmlConvertService.style.Style;
+import ru.durnov.HtmlConvertService.xlsx.XlsxStyle;
 
 /**
  * Класс представляет собой ячейку в html-таблице.
@@ -45,15 +46,8 @@ public class HtmlTableCell {
         });
     }
 
-    public void addTextToXSSFCell(XSSFCell xssfCell){
-        new XlsxCellStyle(
-                cellElement.attributes(),
-                xssfCell
-                        .getRow()
-                        .getSheet()
-                        .getWorkbook(),
-                this.htmlStyle.font()
-        ).applyToXlsxTableCell(xssfCell);
+    public void addTextToXSSFCell(XSSFCell xssfCell, XlsxStyle xlsxStyle){
+        xlsxStyle.withAttributes(cellElement.attributes()).applyToXlsxTableCell(xssfCell);
         xssfCell.getSheet().setColumnWidth(xssfCell.getColumnIndex(), new MinimumColumnWidth(cellElement.text()).columnLength());
         xssfCell.setCellValue(cellElement.text());
     }

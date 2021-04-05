@@ -3,9 +3,12 @@ package ru.durnov.HtmlConvertService.table;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.*;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
+import org.jsoup.nodes.Attribute;
 import org.jsoup.nodes.Attributes;
 import ru.durnov.HtmlConvertService.style.*;
 import ru.durnov.HtmlConvertService.xlsx.XlsxStyle;
+
+import java.util.List;
 
 /**
  * Параметры стиля таблицы в xlsx-документе;
@@ -89,14 +92,42 @@ public class XlsxCellStyle implements XlsxStyle {
 
     @Override
     public void applyToXlsxTableRow(XSSFRow xssfRow) {
+        System.out.println(this.tableBorder);
         XSSFCellStyle xssfCellStyle = xssfWorkbook.createCellStyle();
-        xssfCellStyle.setBorderBottom(BorderStyle.MEDIUM);
         xssfCellStyle.setBorderBottom(this.tableBorder.borderStyle());
         xssfCellStyle.setBorderTop(this.tableBorder.borderStyle());
         xssfCellStyle.setBorderRight(this.tableBorder.borderStyle());
         xssfCellStyle.setBorderLeft(this.tableBorder.borderStyle());
         xssfCellStyle.setWrapText(true);
         xssfRow.setRowStyle(xssfCellStyle);
+    }
+
+    @Override
+    public XlsxStyle withAttributes(Attributes attributes) {
+        XlsxCellStyle xlsxStyle1 = this;
+        List<Attribute> attributeList = attributes.asList();
+        for (Attribute attribute : attributeList) {
+            if (attribute.getValue().contains("font-")){
+                xlsxStyle1 = xlsxStyle1.withFont(
+                        new HtmlFont(
+                                new FontSize(attributes),
+                                new FontWeight(attributes)
+                        )
+                );
+            }
+            if (attribute.getValue().contains("text-align")){
+                xlsxStyle1 = xlsxStyle1.withAlignment(
+                        new HtmlAlignment(attributes)
+                );
+            }
+            if (attribute.getValue().contains("background-color")){
+                xlsxStyle1 = xlsxStyle1.withBackGround(
+                        new HtmlBackGround(attributes)
+                );
+            }
+
+        }
+        return xlsxStyle1;
     }
 
 
@@ -120,7 +151,6 @@ public class XlsxCellStyle implements XlsxStyle {
     @Override
     public String toString() {
         return "XlsxCellStyle{" +
-                "xssfWorkbook=" + xssfWorkbook +
                 ", htmlAlignment=" + htmlAlignment +
                 ", htmlBackGround=" + htmlBackGround +
                 ", htmlFont=" + htmlFont +
@@ -130,28 +160,53 @@ public class XlsxCellStyle implements XlsxStyle {
     }
 
     @Override
-    public Style withFont(HtmlFont font) {
-        return null;
+    public XlsxCellStyle withFont(HtmlFont font) {
+        return new XlsxCellStyle(
+                font,
+                this.htmlAlignment,
+                this.htmlBackGround,
+                this.htmlWidth,
+                this.tableBorder,
+                this.xssfWorkbook
+        );
     }
 
     @Override
-    public Style withAlignment(HtmlAlignment alignment) {
-        return null;
+    public XlsxCellStyle withAlignment(HtmlAlignment alignment) {
+        return new XlsxCellStyle(
+                this.htmlFont,
+                alignment,
+                this.htmlBackGround,
+                this.htmlWidth,
+                this.tableBorder,
+                this.xssfWorkbook
+        );
     }
 
     @Override
-    public Style withBackGround(HtmlBackGround backGround) {
-        return null;
+    public XlsxCellStyle withBackGround(HtmlBackGround backGround) {
+        return new XlsxCellStyle(
+                this.htmlFont,
+                this.htmlAlignment,
+                backGround,
+                this.htmlWidth,
+                this.tableBorder,
+                this.xssfWorkbook
+        );
     }
 
-    @Override
-    public Style withAttributes(Attributes attributes) {
-        return null;
-    }
+
 
     @Override
-    public Style withWidth(HtmlWidth htmlWidth) {
-        return null;
+    public XlsxCellStyle withWidth(HtmlWidth htmlWidth) {
+        return new XlsxCellStyle(
+                this.htmlFont,
+                this.htmlAlignment,
+                this.htmlBackGround,
+                htmlWidth,
+                this.tableBorder,
+                this.xssfWorkbook
+        );
     }
 
     @Override

@@ -1,6 +1,7 @@
 package ru.durnov.HtmlConvertService.docx;
 
 import org.apache.poi.ss.formula.functions.T;
+import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
 import org.apache.poi.xwpf.usermodel.XWPFTable;
 import org.jsoup.nodes.Attributes;
@@ -63,6 +64,7 @@ public class HtmlTableStyle implements Style {
     public void applyToRun(XWPFRun xwpfRun) {
         this.style.applyToRun(xwpfRun);
     }
+
 
     public void applyToXWPFTable(XWPFTable xwpfTable){
         xwpfTable.setBottomBorder(this.tableBorder.borderType(), 12, 0, "auto");

@@ -11,16 +11,19 @@ public class XlsxTableCell implements XlxsElement {
     private final XSSFRow xssfRow;
     private final CurrentColumnNumber columnNumber;
     private final CurrentRowNumber rowNumber;
+    private final XlsxStyle xlsxStyle;
 
 
     public XlsxTableCell(HtmlTableCell htmlTableCell,
                          XSSFRow xssfRow,
                          CurrentColumnNumber columnNumber,
-                         CurrentRowNumber rowNumber) {
+                         CurrentRowNumber rowNumber,
+                         XlsxStyle xlsxStyle) {
         this.htmlTableCell = htmlTableCell;
         this.xssfRow = xssfRow;
         this.columnNumber = columnNumber;
         this.rowNumber = rowNumber;
+        this.xlsxStyle = xlsxStyle;
     }
 
     @Override
@@ -46,6 +49,6 @@ public class XlsxTableCell implements XlxsElement {
         } else {
             columnNumber.increaseColumnNumber(1);
         }
-        htmlTableCell.addTextToXSSFCell(xssfCell);
+        htmlTableCell.addTextToXSSFCell(xssfCell,xlsxStyle);
     }
 }
