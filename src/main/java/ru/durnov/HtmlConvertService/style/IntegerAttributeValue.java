@@ -1,6 +1,6 @@
 package ru.durnov.HtmlConvertService.style;
 
-import org.hibernate.id.factory.IdentifierGeneratorFactory;
+
 import org.jsoup.nodes.Attribute;
 import org.jsoup.nodes.Attributes;
 
