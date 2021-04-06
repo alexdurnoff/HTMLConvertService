@@ -34,15 +34,15 @@ public class Request {
 
     public OutputDocument document() throws IOException {
         if (this.type.equals("xlsx")) {
-            log.info("return new XLSXDocumnet");
+            log.info("return new XLSXDocument");
             return new XLSXDocument(url, fileName(), new XSSFWorkbook());
         }
         if (this.type.equals("docx")) {
             log.info("return new DocxDocument");
-            return new DocxDocument(Files.readString(Path.of(url)), fileName());
+            return new DocxDocument(Files.readString(Path.of(url)), fileName(), orientation);
         }
         log.info("return PdfOutputDocument");
-        return new PdfOutputDocument(this.url, this.fileName());
+        return new PdfOutputDocument(this.url, this.fileName(), orientation);
     }
 
     @Override

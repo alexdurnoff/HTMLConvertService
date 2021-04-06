@@ -18,13 +18,13 @@ public class DocxPage implements Page{
 
     @Override
     public int width() {
-        if (orientation.equals("portrait")) return 842;//было 842
+        if (orientation.equalsIgnoreCase("portrait")) return 842;//было 842
         return 1190;
     }
 
     @Override
     public int heigth() {
-        if (orientation.equals("portrait")) return 1190;//было 1190
+        if (orientation.equalsIgnoreCase("portrait")) return 1190;//было 1190
         return 842;
     }
 }

@@ -9,6 +9,8 @@ import com.itextpdf.styledxmlparser.css.media.MediaDeviceDescription;
 import com.itextpdf.styledxmlparser.css.media.MediaType;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import ru.durnov.HtmlConvertService.docx.OutputDocument;
+import ru.durnov.HtmlConvertService.style.DocxPage;
+import ru.durnov.HtmlConvertService.style.Page;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -17,10 +19,18 @@ import java.io.IOException;
 public class PdfOutputDocument implements OutputDocument {
     private final String sourceFile;
     private final String outPutFile;
+    private final Page page;
 
     public PdfOutputDocument(String sourceFile, String outPutFile) {
         this.sourceFile = sourceFile;
         this.outPutFile = outPutFile;
+        this.page = new DocxPage("landscape");
+    }
+
+    public PdfOutputDocument(String sourceFile, String outPutFile, String orientation){
+        this.sourceFile = sourceFile;
+        this.outPutFile = outPutFile;
+        this.page = new DocxPage(orientation);
     }
 
     @Override

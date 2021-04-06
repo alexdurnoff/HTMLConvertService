@@ -36,6 +36,13 @@ public class DocxDocument implements OutputDocument{
         this.xwpfDocument = new XWPFDocument();
     }
 
+    public DocxDocument(String htmlContent, String pathToOutputFile, String orientation){
+        this.htmlContent = htmlContent;
+        this.pathToOutputFile = pathToOutputFile;
+        this.page = new DocxPage(orientation);
+        this.xwpfDocument = new XWPFDocument();
+    }
+
     @Override
     public void save() throws IOException, InvalidFormatException {
         new CTDocumentWithPageSize(xwpfDocument,page).setUpPageSize();
