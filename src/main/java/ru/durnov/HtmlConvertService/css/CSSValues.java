@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Возвращает список значений, получая на вход строку типа border: 1px solid grey;
+ */
 public class CSSValues {
     private final String source;
 
@@ -21,7 +24,6 @@ public class CSSValues {
         while (matcher.find()){
             values.add(matcher.group().trim().replace(";",""));
         }
-        System.out.println(values);
         return values;
     }
 }

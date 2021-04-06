@@ -62,6 +62,7 @@ public class XlsxCellStyle implements XlsxStyle {
 
     @Override
     public void applyToXlsxTableCell(XSSFCell xssfCell) {
+        System.out.println(tableBorder);
         XSSFCellStyle xssfCellStyle = xssfWorkbook.createCellStyle();
         xssfCellStyle.setAlignment(new XlsxCellAlignment(this.htmlAlignment).horizontalAlignment());
         XSSFFont font = xssfWorkbook.createFont();

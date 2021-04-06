@@ -15,6 +15,7 @@ public class CSSKeyValuePair {
         this.source = source;
     }
 
+    @Deprecated
     public void putToAttributes(Attributes attributes) {
         String key = new CSSKey(source).name();
         List<String> values = new CSSValues(source).values();
@@ -22,4 +23,6 @@ public class CSSKeyValuePair {
             attributes.put(key, value);
         }
     }
+
+
 }

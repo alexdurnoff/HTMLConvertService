@@ -10,7 +10,7 @@ public class XlsxTableCell implements XlxsElement {
     private final HtmlTableCell htmlTableCell;
     private final XSSFRow xssfRow;
     private final CurrentColumnNumber columnNumber;
-    private final CurrentRowNumber rowNumber;
+    private final CurrentRowNumber rowNumber;//Это поле, скорее всего, не понадобится
     private final XlsxStyle xlsxStyle;
 
 

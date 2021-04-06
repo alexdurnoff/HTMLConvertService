@@ -8,7 +8,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Класс на вход подучает строку типа {...}
+ * Класс на вход подучает строку типа <style>.....</\style>
  * и выдает на выход список строк ключ-значение типа, например, border: 1px grey;
  */
 public class KeyValueCSSCollections {

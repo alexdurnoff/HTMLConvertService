@@ -24,10 +24,12 @@ public class HtmlConvertController {
         try {
             request.document().save();
         } catch (IOException e) {
-            log.error(e.getMessage());
+            log.error("IOException");
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Ошибка чтения-записи",e);
         } catch (InvalidFormatException e) {
-            log.error(e.getMessage());
+            log.error("InvalidFormatException");
+            e.printStackTrace();
+            log.error(e.getCause().toString());
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Некорректный формат html-файла",e);
         }
         return request.response();

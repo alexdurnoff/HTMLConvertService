@@ -2,6 +2,7 @@ package ru.durnov.HtmlConvertService.css;
 
 import ru.durnov.HtmlConvertService.style.HtmlWidth;
 
+@Deprecated
 public class HtmlWidthFromCSSStyle {
     private final String source;
     private final String weightRegExp = "border:\\s?.*([0-9]{1,2}px)";

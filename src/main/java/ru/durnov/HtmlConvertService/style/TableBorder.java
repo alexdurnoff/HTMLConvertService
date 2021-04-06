@@ -32,7 +32,7 @@ public class TableBorder {
         this.docxMap.put(0, XWPFTable.XWPFBorderType.NIL);
         this.xlsxMap.put(0, BorderStyle.NONE);
         this.xlsxMap.put(1, BorderStyle.THIN);
-        this.xlsxMap.put(2,BorderStyle.MEDIUM);
+        this.xlsxMap.put(2, BorderStyle.MEDIUM);
         this.xlsxMap.put(3, BorderStyle.THICK);
     }
 
@@ -57,8 +57,10 @@ public class TableBorder {
         List<Attribute> attributes = this.attributes.asList();
         for (Attribute attribute : attributes) {
             if (attribute.getKey().equals("border")){
+                System.out.println("find attribute with name border");
                 try {
                     border = Integer.parseInt(attribute.getValue());
+                    System.out.println("border is " + border);
                 } catch (NumberFormatException ignored) {
                 }
             }

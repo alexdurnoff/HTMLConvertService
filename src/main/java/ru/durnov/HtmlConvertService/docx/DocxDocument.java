@@ -1,5 +1,6 @@
 package ru.durnov.HtmlConvertService.docx;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.jsoup.Jsoup;
@@ -13,7 +14,7 @@ import ru.durnov.HtmlConvertService.style.Page;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-
+@Slf4j
 public class DocxDocument implements OutputDocument{
     private final String htmlContent;
     private final String pathToOutputFile;
@@ -52,7 +53,13 @@ public class DocxDocument implements OutputDocument{
 
             }
         });
+        log.info("DocxDocument created");
         //this.xwpfDocument = new XWPFDocumentWithPackagePart(htmlContent, xwpfDocument).xwpfDocument();
-        xwpfDocument.write(new FileOutputStream(pathToOutputFile));
+        try {
+            xwpfDocument.write(new FileOutputStream(pathToOutputFile));
+        } catch (IOException exception) {
+            log.error("Не смогли записать файл в " + pathToOutputFile);
+            throw new IOException("Не смогли записать файл в директорию /tmp");
+        }
     }
 }

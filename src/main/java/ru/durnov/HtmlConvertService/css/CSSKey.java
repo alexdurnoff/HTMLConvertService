@@ -3,6 +3,9 @@ package ru.durnov.HtmlConvertService.css;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Возвращает ключ элемента из строки типа border: 1px solid grey;
+ */
 public class CSSKey {
     private final String source;
 
