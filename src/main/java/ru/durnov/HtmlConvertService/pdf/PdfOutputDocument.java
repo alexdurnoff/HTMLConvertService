@@ -35,17 +35,22 @@ public class PdfOutputDocument implements OutputDocument {
 
     @Override
     public void save() throws IOException, InvalidFormatException {
-        com.itextpdf.kernel.pdf.PdfWriter pdfWriter = new PdfWriter(new File(outPutFile));
-        com.itextpdf.kernel.pdf.PdfDocument pdfDocument = new PdfDocument(pdfWriter);
-        pdfDocument.setDefaultPageSize(new PageSize(1920,1080));
-        ConverterProperties converterProperties = new ConverterProperties();
-        converterProperties.setMediaDeviceDescription(new MediaDeviceDescription(MediaType.PRINT, 1920, 1080));
-        HtmlConverter.convertToPdf(
-                new FileInputStream(
-                        sourceFile
-                )
-                ,pdfDocument
-        );
+        PdfDocument pdfDocument = null;
+        try (FileInputStream fileInputStream = new FileInputStream(sourceFile);) {
+            PdfWriter pdfWriter = new PdfWriter(new File(outPutFile));
+            pdfDocument = new PdfDocument(pdfWriter);
+            pdfDocument.setDefaultPageSize(new PageSize(1920,1080));
+            ConverterProperties converterProperties = new ConverterProperties();
+            converterProperties.setMediaDeviceDescription(new MediaDeviceDescription(MediaType.PRINT, 1920, 1080));
+            HtmlConverter.convertToPdf(
+                    fileInputStream
+                    ,pdfDocument
+            );
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        } finally {
+            if (pdfDocument != null) pdfDocument.close();
+        }
     }
 
 

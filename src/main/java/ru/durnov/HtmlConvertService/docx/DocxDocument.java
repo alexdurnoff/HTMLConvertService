@@ -62,8 +62,8 @@ public class DocxDocument implements OutputDocument{
         });
         log.info("DocxDocument created");
         //this.xwpfDocument = new XWPFDocumentWithPackagePart(htmlContent, xwpfDocument).xwpfDocument();
-        try {
-            xwpfDocument.write(new FileOutputStream(pathToOutputFile));
+        try(FileOutputStream fileOutputStream = new FileOutputStream(pathToOutputFile)) {
+            xwpfDocument.write(fileOutputStream);
         } catch (IOException exception) {
             log.error("Не смогли записать файл в " + pathToOutputFile);
             throw new IOException("Не смогли записать файл в директорию /tmp");
