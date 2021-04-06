@@ -1,4 +1,4 @@
-package ru.durnov.HtmlConvertService.style;
+package ru.durnov.HtmlConvertService.css;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

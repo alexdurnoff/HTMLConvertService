@@ -1,9 +1,8 @@
 package ru.durnov.HtmlConvertService.xlsx;
 
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.jsoup.Jsoup;
 import org.junit.jupiter.api.Test;
-import ru.durnov.HtmlConvertService.style.CssStyleFromHtml;
+import ru.durnov.HtmlConvertService.css.CssStyleFromHtml;
 
 import java.io.IOException;
 

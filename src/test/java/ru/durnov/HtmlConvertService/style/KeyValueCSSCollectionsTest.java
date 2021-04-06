@@ -2,10 +2,9 @@ package ru.durnov.HtmlConvertService.style;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import ru.durnov.HtmlConvertService.css.KeyValueCSSCollections;
 
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class KeyValueCSSCollectionsTest {
 

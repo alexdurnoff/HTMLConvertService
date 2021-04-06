@@ -1,4 +1,4 @@
-package ru.durnov.HtmlConvertService.style;
+package ru.durnov.HtmlConvertService.css;
 
 import java.util.ArrayList;
 import java.util.List;

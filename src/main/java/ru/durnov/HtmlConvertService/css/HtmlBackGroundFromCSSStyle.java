@@ -1,4 +1,4 @@
-package ru.durnov.HtmlConvertService.style;
+package ru.durnov.HtmlConvertService.css;
 
 import ru.durnov.HtmlConvertService.style.HtmlBackGround;
 

@@ -1,6 +1,7 @@
-package ru.durnov.HtmlConvertService.style;
+package ru.durnov.HtmlConvertService.css;
 
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import ru.durnov.HtmlConvertService.style.*;
 import ru.durnov.HtmlConvertService.table.XlsxCellStyle;
 import ru.durnov.HtmlConvertService.xlsx.XlsxStyle;
 

@@ -2,12 +2,11 @@ package ru.durnov.HtmlConvertService.style;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import ru.durnov.HtmlConvertService.css.CSSValues;
 
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class CSSValuesTest {
     String source = "border: 1px solid grey;";

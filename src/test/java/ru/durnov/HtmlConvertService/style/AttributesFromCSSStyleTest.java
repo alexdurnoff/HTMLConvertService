@@ -3,13 +3,10 @@ package ru.durnov.HtmlConvertService.style;
 import org.jsoup.nodes.Attributes;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import ru.durnov.HtmlConvertService.css.AttributesFromCSSStyle;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class AttributesFromCSSStyleTest {
 
