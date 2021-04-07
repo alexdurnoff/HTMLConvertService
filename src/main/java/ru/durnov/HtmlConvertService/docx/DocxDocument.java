@@ -6,6 +6,7 @@ import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.jsoup.nodes.Node;
 import ru.durnov.HtmlConvertService.text.ElementFactory;
 import ru.durnov.HtmlConvertService.style.CTDocumentWithPageSize;
 import ru.durnov.HtmlConvertService.style.DocxPage;
@@ -13,6 +14,7 @@ import ru.durnov.HtmlConvertService.style.Page;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.List;
 
 @Slf4j
 public class DocxDocument implements OutputDocument{
@@ -47,26 +49,31 @@ public class DocxDocument implements OutputDocument{
     public void save() throws IOException, InvalidFormatException {
         new CTDocumentWithPageSize(xwpfDocument,page).setUpPageSize();
         Document document = Jsoup.parse(htmlContent);
-        document.body().childNodes().forEach(node -> {
+        List<Node> nodeList = document.body().childNodes();
+        for (Node node : nodeList) {
             if (node.getClass() == Element.class){
                 Element element = (Element) node;
                 try {
                     new ElementFactory(element, xwpfDocument)
                             .elementByName()
                             .addToXWPFDocument();
-                } catch (IOException | InvalidFormatException e) {
-                    e.printStackTrace();
+                } catch (IOException exception) {
+                    log.error(exception.getMessage());
+                    throw new IOException("Ошибка чтения-записи при обработке тэга " +
+                            element.html());
+                } catch (InvalidFormatException exception) {
+                    log.error(exception.getMessage());
+                    throw new InvalidFormatException("Некорректный html-формат тэга " +
+                            element.html());
                 }
-
             }
-        });
-        log.info("DocxDocument created");
-        //this.xwpfDocument = new XWPFDocumentWithPackagePart(htmlContent, xwpfDocument).xwpfDocument();
+
+        }
         try(FileOutputStream fileOutputStream = new FileOutputStream(pathToOutputFile)) {
             xwpfDocument.write(fileOutputStream);
         } catch (IOException exception) {
-            log.error("Не смогли записать файл в " + pathToOutputFile);
-            throw new IOException("Не смогли записать файл в директорию /tmp");
+            log.error("Ошибка при сохранении docx-файла " + pathToOutputFile);
+            throw new IOException("Ошибка при сохранении docx-файла " + pathToOutputFile);
         }
     }
 }

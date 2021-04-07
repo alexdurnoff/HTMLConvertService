@@ -1,10 +1,10 @@
 package ru.durnov.HtmlConvertService.style;
 
 /**
- * Параметры старницы документа .docx.
+ * Параметры старницы документа .pdf.
  * Возвращает ширину и высоту. Возвращаемые значения зависят от ориентации.
  */
-public class DocxPage implements Page{
+public class PdfPage implements Page {
     private final String orientation;
 
     /**
@@ -12,19 +12,21 @@ public class DocxPage implements Page{
      * всегда возвращаеь параметры страницы landscape.
      * @param orientation - ориентация страницы
      */
-    public DocxPage(String orientation) {
+    public PdfPage(String orientation) {
         this.orientation = orientation;
     }
 
+
+
     @Override
     public int width() {
-        if (orientation.equalsIgnoreCase("portrait")) return 842;//было 842
-        return 1190;
+        if (orientation.equalsIgnoreCase("portrait")) return 1080;//было 842
+        return 1920;
     }
 
     @Override
     public int height() {
-        if (orientation.equalsIgnoreCase("portrait")) return 1190;//было 1190
-        return 842;
+        if (orientation.equalsIgnoreCase("portrait")) return 1920;//было 1190
+        return 1080;
     }
 }

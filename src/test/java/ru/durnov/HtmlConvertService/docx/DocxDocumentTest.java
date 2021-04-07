@@ -71,7 +71,7 @@ class DocxDocumentTest {
                     }
 
                     @Override
-                    public int heigth() {
+                    public int height() {
                         return 842;
                     }
                 }

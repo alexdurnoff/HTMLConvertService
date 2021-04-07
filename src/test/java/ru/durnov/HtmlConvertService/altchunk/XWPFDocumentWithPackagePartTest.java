@@ -89,7 +89,7 @@ class XWPFDocumentWithPackagePartTest {
             }
 
             @Override
-            public int heigth() {
+            public int height() {
                 return 594;
             }
         };

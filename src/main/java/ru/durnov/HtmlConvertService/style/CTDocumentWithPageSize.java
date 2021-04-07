@@ -2,7 +2,6 @@ package ru.durnov.HtmlConvertService.style;
 
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.*;
-import org.openxmlformats.schemas.wordprocessingml.x2006.main.impl.CTPageMarImpl;
 
 import java.math.BigInteger;
 
@@ -19,7 +18,7 @@ public class CTDocumentWithPageSize {
     }
 
     public void setUpPageSize(){
-        int height = page.heigth();
+        int height = page.height();
         int width = page.width();
         CTDocument1 ctDocument1 = xwpfDocument.getDocument();
         CTBody ctBody = ctDocument1.getBody();

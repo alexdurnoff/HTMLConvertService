@@ -38,6 +38,7 @@ public class TestDocxLibraries {
 
     @Test
     public void testPOI1() throws IOException {
+        System.out.println("start testPOI1");
         POIFSFileSystem fileSystem = new POIFSFileSystem();
         DirectoryEntry directoryEntry = fileSystem.getRoot();
         try (OutputStream out = new FileOutputStream("Test/docx/1.doc")
@@ -53,6 +54,7 @@ public class TestDocxLibraries {
 
     @Test
     public void testPOI2() throws IOException {
+        System.out.println("start testPOI2");
         POIFSFileSystem fileSystem = new POIFSFileSystem();
         DirectoryEntry directoryEntry = fileSystem.getRoot();
         try (OutputStream out = new FileOutputStream("Test/docx/2.doc")
@@ -68,6 +70,7 @@ public class TestDocxLibraries {
 
     @Test
     public void testPOI3() throws IOException {
+        System.out.println("testPOI3");
         POIFSFileSystem fileSystem = new POIFSFileSystem();
         DirectoryEntry directoryEntry = fileSystem.getRoot();
         try (OutputStream out = new FileOutputStream("Test/docx/3.doc")
@@ -83,6 +86,7 @@ public class TestDocxLibraries {
 
     @Test
     public void testPOI4() throws IOException {
+        System.out.println("testPOI4");
         POIFSFileSystem fileSystem = new POIFSFileSystem();
         DirectoryEntry directoryEntry = fileSystem.getRoot();
         try (OutputStream out = new FileOutputStream("Test/docx/4.doc")
@@ -96,105 +100,5 @@ public class TestDocxLibraries {
         }
     }
 
-
-    @Test
-    public void testPoiWhitDocXFormat() throws IOException, GeneralSecurityException {
-        XWPFDocument document = new XWPFDocument();
-        XWPFParagraph paragraph = document.createParagraph();
-        XWPFRun run = paragraph.createRun();
-        run.setText(Files.readString(Path.of("Test/4.html")));
-        FileOutputStream fileOutputStream = new FileOutputStream("Test/docx/6.doc");
-        document.write(fileOutputStream);
-        fileOutputStream.close();
-        document.close();
-    }
-
-    @Test
-    public void testPoiConvert(){
-
-    }
-
-    @Test
-    public void testDocx4j() throws IOException, Docx4JException {
-        WordprocessingMLPackage wordprocessingMLPackage = WordprocessingMLPackage.createPackage();
-        MainDocumentPart documentPart = wordprocessingMLPackage.getMainDocumentPart();
-        String xhtml = Files.readString(Paths.get("Test/4.html"));
-        documentPart.createParagraphOfText("Paragraph 1");
-        documentPart.addAltChunk(AltChunkType.Html,xhtml.getBytes());
-        WordprocessingMLPackage mlPackageOut = documentPart.convertAltChunks();
-        documentPart.createParagraphOfText("Paragraph 2");
-        mlPackageOut.save(new File("Test/docx/docx4j.docx"));
-    }
-
-
-    @Test
-    public void testDocx4j3() throws IOException, Docx4JException {
-        WordprocessingMLPackage wordprocessingMLPackage = WordprocessingMLPackage.createPackage();
-        MainDocumentPart documentPart = wordprocessingMLPackage.getMainDocumentPart();
-        String xhtml = Files.readString(Paths.get("Test/4.html"));
-        documentPart.addAltChunk(AltChunkType.Html,xhtml.getBytes());
-        WordprocessingMLPackage mlPackageOut = documentPart.convertAltChunks();
-        mlPackageOut.save(new File("Test/docx/docx4j.docx"));
-    }
-
-    //@Test
-    public void testDocx4j4() throws Docx4JException, IOException {
-        WordprocessingMLPackage wordprocessingMLPackage = WordprocessingMLPackage.createPackage();
-        String html = Files.readString(Path.of("Test/4.html"));
-        String xhtml = convertHtmlToXhtml(html);
-        XHTMLImporter xhtmlImporter = new XHTMLImporterImpl(wordprocessingMLPackage);
-        xhtmlImporter.setHyperlinkStyle("Hyperlink");
-        wordprocessingMLPackage
-                .getMainDocumentPart()
-                .getContent()
-                .addAll(
-                        xhtmlImporter.convert(
-                                xhtml,
-                                null
-                        )
-                );
-        wordprocessingMLPackage.save(new File("Test/docx/docx4jSecondTEst.docx"));
-    }
-
-    //@Test
-    public void testConvertHtmlToXhtml() throws IOException {
-        String html = Files.readString(Path.of("Test/4.html"));
-        String xhtml = "Test/4.xhtml";
-        getXHTMLFromHTML(html, xhtml);
-    }
-
-    private String convertHtmlToXhtml(String html) {
-        final org.jsoup.nodes.Document document = Jsoup.parse(html);
-        document.outputSettings().syntax(org.jsoup.nodes.Document.OutputSettings.Syntax.xml);
-        return document.html();
-    }
-
-    private static void getXHTMLFromHTML(String inputFile, String outputFile) throws IOException {
-        try(FileInputStream fileInputStream = new FileInputStream(inputFile);
-        FileOutputStream fileOutputStream = new FileOutputStream(outputFile)) {
-            Tidy tidy = new Tidy();
-            tidy.setXHTML(true);
-            tidy.parse(fileInputStream, fileOutputStream);
-        }
-    }
-
-    @Test
-    public void test2() throws Exception {
-        String html = Files.readString(Path.of("Test/1.html"));
-        GrabzItClient grabzItClient = new GrabzItClient(
-                "OGM4OWFlNjY5MDBlNGViMWI4MTU5Y2RmOTliN2U1OWE=",
-                "PyBiPz8/Pz92SiRHAWo/P0YjKz8/QUcIPwM/Zj8nQj8="
-        );
-        DOCXOptions options = new DOCXOptions();
-        options.setPageHeight(1080);
-        options.setPageWidth(1920);
-        grabzItClient.HTMLToDOCX(html, options);
-        grabzItClient.SaveTo("Test/docx/grabzit-1.docx");
-    }
-
-    @Test
-    public void testConvertOldToNew() throws IOException {
-
-    }
 
 }
