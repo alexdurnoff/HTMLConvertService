@@ -1,6 +1,8 @@
 package ru.durnov.HtmlConvertService.docx;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRichTextString;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import ru.durnov.HtmlConvertService.altchunk.XWPFDocumentWithPackagePart;
 import ru.durnov.HtmlConvertService.text.DocxParagraphElement;
@@ -42,4 +44,5 @@ public class DocxParagraphTable implements DocxParagraphElement {
         ).addToXWPFDocument());*/
         new XWPFDocumentWithPackagePart(htmlTable.content(), xwpfDocument).xwpfDocument();
     }
+
 }

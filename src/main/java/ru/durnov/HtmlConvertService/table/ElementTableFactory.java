@@ -11,7 +11,6 @@ public class ElementTableFactory {
     private final Style style;
 
     public ElementTableFactory(Element element, XWPFRun xwpfRun, Style style) {
-        System.out.println("Вызван коструктор");
         this.element = element;
         this.xwpfRun = xwpfRun;
         this.style = style;
@@ -20,7 +19,6 @@ public class ElementTableFactory {
     public ElementTableFactory(Node node, XWPFRun xwpfRun, Style style) {
         if (node.getClass() != Element.class) throw new IllegalArgumentException("node must be element");
         this.element = (Element) node;
-        System.out.println("ElementFactory.element is " + element);
         this.xwpfRun = xwpfRun;
         this.style = style;
     }

@@ -9,7 +9,6 @@ import ru.durnov.HtmlConvertService.style.FontWeight;
 import ru.durnov.HtmlConvertService.style.StrongAttaributes;
 import ru.durnov.HtmlConvertService.style.TableCellCollSpan;
 import ru.durnov.HtmlConvertService.table.XlsxCellStyle;
-import ru.durnov.HtmlConvertService.text.XlxsElement;
 
 /**
  * Класс пишем вместо XlsxTableCell из-за лютой котовасии

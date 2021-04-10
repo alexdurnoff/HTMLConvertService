@@ -9,6 +9,7 @@ import org.jsoup.select.Elements;
 import ru.durnov.HtmlConvertService.style.TableCellStyle;
 import ru.durnov.HtmlConvertService.style.HtmlStyle;
 import ru.durnov.HtmlConvertService.style.Style;
+import ru.durnov.HtmlConvertService.text.ElementFactory;
 import ru.durnov.HtmlConvertService.xlsx.XlsxStyle;
 
 /**
@@ -49,7 +50,12 @@ public class HtmlTableCell {
     public void addTextToXSSFCell(XSSFCell xssfCell, XlsxStyle xlsxStyle){
         xlsxStyle.withAttributes(cellElement.attributes()).applyToXlsxTableCell(xssfCell);
         xssfCell.getSheet().setColumnWidth(xssfCell.getColumnIndex(), new MinimumColumnWidth(cellElement.text()).columnLength());
-        xssfCell.setCellValue(cellElement.text());
+        Elements allElements = cellElement.getAllElements();
+        allElements.remove(this.cellElement);
+        allElements.forEach(element -> {
+
+        });
+        //xssfCell.setCellValue(cellElement.text());
     }
 
     public TableCellStyle docxTableCellStyle(){

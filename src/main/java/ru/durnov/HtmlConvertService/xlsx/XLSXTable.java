@@ -3,7 +3,6 @@ package ru.durnov.HtmlConvertService.xlsx;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import ru.durnov.HtmlConvertService.table.HtmlTable;
 import ru.durnov.HtmlConvertService.table.HtmlTableBody;
-import ru.durnov.HtmlConvertService.text.XlxsElement;
 
 import java.util.Optional;
 

@@ -2,7 +2,6 @@ package ru.durnov.HtmlConvertService.xlsx;
 
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
-import ru.durnov.HtmlConvertService.text.XlxsElement;
 
 /**
  * Класс создает новую ячейку в XSSFRow по номеру столбца.

@@ -2,10 +2,8 @@ package ru.durnov.HtmlConvertService.xlsx;
 
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import ru.durnov.HtmlConvertService.style.HtmlAlignment;
 import ru.durnov.HtmlConvertService.table.HtmlTableBody;
 import ru.durnov.HtmlConvertService.table.HtmlTableRow;
-import ru.durnov.HtmlConvertService.text.XlxsElement;
 
 import java.util.List;
 import java.util.stream.Collectors;

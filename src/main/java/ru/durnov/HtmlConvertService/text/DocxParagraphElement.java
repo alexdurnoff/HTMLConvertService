@@ -1,6 +1,8 @@
 package ru.durnov.HtmlConvertService.text;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRichTextString;
 
 import java.io.IOException;
 
@@ -10,4 +12,5 @@ import java.io.IOException;
  */
 public interface DocxParagraphElement {
     void addToXWPFDocument() throws IOException, InvalidFormatException;
+
 }

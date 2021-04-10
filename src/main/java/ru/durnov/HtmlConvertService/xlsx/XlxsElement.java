@@ -1,4 +1,4 @@
-package ru.durnov.HtmlConvertService.text;
+package ru.durnov.HtmlConvertService.xlsx;
 
 /**
  * Интерфейс для записи элементов в xlsx-файл

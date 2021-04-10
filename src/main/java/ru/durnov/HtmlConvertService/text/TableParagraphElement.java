@@ -1,5 +1,7 @@
 package ru.durnov.HtmlConvertService.text;
 
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRichTextString;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.jsoup.nodes.Element;
 import ru.durnov.HtmlConvertService.style.HtmlStyle;
@@ -26,4 +28,5 @@ public class TableParagraphElement implements DocxParagraphElement {
     public void addToXWPFDocument() {
 
     }
+
 }

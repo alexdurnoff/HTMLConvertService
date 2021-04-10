@@ -5,6 +5,8 @@ import org.apache.poi.xssf.usermodel.*;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
 import org.jsoup.nodes.Attribute;
 import org.jsoup.nodes.Attributes;
+import org.jsoup.nodes.Element;
+import org.openxmlformats.schemas.spreadsheetml.x2006.main.CTCell;
 import ru.durnov.HtmlConvertService.style.*;
 import ru.durnov.HtmlConvertService.xlsx.XlsxStyle;
 
@@ -62,7 +64,6 @@ public class XlsxCellStyle implements XlsxStyle {
 
     @Override
     public void applyToXlsxTableCell(XSSFCell xssfCell) {
-        System.out.println(tableBorder);
         XSSFCellStyle xssfCellStyle = xssfWorkbook.createCellStyle();
         xssfCellStyle.setAlignment(new XlsxCellAlignment(this.htmlAlignment).horizontalAlignment());
         XSSFFont font = xssfWorkbook.createFont();
@@ -217,6 +218,11 @@ public class XlsxCellStyle implements XlsxStyle {
 
     @Override
     public void applyToRun(XWPFRun xwpfRun) {
+
+    }
+
+    @Override
+    public void applyToXSSFCell(XSSFCell xssfCell, Element element) {
 
     }
 }

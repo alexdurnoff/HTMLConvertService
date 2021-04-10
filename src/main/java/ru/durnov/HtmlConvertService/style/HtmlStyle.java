@@ -1,13 +1,18 @@
 package ru.durnov.HtmlConvertService.style;
 
 import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFFont;
+import org.apache.poi.xssf.usermodel.XSSFRichTextString;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
 import org.jsoup.nodes.Attribute;
 import org.jsoup.nodes.Attributes;
+import org.jsoup.nodes.Element;
+import org.openxmlformats.schemas.spreadsheetml.x2006.main.impl.CTFontImpl;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.STHighlightColor;
 import ru.durnov.HtmlConvertService.table.XlsxCellStyle;
+import ru.durnov.HtmlConvertService.xlsx.XSSFRichTextStringPart;
 
 import java.util.List;
 
@@ -98,6 +103,16 @@ public class HtmlStyle implements Style {
         if (!htmlBackGround.value().equals("auto"))xwpfRun.getCTR().addNewRPr().addNewHighlight().setVal(STHighlightColor.YELLOW);
     }
 
+    @Override
+    public void applyToXSSFCell(XSSFCell xssfCell, Element element) {
+        XSSFRichTextString xssfRichTextString = xssfCell.getRichStringCellValue();
+        int endIndex = xssfRichTextString.getString().length()-1;
+        int startIndex= endIndex - element.text().length();
+        new XSSFRichTextStringPart(
+                element,
+                xssfRichTextString
+        ).applyStyle(this);
+    }
 
     @Override
     public String toString() {

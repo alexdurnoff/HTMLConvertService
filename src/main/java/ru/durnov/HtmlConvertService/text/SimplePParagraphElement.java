@@ -1,5 +1,7 @@
 package ru.durnov.HtmlConvertService.text;
 
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRichTextString;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
@@ -35,4 +37,5 @@ public class SimplePParagraphElement implements DocxParagraphElement {
         htmlStyle.applyToRun(run);
         run.setText(pNodeElement.ownText());
     }
+
 }

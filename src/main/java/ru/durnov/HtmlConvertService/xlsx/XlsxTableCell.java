@@ -4,7 +4,6 @@ import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import ru.durnov.HtmlConvertService.table.HtmlTableCell;
-import ru.durnov.HtmlConvertService.text.XlxsElement;
 
 public class XlsxTableCell implements XlxsElement {
     private final HtmlTableCell htmlTableCell;

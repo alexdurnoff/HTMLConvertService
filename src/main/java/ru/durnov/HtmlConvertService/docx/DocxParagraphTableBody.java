@@ -1,5 +1,7 @@
 package ru.durnov.HtmlConvertService.docx;
 
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRichTextString;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFTable;
 import ru.durnov.HtmlConvertService.text.DocxParagraphElement;
@@ -44,4 +46,5 @@ public class DocxParagraphTableBody implements DocxParagraphElement {
             rowNumber++;
         }
     }
+
 }
