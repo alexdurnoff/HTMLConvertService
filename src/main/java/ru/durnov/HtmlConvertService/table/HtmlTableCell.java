@@ -6,6 +6,7 @@ import org.jsoup.nodes.Attribute;
 import org.jsoup.nodes.Attributes;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import ru.durnov.HtmlConvertService.cell.CellElementFactory;
 import ru.durnov.HtmlConvertService.style.TableCellStyle;
 import ru.durnov.HtmlConvertService.style.HtmlStyle;
 import ru.durnov.HtmlConvertService.style.Style;
@@ -53,7 +54,11 @@ public class HtmlTableCell {
         Elements allElements = cellElement.getAllElements();
         allElements.remove(this.cellElement);
         allElements.forEach(element -> {
-
+            new CellElementFactory(
+                    element,
+                    xssfCell,
+                    htmlStyle
+            ).elementByName().addToXSSFCell();
         });
         //xssfCell.setCellValue(cellElement.text());
     }

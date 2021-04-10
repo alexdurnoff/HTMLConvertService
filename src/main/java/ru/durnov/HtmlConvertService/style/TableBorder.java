@@ -57,10 +57,8 @@ public class TableBorder {
         List<Attribute> attributes = this.attributes.asList();
         for (Attribute attribute : attributes) {
             if (attribute.getKey().equals("border")){
-                System.out.println("find attribute with name border");
                 try {
                     border = Integer.parseInt(attribute.getValue());
-                    System.out.println("border is " + border);
                 } catch (NumberFormatException ignored) {
                 }
             }

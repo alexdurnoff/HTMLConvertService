@@ -50,9 +50,7 @@ public class TextParagraphElement implements DocxParagraphElement {
                             node,
                             document,
                             htmlStyle
-                    )
-                            .elementByName()
-                            .addToXWPFDocument();
+                    ).elementByName().addToXWPFDocument();
                 } catch (IOException | InvalidFormatException e) {
                     e.printStackTrace();
                 }

@@ -4,7 +4,7 @@ import org.apache.poi.xssf.usermodel.XSSFCell;
 
 public class CellOiParagraphElement implements CellParagraphElement{
     @Override
-    public void addToXSSFCell(XSSFCell xssfCell) {
+    public void addToXSSFCell() {
 
     }
 }

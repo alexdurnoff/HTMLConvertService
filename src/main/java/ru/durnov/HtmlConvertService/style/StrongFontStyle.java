@@ -3,6 +3,7 @@ package ru.durnov.HtmlConvertService.style;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
 import org.jsoup.nodes.Attributes;
+import org.jsoup.nodes.Element;
 
 /**
  * Стиль для тэга strong с жирным шрифтом
@@ -53,6 +54,11 @@ public class StrongFontStyle implements Style{
     public void applyToRun(XWPFRun xwpfRun) {
         style.applyToRun(xwpfRun);
         xwpfRun.setBold(true);
+    }
+
+    @Override
+    public void applyToXSSFCell(XSSFCell xssfCell, Element element) {
+
     }
 
 }

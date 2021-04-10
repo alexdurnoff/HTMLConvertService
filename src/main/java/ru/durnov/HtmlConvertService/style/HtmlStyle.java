@@ -1,5 +1,6 @@
 package ru.durnov.HtmlConvertService.style;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.apache.poi.xssf.usermodel.XSSFRichTextString;
@@ -16,6 +17,7 @@ import ru.durnov.HtmlConvertService.xlsx.XSSFRichTextStringPart;
 
 import java.util.List;
 
+@Slf4j
 public class HtmlStyle implements Style {
     protected final HtmlFont htmlFont;
     protected final HtmlAlignment htmlAlignment;
@@ -105,13 +107,17 @@ public class HtmlStyle implements Style {
 
     @Override
     public void applyToXSSFCell(XSSFCell xssfCell, Element element) {
+        log.info("XSSFCell value is " + xssfCell.getStringCellValue());
         XSSFRichTextString xssfRichTextString = xssfCell.getRichStringCellValue();
+        log.info("XSSFRichTextString value is " + xssfRichTextString.getString());
         int endIndex = xssfRichTextString.getString().length()-1;
-        int startIndex= endIndex - element.text().length();
-        new XSSFRichTextStringPart(
-                element,
-                xssfRichTextString
-        ).applyStyle(this);
+        log.info("end index is " + endIndex);
+        int startIndex= endIndex - element.text().length() + 1;
+        log.info("start index is " + startIndex);
+        XSSFFont xssfFont = xssfCell.getSheet().getWorkbook().createFont();
+        xssfFont.setFontHeight(this.htmlFont.fontSize().value());
+        if (this.htmlFont.fontWeight().value().contains("bold")) xssfFont.setBold(true);
+        xssfRichTextString.applyFont(startIndex, endIndex, xssfFont);
     }
 
     @Override

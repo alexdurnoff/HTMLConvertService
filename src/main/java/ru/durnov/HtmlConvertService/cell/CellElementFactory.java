@@ -3,11 +3,8 @@ package ru.durnov.HtmlConvertService.cell;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
-import ru.durnov.HtmlConvertService.docx.DocxParagraphTable;
 import ru.durnov.HtmlConvertService.style.HtmlStyle;
 import ru.durnov.HtmlConvertService.style.Style;
-import ru.durnov.HtmlConvertService.table.HtmlTable;
-import ru.durnov.HtmlConvertService.text.*;
 
 /**
  * Класс будет поставлять элементы для добавления в ячейку таблицы xslx.
@@ -45,11 +42,11 @@ public class CellElementFactory {
 
     public CellParagraphElement elementByName(){
         if (element.nodeName().equals("p") || element.nodeName().equals("span") || element.nodeName().equals("label")){
-            return new CellTextParagraphElement();
+            return new CellTextParagraphElement(element, xssfCell);
         }
-        if (element.nodeName().equals("br")) return new CellBrParagraphElement();
-        if (element.nodeName().equals("h2")) return new CellH2ParagraphElement();
-        if (element.nodeName().equals("strong") || element.nodeName().equals("b")) return new CellStrongParargaphElement();
+        if (element.nodeName().equals("br")) return new CellBrParagraphElement(element, xssfCell);
+        if (element.nodeName().equals("h2")) return new CellH2ParagraphElement(element, xssfCell);
+        if (element.nodeName().equals("strong") || element.nodeName().equals("b")) return new CellStrongParargaphElement(element, xssfCell);
         return new CellEmptyParagraphElement();
     }
 }

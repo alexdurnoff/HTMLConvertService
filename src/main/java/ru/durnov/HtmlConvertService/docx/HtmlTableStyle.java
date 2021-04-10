@@ -2,6 +2,7 @@ package ru.durnov.HtmlConvertService.docx;
 
 import org.apache.poi.ss.formula.functions.T;
 import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRichTextString;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
 import org.apache.poi.xwpf.usermodel.XWPFTable;
 import org.jsoup.nodes.Attributes;
@@ -63,6 +64,11 @@ public class HtmlTableStyle implements Style {
     @Override
     public void applyToRun(XWPFRun xwpfRun) {
         this.style.applyToRun(xwpfRun);
+    }
+
+    @Override
+    public void applyToXSSFCell(XSSFCell xssfCell, Element element) {
+
     }
 
 
