@@ -6,25 +6,20 @@ import org.apache.poi.openxml4j.opc.PackagePart;
 import org.apache.poi.openxml4j.opc.PackagePartName;
 import org.apache.poi.openxml4j.opc.PackagingURIHelper;
 
-/**
- * Класс создает новый PackagePart в OPCPackage с соответствующим именем.
- */
-public class PackagePartWithPartName {
-    protected final String id;
-    protected final OPCPackage opcPackage;
-
-    public PackagePartWithPartName(String id, OPCPackage opcPackage) {
-        this.id = id;
-        this.opcPackage = opcPackage;
+public class XlsxPackagePartWithPartName extends PackagePartWithPartName{
+    public XlsxPackagePartWithPartName(String id, OPCPackage aPackage) {
+        super(id, aPackage);
     }
 
     /**
      * Возвращает новый PackagePart
+     *
      * @return PackagePart part.
      * @throws InvalidFormatException - кидает исключение при неправильном формате
      */
+    @Override
     PackagePart packagePart() throws InvalidFormatException {
-        PackagePartName partName = PackagingURIHelper.createPartName("/word/" + id);
+        PackagePartName partName = PackagingURIHelper.createPartName("/excel/" + id);
         return opcPackage.createPart(partName, "text/html");
     }
 }
