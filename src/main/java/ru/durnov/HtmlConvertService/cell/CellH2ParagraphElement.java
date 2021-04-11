@@ -13,7 +13,7 @@ public class CellH2ParagraphElement extends CellTextParagraphElement{
     }
 
     @Override
-    public void addToXSSFCell() {
-
+    protected void setFontToXSSFRichTextString() {
+        new XSSFRichStringHeaderStyle(element,xssfCell).applyToXSSFRichTextString();
     }
 }

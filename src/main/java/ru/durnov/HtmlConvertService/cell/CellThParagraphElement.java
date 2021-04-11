@@ -12,15 +12,12 @@ public class CellThParagraphElement implements CellParagraphElement {
 
 
     public CellThParagraphElement(Element element, XSSFCell xssfCell) {
-        log.debug("th constructor invoked");
         this.element = element;
         this.xssfCell = xssfCell;
     }
 
     @Override
     public void addToXSSFCell() {
-        log.debug("cell value before th element is " + xssfCell.getStringCellValue());
-        log.debug("td element childnodes size is " + element.childNodes().size());
         element.childNodes().forEach(node -> {
             if (node.getClass() == Element.class) {
                 Element element1 = (Element) node;
@@ -34,7 +31,6 @@ public class CellThParagraphElement implements CellParagraphElement {
                 new XSSFRichStringHeaderStyle(element,xssfCell).applyToXSSFRichTextString();
             }
         });
-        log.debug("cell value after th element is " + xssfCell.getStringCellValue());
     }
 
     @Override

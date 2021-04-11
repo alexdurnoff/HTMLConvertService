@@ -17,8 +17,6 @@ public class CellTdParagraphElement implements CellParagraphElement {
 
     @Override
     public void addToXSSFCell() {
-        log.debug("cell value before td element is " + xssfCell.getStringCellValue());
-        log.debug("td element childnodes size is " + element.childNodes().size());
         element.childNodes().forEach(node -> {
             if (node.getClass() == Element.class) {
                 Element element1 = (Element) node;
@@ -32,8 +30,6 @@ public class CellTdParagraphElement implements CellParagraphElement {
                 new XSSFRichStringStyle(element,xssfCell).applyToXSSFRichTextString();
             }
         });
-        log.debug("cell value after td element is " + xssfCell.getStringCellValue());
-
     }
 
     @Override

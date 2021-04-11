@@ -11,6 +11,7 @@ import org.jsoup.nodes.Node;
 import org.jsoup.select.Elements;
 import ru.durnov.HtmlConvertService.cell.CellElementFactory;
 import ru.durnov.HtmlConvertService.cell.CellPElementTextNode;
+import ru.durnov.HtmlConvertService.cell.CellParagraphElement;
 import ru.durnov.HtmlConvertService.cell.XSSFRichStringStyle;
 import ru.durnov.HtmlConvertService.style.TableCellStyle;
 import ru.durnov.HtmlConvertService.style.HtmlStyle;
@@ -68,14 +69,11 @@ public class HtmlTableCell {
         for (Node node : nodes){
             if (node.getClass() == Element.class){
                 Element element = (Element) node;
-                new CellElementFactory(
+                CellParagraphElement cellParagraphElement = new CellElementFactory(
                         element,
                         xssfCell
-                ).elementByName().addToXSSFCell();
-                new XSSFRichStringStyle(
-                        element,
-                        xssfCell
-                ).applyToXSSFRichTextString();
+                ).elementByName();
+                cellParagraphElement.addToXSSFCell();
             }
             if (node.nodeName().equals("#text")) {
                 new CellPElementTextNode(node, xssfCell).addToXSSFCell();
