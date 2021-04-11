@@ -5,8 +5,7 @@ import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.apache.poi.xssf.usermodel.XSSFRichTextString;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import ru.durnov.HtmlConvertService.style.FontSize;
-import ru.durnov.HtmlConvertService.style.FontWeight;
+
 
 public class XSSFRichTextStringFromElement {
     private final Element element;
@@ -30,12 +29,15 @@ public class XSSFRichTextStringFromElement {
         XSSFRichTextString xssfRichTextString = new XSSFRichTextString();
         Elements allElements = element.getAllElements();
         for (Element element1 : allElements) {
-            font = new XSSFFontFromElement(
-                    element1,
-                    font,
-                    xssfCell
-            ).xssfFont();
-            xssfRichTextString.append(new OwnTextFromElement(element1).text(), font);
+            xssfRichTextString.append(
+                    new OwnTextFromElement(
+                            element1
+                    ).text(),
+                    new XSSFFontFromElement(
+                            element1,
+                            font,
+                            xssfCell
+                    ).xssfFont());
         }
         return xssfRichTextString;
     }

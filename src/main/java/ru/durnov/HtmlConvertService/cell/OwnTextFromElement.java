@@ -9,7 +9,7 @@ public class OwnTextFromElement {
         this.element = element;
     }
     public String text(){
-        if (element.nodeName().equals("br")) return "\n";
+        /*if (element.nodeName().equals("br")) return "\n";*/
         return element.ownText();
     }
 }

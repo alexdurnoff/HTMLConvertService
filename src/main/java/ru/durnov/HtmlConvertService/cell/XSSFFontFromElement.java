@@ -24,8 +24,8 @@ public class XSSFFontFromElement {
     public XSSFFont xssfFont(){
         if (element.outerHtml().contains("font-")){
             XSSFFont font = xssfCell.getSheet().getWorkbook().createFont();
-            font.setFontHeight(new FontSize(element.attributes()).value());
-            if (new FontWeight(element.attributes()).value().equals("bold")) font.setBold(true);
+            font.setFontHeight(new FontHeightFromElement(element, xssfFont).height());
+            font.setBold(new FontWeightFromElement(element, xssfFont).weight());
             return font;
         }
         return this.xssfFont;
