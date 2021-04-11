@@ -12,10 +12,15 @@ public class MinimumColumnWidth {
     }
 
     public int columnLength() {
-        String[] words = contentText.split(" ");
+        String[] lines;
+        if (contentText.contains("\n")){
+            lines = contentText.split("\n");
+        } else {
+            lines = contentText.split(" ");
+        }
         int length = 15;
-        for (String word : words){
-            if (word.length() > length) length = word.length();
+        for (String line : lines){
+            if (line.length() > length) length = line.length();
         }
         return (length + 2) * 256;
     }

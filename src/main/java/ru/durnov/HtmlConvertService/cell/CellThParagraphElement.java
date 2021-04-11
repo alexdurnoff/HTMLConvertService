@@ -2,22 +2,25 @@ package ru.durnov.HtmlConvertService.cell;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRichTextString;
 import org.jsoup.nodes.Element;
 
 @Slf4j
-public class CellTextParagraphElement implements CellParagraphElement {
-    protected final Element element;
-    protected final XSSFCell xssfCell;
+public class CellThParagraphElement implements CellParagraphElement {
+    protected  final Element element;
+    protected  final XSSFCell xssfCell;
 
 
-    public CellTextParagraphElement(Element element, XSSFCell xssfCell) {
+    public CellThParagraphElement(Element element, XSSFCell xssfCell) {
+        log.debug("th constructor invoked");
         this.element = element;
         this.xssfCell = xssfCell;
     }
 
-
     @Override
     public void addToXSSFCell() {
+        log.debug("cell value before th element is " + xssfCell.getStringCellValue());
+        log.debug("td element childnodes size is " + element.childNodes().size());
         element.childNodes().forEach(node -> {
             if (node.getClass() == Element.class) {
                 Element element1 = (Element) node;
@@ -28,13 +31,10 @@ public class CellTextParagraphElement implements CellParagraphElement {
             }
             if (node.nodeName().equals("#text")) {
                 new CellPElementTextNode(node, xssfCell).addToXSSFCell();
-                setFontToXSSFRichTextString();
+                new XSSFRichStringHeaderStyle(element,xssfCell).applyToXSSFRichTextString();
             }
         });
-    }
-
-    protected void setFontToXSSFRichTextString(){
-        new XSSFRichStringStyle(element,xssfCell).applyToXSSFRichTextString();
+        log.debug("cell value after th element is " + xssfCell.getStringCellValue());
     }
 
     @Override

@@ -23,6 +23,7 @@ public class XlsxTableRow implements XlxsElement {
     @Override
     public void addToXSSFWorkBook() {
         XSSFRow xssfRow = new NewXSSFRow(xssfSheet, rowNumber.rowNumber()).createRowByNumber();
+        xssfRow.setHeightInPoints(xssfRow.getSheet().getDefaultRowHeightInPoints()*2);
         this.xlsxStyle.applyToXlsxTableRow(xssfRow);
         rowNumber.increaseRowNumber(1);
         List<HtmlTableCell> htmlTableCells = htmlTableRow.htmlTableCellList();

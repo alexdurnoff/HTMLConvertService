@@ -7,4 +7,5 @@ import org.apache.poi.xssf.usermodel.XSSFCell;
  */
 public interface CellParagraphElement {
     void addToXSSFCell();
+    void applyToXSSFCell();
 }

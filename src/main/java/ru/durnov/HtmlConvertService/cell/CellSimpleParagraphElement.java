@@ -20,4 +20,9 @@ public class CellSimpleParagraphElement implements CellParagraphElement{
     public void addToXSSFCell() {
         xssfRichTextString.append(element.text());
     }
+
+    @Override
+    public void applyToXSSFCell() {
+
+    }
 }

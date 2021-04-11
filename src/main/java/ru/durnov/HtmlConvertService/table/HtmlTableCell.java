@@ -2,7 +2,7 @@ package ru.durnov.HtmlConvertService.table;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFRichTextString;
+import org.apache.poi.xssf.usermodel.XSSFCellStyle;
 import org.apache.poi.xwpf.usermodel.*;
 import org.jsoup.nodes.Attribute;
 import org.jsoup.nodes.Attributes;
@@ -11,10 +11,10 @@ import org.jsoup.nodes.Node;
 import org.jsoup.select.Elements;
 import ru.durnov.HtmlConvertService.cell.CellElementFactory;
 import ru.durnov.HtmlConvertService.cell.CellPElementTextNode;
+import ru.durnov.HtmlConvertService.cell.XSSFRichStringStyle;
 import ru.durnov.HtmlConvertService.style.TableCellStyle;
 import ru.durnov.HtmlConvertService.style.HtmlStyle;
 import ru.durnov.HtmlConvertService.style.Style;
-import ru.durnov.HtmlConvertService.text.ElementFactory;
 import ru.durnov.HtmlConvertService.xlsx.XlsxStyle;
 
 import java.util.List;
@@ -58,6 +58,12 @@ public class HtmlTableCell {
     public void addTextToXSSFCell(XSSFCell xssfCell, XlsxStyle xlsxStyle){
         xlsxStyle.withAttributes(cellElement.attributes()).applyToXlsxTableCell(xssfCell);
         xssfCell.getSheet().setColumnWidth(xssfCell.getColumnIndex(), new MinimumColumnWidth(cellElement.text()).columnLength());
+        //xssfCell.getSheet().autoSizeColumn(xssfCell.getColumnIndex());
+        if (cellElement.text().contains("\n")){
+            XSSFCellStyle xssfCellStyle = xssfCell.getCellStyle();
+            xssfCellStyle.setWrapText(true);
+            xssfCell.setCellStyle(xssfCellStyle);
+        }
         List<Node> nodes = cellElement.childNodes();
         for (Node node : nodes){
             if (node.getClass() == Element.class){

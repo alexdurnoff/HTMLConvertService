@@ -3,7 +3,6 @@ package ru.durnov.HtmlConvertService.cell;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.jsoup.nodes.Element;
-import ru.durnov.HtmlConvertService.table.XSSFRichStringStyle;
 
 @Slf4j
 public class CellTdParagraphElement implements CellParagraphElement {
@@ -34,6 +33,11 @@ public class CellTdParagraphElement implements CellParagraphElement {
             }
         });
         log.debug("cell value after td element is " + xssfCell.getStringCellValue());
+
+    }
+
+    @Override
+    public void applyToXSSFCell() {
 
     }
 }

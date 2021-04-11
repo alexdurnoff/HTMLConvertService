@@ -100,6 +100,7 @@ public class XlsxCellStyle implements XlsxStyle {
         xssfCellStyle.setBorderRight(this.tableBorder.borderStyle());
         xssfCellStyle.setBorderLeft(this.tableBorder.borderStyle());
         xssfCellStyle.setWrapText(true);
+        xssfCellStyle.setVerticalAlignment(VerticalAlignment.CENTER);
         xssfRow.setRowStyle(xssfCellStyle);
     }
 

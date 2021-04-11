@@ -26,4 +26,9 @@ public class CellPElementTextNode implements CellParagraphElement{
         });
         xssfCell.setCellValue(xssfRichTextString.getString());
     }
+
+    @Override
+    public void applyToXSSFCell() {
+
+    }
 }

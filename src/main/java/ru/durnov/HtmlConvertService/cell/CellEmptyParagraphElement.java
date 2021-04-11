@@ -7,4 +7,9 @@ public class CellEmptyParagraphElement implements CellParagraphElement{
     public void addToXSSFCell() {
 
     }
+
+    @Override
+    public void applyToXSSFCell() {
+
+    }
 }

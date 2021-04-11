@@ -7,4 +7,9 @@ public class CellLiParagraphElement implements CellParagraphElement{
     public void addToXSSFCell() {
 
     }
+
+    @Override
+    public void applyToXSSFCell() {
+
+    }
 }

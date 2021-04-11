@@ -1,12 +1,10 @@
 package ru.durnov.HtmlConvertService.cell;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFRichTextString;
 import org.jsoup.nodes.Element;
-import ru.durnov.HtmlConvertService.style.HtmlStyle;
-import ru.durnov.HtmlConvertService.style.StrongFontStyle;
-import ru.durnov.HtmlConvertService.table.XSSFRichStringStyle;
 
+@Slf4j
 public class CellStrongParargaphElement extends CellTextParagraphElement{
     public CellStrongParargaphElement(Element element, XSSFCell xssfCell) {
         super(element, xssfCell);
@@ -14,6 +12,8 @@ public class CellStrongParargaphElement extends CellTextParagraphElement{
 
     @Override
     public void addToXSSFCell() {
+        log.debug("strong paragraph element is " + element.nodeName());
+        log.debug("strong paragraph element text is " + element.ownText());
         super.addToXSSFCell();
         new XSSFRichStringStrongStyle(element,xssfCell).applyToXSSFRichTextString();
     }

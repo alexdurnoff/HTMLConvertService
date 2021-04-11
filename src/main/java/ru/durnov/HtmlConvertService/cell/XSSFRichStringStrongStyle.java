@@ -9,28 +9,14 @@ import ru.durnov.HtmlConvertService.style.FontSize;
 /**
  * Стиль для части строки в ячейке xlsx-документа с жирным шрифтом
  */
-public class XSSFRichStringStrongStyle  {
-    private final Element element;
-    private final XSSFCell xssfCell;
-    private final FontSize fontSize;
-
+public class XSSFRichStringStrongStyle  extends XSSFRichStringStyle{
 
     public XSSFRichStringStrongStyle(Element element, XSSFCell xssfCell) {
-        this.element = element;
-        this.xssfCell = xssfCell;
-        this.fontSize = new FontSize(element.attributes());
+        super(element, xssfCell);
     }
 
-    public void applyToXSSFRichTextString() {
-        XSSFRichTextString xssfRichTextString = xssfCell.getRichStringCellValue();
-        if (!element.ownText().equals("")) {
-            int endIndex = xssfRichTextString.getString().length()-1;
-            int startIndex= endIndex - element.text().length() + 1;
-            XSSFFont xssfFont = xssfCell.getSheet().getWorkbook().createFont();
-            xssfFont.setFontHeight(fontSize.value());
-            xssfFont.setBold(true);
-            xssfRichTextString.applyFont(startIndex, endIndex, xssfFont);
-            xssfCell.setCellValue(xssfRichTextString.getString());
-        }
+    @Override
+    protected void setFontWeight(XSSFFont xssfFont) {
+        xssfFont.setBold(true);
     }
 }
