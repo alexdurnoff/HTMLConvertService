@@ -26,6 +26,5 @@ public interface Style {
 
    void applyToRun(XWPFRun xwpfRun);
 
-   void applyToXSSFCell(XSSFCell xssfCell, Element element);
 
 }

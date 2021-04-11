@@ -56,9 +56,4 @@ public class StrongFontStyle implements Style{
         xwpfRun.setBold(true);
     }
 
-    @Override
-    public void applyToXSSFCell(XSSFCell xssfCell, Element element) {
-
-    }
-
 }

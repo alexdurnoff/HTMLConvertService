@@ -105,20 +105,6 @@ public class HtmlStyle implements Style {
         if (!htmlBackGround.value().equals("auto"))xwpfRun.getCTR().addNewRPr().addNewHighlight().setVal(STHighlightColor.YELLOW);
     }
 
-    @Override
-    public void applyToXSSFCell(XSSFCell xssfCell, Element element) {
-        log.info("XSSFCell value is " + xssfCell.getStringCellValue());
-        XSSFRichTextString xssfRichTextString = xssfCell.getRichStringCellValue();
-        log.info("XSSFRichTextString value is " + xssfRichTextString.getString());
-        int endIndex = xssfRichTextString.getString().length()-1;
-        log.info("end index is " + endIndex);
-        int startIndex= endIndex - element.text().length() + 1;
-        log.info("start index is " + startIndex);
-        XSSFFont xssfFont = xssfCell.getSheet().getWorkbook().createFont();
-        xssfFont.setFontHeight(this.htmlFont.fontSize().value());
-        if (this.htmlFont.fontWeight().value().contains("bold")) xssfFont.setBold(true);
-        xssfRichTextString.applyFont(startIndex, endIndex, xssfFont);
-    }
 
     @Override
     public String toString() {

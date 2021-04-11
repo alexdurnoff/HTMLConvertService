@@ -1,18 +1,25 @@
 package ru.durnov.HtmlConvertService.table;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRichTextString;
 import org.apache.poi.xwpf.usermodel.*;
 import org.jsoup.nodes.Attribute;
 import org.jsoup.nodes.Attributes;
 import org.jsoup.nodes.Element;
+import org.jsoup.nodes.Node;
 import org.jsoup.select.Elements;
 import ru.durnov.HtmlConvertService.cell.CellElementFactory;
+import ru.durnov.HtmlConvertService.cell.CellPElementTextNode;
 import ru.durnov.HtmlConvertService.style.TableCellStyle;
 import ru.durnov.HtmlConvertService.style.HtmlStyle;
 import ru.durnov.HtmlConvertService.style.Style;
 import ru.durnov.HtmlConvertService.text.ElementFactory;
 import ru.durnov.HtmlConvertService.xlsx.XlsxStyle;
 
+import java.util.List;
+
+@Slf4j
 /**
  * Класс представляет собой ячейку в html-таблице.
  */
@@ -51,15 +58,24 @@ public class HtmlTableCell {
     public void addTextToXSSFCell(XSSFCell xssfCell, XlsxStyle xlsxStyle){
         xlsxStyle.withAttributes(cellElement.attributes()).applyToXlsxTableCell(xssfCell);
         xssfCell.getSheet().setColumnWidth(xssfCell.getColumnIndex(), new MinimumColumnWidth(cellElement.text()).columnLength());
-        Elements allElements = cellElement.getAllElements();
-        allElements.remove(this.cellElement);
-        allElements.forEach(element -> {
-            new CellElementFactory(
-                    element,
-                    xssfCell,
-                    htmlStyle
-            ).elementByName().addToXSSFCell();
-        });
+        List<Node> nodes = cellElement.childNodes();
+        for (Node node : nodes){
+            if (node.getClass() == Element.class){
+                Element element = (Element) node;
+                new CellElementFactory(
+                        element,
+                        xssfCell
+                ).elementByName().addToXSSFCell();
+                new XSSFRichStringStyle(
+                        element,
+                        xssfCell
+                ).applyToXSSFRichTextString();
+            }
+            if (node.nodeName().equals("#text")) {
+                new CellPElementTextNode(node, xssfCell).addToXSSFCell();
+                new XSSFRichStringStyle(cellElement,xssfCell).applyToXSSFRichTextString();
+            }
+        }
         //xssfCell.setCellValue(cellElement.text());
     }
 

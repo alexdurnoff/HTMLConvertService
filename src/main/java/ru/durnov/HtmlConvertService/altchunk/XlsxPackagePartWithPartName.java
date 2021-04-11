@@ -19,7 +19,7 @@ public class XlsxPackagePartWithPartName extends PackagePartWithPartName{
      */
     @Override
     PackagePart packagePart() throws InvalidFormatException {
-        PackagePartName partName = PackagingURIHelper.createPartName("/xl/worksheets/" + id);
+        PackagePartName partName = PackagingURIHelper.createPartName("/excel/" + id);
         return opcPackage.createPart(partName, "text/html");
     }
 }

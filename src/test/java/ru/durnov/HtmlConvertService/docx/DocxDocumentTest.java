@@ -31,7 +31,7 @@ class DocxDocumentTest {
     @BeforeEach
     public void setUp() throws IOException {
         String htmlContent = Files.readString(Path.of("Test/4.html"));
-        this.docxDocument = new DocxDocument(htmlContent, "Test/docx/testDocxDocument.docx");
+        this.docxDocument = new DocxDocument(htmlContent, "Test/docx/test4html.docx");
     }
 
 
@@ -43,19 +43,19 @@ class DocxDocumentTest {
     @Test
     public void test3HtmlFile() throws IOException, InvalidFormatException {
         String htmlContent = Files.readString(Path.of("Test/3.html"));
-        new DocxDocument(htmlContent, "Test/docx/3html with 1920x1080 landscape.docx").save();
+        new DocxDocument(htmlContent, "Test/docx/test3html.docx").save();
     }
 
     @Test
     public void test2HtmlFile() throws IOException, InvalidFormatException {
         String htmlContent = Files.readString(Path.of("Test/2.html"));
-        new DocxDocument(htmlContent, "Test/docx/2html with 1920x1080 landscape.docx").save();
+        new DocxDocument(htmlContent, "Test/docx/test2htm.docx").save();
     }
 
     @Test
     public void test1HtmlFile() throws IOException, InvalidFormatException {
         String htmlContent = Files.readString(Path.of("Test/1.html"));
-        new DocxDocument(htmlContent, "Test/docx/1html with 1920x1080 landscape.docx").save();
+        new DocxDocument(htmlContent, "Test/docx/test1html.docx").save();
     }
 
     @Test
@@ -79,15 +79,5 @@ class DocxDocumentTest {
     }
 
 
-    @Test
-    public void testReadSavedDocument() throws IOException {
-        XWPFDocument xwpfDocument =
-                new XWPFDocument(new FileInputStream("Test/docx/1html with 1920x1080 landscape.docx"));
-        System.out.println(xwpfDocument.getTables().size());
-        xwpfDocument.getTables().forEach(xwpfTable -> {
-            System.out.println(xwpfTable.getRows().size());
-        });
-
-    }
 
 }

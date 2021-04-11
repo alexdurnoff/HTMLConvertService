@@ -9,19 +9,15 @@ import ru.durnov.HtmlConvertService.style.HtmlStyle;
 @Slf4j
 public class CellSimpleParagraphElement implements CellParagraphElement{
     private final Element element;
-    private final XSSFCell xssfCell;
+    private final XSSFRichTextString xssfRichTextString;
 
-    public CellSimpleParagraphElement(Element element, XSSFCell xssfCell) {
+    public CellSimpleParagraphElement(Element element, XSSFRichTextString xssfRichTextString) {
         this.element = element;
-        this.xssfCell = xssfCell;
+        this.xssfRichTextString = xssfRichTextString;
     }
 
     @Override
     public void addToXSSFCell() {
-        HtmlStyle htmlStyle = new HtmlStyle(element.attributes());
-        XSSFRichTextString xssfRichTextString = xssfCell.getRichStringCellValue();
         xssfRichTextString.append(element.text());
-        xssfCell.setCellValue(xssfRichTextString.getString());
-        htmlStyle.applyToXSSFCell(xssfCell, element);
     }
 }

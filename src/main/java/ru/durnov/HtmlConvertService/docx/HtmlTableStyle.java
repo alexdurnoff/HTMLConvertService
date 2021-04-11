@@ -66,12 +66,6 @@ public class HtmlTableStyle implements Style {
         this.style.applyToRun(xwpfRun);
     }
 
-    @Override
-    public void applyToXSSFCell(XSSFCell xssfCell, Element element) {
-
-    }
-
-
     public void applyToXWPFTable(XWPFTable xwpfTable){
         xwpfTable.setBottomBorder(this.tableBorder.borderType(), 12, 0, "auto");
         xwpfTable.setLeftBorder(this.tableBorder.borderType(), 12, 0, "auto");

@@ -94,7 +94,6 @@ public class XlsxCellStyle implements XlsxStyle {
 
     @Override
     public void applyToXlsxTableRow(XSSFRow xssfRow) {
-        System.out.println(this.tableBorder);
         XSSFCellStyle xssfCellStyle = xssfWorkbook.createCellStyle();
         xssfCellStyle.setBorderBottom(this.tableBorder.borderStyle());
         xssfCellStyle.setBorderTop(this.tableBorder.borderStyle());
@@ -218,11 +217,6 @@ public class XlsxCellStyle implements XlsxStyle {
 
     @Override
     public void applyToRun(XWPFRun xwpfRun) {
-
-    }
-
-    @Override
-    public void applyToXSSFCell(XSSFCell xssfCell, Element element) {
 
     }
 }
