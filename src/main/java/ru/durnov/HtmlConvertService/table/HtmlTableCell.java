@@ -9,10 +9,7 @@ import org.jsoup.nodes.Attributes;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
 import org.jsoup.select.Elements;
-import ru.durnov.HtmlConvertService.cell.CellElementFactory;
-import ru.durnov.HtmlConvertService.cell.CellPElementTextNode;
-import ru.durnov.HtmlConvertService.cell.CellParagraphElement;
-import ru.durnov.HtmlConvertService.cell.XSSFRichStringStyle;
+import ru.durnov.HtmlConvertService.cell.*;
 import ru.durnov.HtmlConvertService.style.TableCellStyle;
 import ru.durnov.HtmlConvertService.style.HtmlStyle;
 import ru.durnov.HtmlConvertService.style.Style;
@@ -59,28 +56,12 @@ public class HtmlTableCell {
     public void addTextToXSSFCell(XSSFCell xssfCell, XlsxStyle xlsxStyle){
         xlsxStyle.withAttributes(cellElement.attributes()).applyToXlsxTableCell(xssfCell);
         xssfCell.getSheet().setColumnWidth(xssfCell.getColumnIndex(), new MinimumColumnWidth(cellElement.text()).columnLength());
-        //xssfCell.getSheet().autoSizeColumn(xssfCell.getColumnIndex());
-        if (cellElement.text().contains("\n")){
-            XSSFCellStyle xssfCellStyle = xssfCell.getCellStyle();
-            xssfCellStyle.setWrapText(true);
-            xssfCell.setCellStyle(xssfCellStyle);
-        }
-        List<Node> nodes = cellElement.childNodes();
-        for (Node node : nodes){
-            if (node.getClass() == Element.class){
-                Element element = (Element) node;
-                CellParagraphElement cellParagraphElement = new CellElementFactory(
-                        element,
+        xssfCell.setCellValue(
+                new XSSFRichTextStringFromElement(
+                        cellElement,
                         xssfCell
-                ).elementByName();
-                cellParagraphElement.addToXSSFCell();
-            }
-            if (node.nodeName().equals("#text")) {
-                new CellPElementTextNode(node, xssfCell).addToXSSFCell();
-                new XSSFRichStringStyle(cellElement,xssfCell).applyToXSSFRichTextString();
-            }
-        }
-        //xssfCell.setCellValue(cellElement.text());
+                ).xssfRichTextString()
+        );
     }
 
     public TableCellStyle docxTableCellStyle(){
