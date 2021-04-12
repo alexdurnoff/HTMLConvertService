@@ -26,8 +26,10 @@ public class XSSFFontFromElement {
             XSSFFont font = xssfCell.getSheet().getWorkbook().createFont();
             font.setFontHeight(new FontHeightFromElement(element, xssfFont).height());
             font.setBold(new FontWeightFromElement(element, xssfFont).weight());
+            if (element.nodeName().equals("b") || element.nodeName().equals("strong")) font.setBold(true);
             return font;
         }
+        if (element.nodeName().equals("b") || element.nodeName().equals("strong")) this.xssfFont.setBold(true);
         return this.xssfFont;
     }
 }

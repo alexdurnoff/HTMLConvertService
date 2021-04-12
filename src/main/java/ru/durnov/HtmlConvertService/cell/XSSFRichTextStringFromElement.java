@@ -1,12 +1,13 @@
 package ru.durnov.HtmlConvertService.cell;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.apache.poi.xssf.usermodel.XSSFRichTextString;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-
+@Slf4j
 public class XSSFRichTextStringFromElement {
     private final Element element;
     private final XSSFCell xssfCell;
@@ -34,8 +35,10 @@ public class XSSFRichTextStringFromElement {
                     font,
                     xssfCell
             ).xssfFont();
+            log.debug("bold is " + font.getBold());
             if (!element1.ownText().equals("")) {
                 xssfRichTextString.append(new OwnTextFromElement(element1).text(), font);
+                log.debug("append " + new OwnTextFromElement(element1).text() + "with bold " + font.getBold());
             }
         }
         return xssfRichTextString;
