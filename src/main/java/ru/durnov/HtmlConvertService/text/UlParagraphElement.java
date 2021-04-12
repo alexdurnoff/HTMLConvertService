@@ -9,23 +9,15 @@ import ru.durnov.HtmlConvertService.style.Style;
 import java.io.IOException;
 import java.util.List;
 
-public class OlParagraphElement extends TextParagraphElement {
+public class UlParagraphElement  extends  TextParagraphElement {
 
-    public OlParagraphElement(Element element) {
-        super(element);
-    }
-
-    public OlParagraphElement(Element element, XWPFDocument document) {
-        super(element, document);
-    }
-
-    public OlParagraphElement(Element element, XWPFDocument document, Style htmlStyle) {
+    public UlParagraphElement(Element element, XWPFDocument document, Style htmlStyle) {
         super(element, document, htmlStyle);
     }
 
     @Override
     public void addToXWPFDocument() throws IOException, InvalidFormatException {
-        int number = 1;
+        String marker = "* ";
         if (!element.ownText().equals("")){
             new SimplePParagraphElement(element, document, this.htmlStyle).addToXWPFDocument();
         }
@@ -33,12 +25,11 @@ public class OlParagraphElement extends TextParagraphElement {
         for (Node node : nodeList){
             if (node.nodeName().equals("li")) {
                 new LiParagraphElement(
-                        number + ". ",
+                        marker,
                         (Element) node,
                         document,
                         htmlStyle
                 ).addToXWPFDocument();
-                number++;
             } else {
                 if (node.getClass() == Element.class){
                     Element element = (Element) node;
@@ -51,6 +42,4 @@ public class OlParagraphElement extends TextParagraphElement {
             }
         }
     }
-
-
 }

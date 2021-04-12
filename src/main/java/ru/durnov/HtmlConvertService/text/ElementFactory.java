@@ -45,7 +45,15 @@ public class ElementFactory {
             return new TextParagraphElement(element, document, htmlStyle);
         }
         if (element.nodeName().equals("br")) return new BRParagraphElement(element, document, htmlStyle);
+        if (element.nodeName().equals("h1")) return new H1ParagraphElement(element,document);
         if (element.nodeName().equals("h2")) return new H2ParagraphElement(element,document);
+        if (element.nodeName().equals("h3")) return new H3ParagraphElement(element,document);
+        if (element.nodeName().equals("h4")) return new H4ParagraphElement(element,document);
+        if (element.nodeName().equals("h5")) return new H5ParagraphElement(element,document);
+        if (element.nodeName().equals("h6")) return new H6ParagraphElement(element,document);
+        if (element.nodeName().equals("a")) return new HyperLinkParagraphElement(element,document,htmlStyle);
+        if (element.nodeName().equals("ol")) return new OlParagraphElement(element, document, htmlStyle);
+        if (element.nodeName().equals("ul")) return new UlParagraphElement(element, document, htmlStyle);
         if (element.nodeName().equals("table")) {
             return new DocxParagraphTable(
                     new HtmlTable(element),
