@@ -62,7 +62,7 @@ public class HtmlTableCell {
                         xssfCell
                 ).xssfRichTextString()
         );
-        if (cellElement.outerHtml().contains("<br")) {
+        if (cellElement.outerHtml().contains("<br>")) {
             XSSFCellStyle xssfCellStyle = xssfCell.getCellStyle();
             xssfCellStyle.setWrapText(true);
             xssfCell.getRow().setHeightInPoints((short) (3*xssfCell.getSheet().getDefaultRowHeightInPoints()));

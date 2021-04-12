@@ -29,15 +29,14 @@ public class XSSFRichTextStringFromElement {
         XSSFRichTextString xssfRichTextString = new XSSFRichTextString();
         Elements allElements = element.getAllElements();
         for (Element element1 : allElements) {
-            xssfRichTextString.append(
-                    new OwnTextFromElement(
-                            element1
-                    ).text(),
-                    new XSSFFontFromElement(
-                            element1,
-                            font,
-                            xssfCell
-                    ).xssfFont());
+            font = new XSSFFontFromElement(
+                    element1,
+                    font,
+                    xssfCell
+            ).xssfFont();
+            if (!element1.ownText().equals("")) {
+                xssfRichTextString.append(new OwnTextFromElement(element1).text(), font);
+            }
         }
         return xssfRichTextString;
     }
