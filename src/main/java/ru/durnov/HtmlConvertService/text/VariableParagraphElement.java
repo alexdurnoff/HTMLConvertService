@@ -22,7 +22,6 @@ public class VariableParagraphElement implements DocxParagraphElement {
     @Override
     public void addToXWPFDocument() throws IOException, InvalidFormatException {
         Elements labels = this.element.getElementsByTag("label");
-        log.debug("labels size is " + labels.size());
         for (Element label : labels) {
             new LabelParagraphElement(label, xwpfDocument).addToXWPFDocument();
         }

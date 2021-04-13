@@ -11,7 +11,6 @@ import ru.durnov.HtmlConvertService.style.HtmlStyle;
 import java.io.IOException;
 import java.util.List;
 
-@Slf4j
 public class LabelParagraphElement implements DocxParagraphElement {
     private final Element element;
     private final XWPFDocument xwpfDocument;
@@ -27,9 +26,6 @@ public class LabelParagraphElement implements DocxParagraphElement {
         XWPFParagraph xwpfParagraph = paragraphs.get(paragraphs.size() - 1);
         List<XWPFRun> runs = xwpfParagraph.getRuns();
         XWPFRun xwpfRun = runs.get(runs.size() - 1);
-        log.debug(xwpfRun.text());
-        log.debug(element.ownText());
-        log.debug(xwpfRun.text() + " " + element.ownText());
         xwpfRun.setText(" " + element.ownText());
     }
 }
