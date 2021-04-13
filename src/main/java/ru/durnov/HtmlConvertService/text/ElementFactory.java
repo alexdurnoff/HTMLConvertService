@@ -41,9 +41,11 @@ public class ElementFactory {
 
 
     public DocxParagraphElement elementByName(){
-        if (element.nodeName().equals("p") || element.nodeName().equals("span") || element.nodeName().equals("label")){
+        if (element.nodeName().equals("p") || element.nodeName().equals("span")){
             return new TextParagraphElement(element, document, htmlStyle);
         }
+        if (element.nodeName().equals("variable")) return new VariableParagraphElement(element,document);
+        //if (element.nodeName().equals("label")) return new LabelParagraphElement(element,document);
         if (element.nodeName().equals("br")) return new BRParagraphElement(element, document, htmlStyle);
         if (element.nodeName().equals("h1")) return new H1ParagraphElement(element,document);
         if (element.nodeName().equals("h2")) return new H2ParagraphElement(element,document);

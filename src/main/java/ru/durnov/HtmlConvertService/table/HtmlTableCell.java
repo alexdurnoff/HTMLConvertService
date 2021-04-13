@@ -62,7 +62,7 @@ public class HtmlTableCell {
     }
 
     public void addTextToXSSFCell(XSSFCell xssfCell, XlsxStyle xlsxStyle){
-        //xlsxStyle.withAttributes(cellElement.attributes()).applyToXlsxTableCell(xssfCell);
+        xlsxStyle.withAttributes(cellElement.attributes()).applyToXlsxTableCell(xssfCell);
         new CellColumnWidth(cellElement,xssfCell).setUpColumnWidth();
         new CellRowHeight(cellElement,xssfCell).setUpRowHeight();
         new XlsxCellValue(cellElement).setXSSFCellValue(xssfCell);

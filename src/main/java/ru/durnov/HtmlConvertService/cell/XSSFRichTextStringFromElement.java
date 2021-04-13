@@ -1,6 +1,7 @@
 package ru.durnov.HtmlConvertService.cell;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.poi.ss.usermodel.FontFamily;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.apache.poi.xssf.usermodel.XSSFRichTextString;
@@ -22,7 +23,7 @@ public class XSSFRichTextStringFromElement {
     public XSSFRichTextStringFromElement(Element element, XSSFCell xssfCell){
         this.element = element;
         this.xssfCell = xssfCell;
-        this.xssfFont = xssfCell.getSheet().getWorkbook().createFont();
+        this.xssfFont = xssfCell.getCellStyle().getFont();
     }
 
     public XSSFRichTextString xssfRichTextString(){

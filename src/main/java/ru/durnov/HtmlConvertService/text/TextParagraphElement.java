@@ -1,5 +1,6 @@
 package ru.durnov.HtmlConvertService.text;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRichTextString;
@@ -9,6 +10,7 @@ import ru.durnov.HtmlConvertService.style.*;
 
 import java.io.IOException;
 
+@Slf4j
 /**
  * Так получилось, что p и span у нас парсятся одинаково.
  * Поэтому, чтобы не вносить изменения сразу в оба класса,
@@ -40,6 +42,7 @@ public class TextParagraphElement implements DocxParagraphElement {
 
     @Override
     public void addToXWPFDocument() throws IOException, InvalidFormatException {
+        if (element.nodeName().equals("span")) log.debug("span text is " + element.ownText());
         if (!element.ownText().equals("")){
             new SimplePParagraphElement(element, document, this.htmlStyle).addToXWPFDocument();
         }

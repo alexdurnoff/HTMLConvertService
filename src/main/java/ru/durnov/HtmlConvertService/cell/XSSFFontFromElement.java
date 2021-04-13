@@ -22,14 +22,16 @@ public class XSSFFontFromElement {
     }
 
     public XSSFFont xssfFont(){
+        XSSFFont font = xssfCell.getSheet().getWorkbook().createFont();
+        font.setFamily(xssfFont.getFamily());
         if (element.outerHtml().contains("font-")){
-            XSSFFont font = xssfCell.getSheet().getWorkbook().createFont();
             font.setFontHeight(new FontHeightFromElement(element, xssfFont).height());
             font.setBold(new FontWeightFromElement(element, xssfFont).weight());
-            if (element.nodeName().equals("b") || element.nodeName().equals("strong")) font.setBold(true);
-            return font;
+        } else {
+            font.setFontHeight(this.xssfFont.getFontHeight());
+            font.setBold(xssfFont.getBold());
         }
-        if (element.nodeName().equals("b") || element.nodeName().equals("strong")) this.xssfFont.setBold(true);
-        return this.xssfFont;
+        if (element.nodeName().equals("b") || element.nodeName().equals("strong")) font.setBold(true);
+        return font;
     }
 }

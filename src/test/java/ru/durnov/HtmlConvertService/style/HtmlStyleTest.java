@@ -71,7 +71,7 @@ class HtmlStyleTest {
         Attributes attributes1 = new Attributes();
         attributes1.add("style", "font-weight: bolder;");
         Style htmlStyle1 = this.htmlStyle.withAttributes(attributes1);
-        Assertions.assertTrue(htmlStyle1.toString().contains("fontSize is 16"));
+        Assertions.assertTrue(htmlStyle1.toString().contains("fontSize is 12"));
         Assertions.assertTrue(htmlStyle1.toString().contains("Alignment is center"));
         Assertions.assertTrue(htmlStyle1.toString().contains("BackGround is ffff00"));
         Assertions.assertTrue(htmlStyle1.toString().contains("font weight is bolder"));
