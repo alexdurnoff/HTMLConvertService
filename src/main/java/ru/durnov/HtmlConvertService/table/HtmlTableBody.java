@@ -22,6 +22,10 @@ public class HtmlTableBody {
         this.htmlStyle = htmlStyle;
     }
 
+    /**
+     * Метод возвращает список html-строк в таблице.
+     * @return List<HtmlTableRow>htmlTableRowList;
+     */
     public List<HtmlTableRow> htmlTableRowsList(){
         List<HtmlTableRow> htmlTableRowList = new ArrayList<>();
         this.htmlTableElement.getElementsByTag("tr").forEach(element -> {

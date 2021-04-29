@@ -5,8 +5,6 @@ import org.apache.poi.xssf.usermodel.*;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
 import org.jsoup.nodes.Attribute;
 import org.jsoup.nodes.Attributes;
-import org.jsoup.nodes.Element;
-import org.openxmlformats.schemas.spreadsheetml.x2006.main.CTCell;
 import ru.durnov.HtmlConvertService.style.*;
 import ru.durnov.HtmlConvertService.xlsx.XlsxStyle;
 
@@ -75,7 +73,7 @@ public class XlsxCellStyle implements XlsxStyle {
         xssfCellStyle.setBorderTop(tableBorder.borderStyle());
         xssfCellStyle.setBorderBottom(tableBorder.borderStyle());
         if (!this.htmlBackGround.value().equals("auto")) {
-            xssfCellStyle.setFillForegroundColor(new BackGroundColor(this.htmlBackGround).color());
+            xssfCellStyle.setFillForegroundColor(new XLSXBackGroundColor(this.htmlBackGround).color());
             xssfCellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
         }
         if (this.htmlWidth.value() != 15) {

@@ -102,7 +102,7 @@ public class HtmlStyle implements Style {
         if (this.htmlFont.fontWeight().value().equals("bolder")) xwpfRun.setBold(true);
         XWPFParagraph xwpfParagraph = (XWPFParagraph) xwpfRun.getParent();
         xwpfParagraph.setAlignment(this.htmlAlignment.paragraphAlignment());
-        if (!htmlBackGround.value().equals("auto"))xwpfRun.getCTR().addNewRPr().addNewHighlight().setVal(STHighlightColor.YELLOW);
+        if (!htmlBackGround.value().equals("auto"))xwpfRun.getCTR().addNewRPr().addNewHighlight().setVal(new DOCXBackGroundColor(htmlBackGround).color());
     }
 
 

@@ -23,4 +23,5 @@ public class StringForColor {
     public String colorString(){
         return String.format("%2s", Integer.toHexString(value)).replace(' ', '0');
     }
+
 }

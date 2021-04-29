@@ -20,6 +20,8 @@ public class HtmlBackGround extends StringAttributeValue {
         String value = super.value();
         if (value.contains("rgb")){
             return new HtmlBackGroundFromRgb(attributes).value();
+        } else if (value.contains("#")){
+            return new HtmlBackGroundFromHexRGB(attributes).value();
         }
         return new HtmlBackGroundFromColorName(attributes).value();
     }

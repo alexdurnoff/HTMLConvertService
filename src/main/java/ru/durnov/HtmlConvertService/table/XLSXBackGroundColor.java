@@ -12,10 +12,10 @@ import java.util.Map;
 /**
  * Класс устаннавливает заливку ячейки в xlsx-документе
  */
-public class BackGroundColor {
+public class XLSXBackGroundColor {
     private final HtmlBackGround htmlBackGround;
     private final Map<String, XSSFColor> colorMap = new HashMap<>();
-    public BackGroundColor(HtmlBackGround htmlBackGround) {
+    public XLSXBackGroundColor(HtmlBackGround htmlBackGround) {
         this.htmlBackGround = htmlBackGround;
         this.colorMap.put("green", new XSSFColor(IndexedColors.GREEN, new DefaultIndexedColorMap()));
         this.colorMap.put("black", new XSSFColor(IndexedColors.BLACK, new DefaultIndexedColorMap()));

@@ -38,4 +38,13 @@ class XLSXDocumentTest {
                 new XSSFWorkbook()
         ).save();
     }
+
+    @Test
+    public void test$htmlSave() throws IOException {
+        new XLSXDocument(
+                "Test/for xlsx/4.html",
+                "Test/xlsx/4.xlsx",
+                new XSSFWorkbook()
+        ).save();
+    }
 }
