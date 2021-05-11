@@ -73,7 +73,7 @@ public class XlsxCellStyle implements XlsxStyle {
         xssfCellStyle.setBorderTop(tableBorder.borderStyle());
         xssfCellStyle.setBorderBottom(tableBorder.borderStyle());
         if (!this.htmlBackGround.value().equals("auto")) {
-            xssfCellStyle.setFillForegroundColor(new XLSXBackGroundColor(this.htmlBackGround).color());
+            xssfCellStyle.setFillForegroundColor(new XLSXBackGroundColor(this.htmlBackGround).colorFromRGB());
             xssfCellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
         }
         if (this.htmlWidth.value() != 15) {

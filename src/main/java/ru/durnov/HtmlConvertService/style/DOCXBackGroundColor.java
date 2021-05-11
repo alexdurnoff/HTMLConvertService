@@ -27,4 +27,5 @@ public class DOCXBackGroundColor {
     public STHighlightColor.Enum color(){
         return this.colorMap.get(this.htmlBackGround.value());
     }
+
 }

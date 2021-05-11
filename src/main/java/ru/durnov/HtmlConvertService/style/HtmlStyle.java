@@ -11,7 +11,11 @@ import org.jsoup.nodes.Attribute;
 import org.jsoup.nodes.Attributes;
 import org.jsoup.nodes.Element;
 import org.openxmlformats.schemas.spreadsheetml.x2006.main.impl.CTFontImpl;
+import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTColor;
+import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTShd;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.STHighlightColor;
+import org.openxmlformats.schemas.wordprocessingml.x2006.main.STShd;
+import org.openxmlformats.schemas.wordprocessingml.x2006.main.impl.CTColorImpl;
 import ru.durnov.HtmlConvertService.table.XlsxCellStyle;
 import ru.durnov.HtmlConvertService.xlsx.XSSFRichTextStringPart;
 
@@ -102,7 +106,12 @@ public class HtmlStyle implements Style {
         if (this.htmlFont.fontWeight().value().equals("bolder")) xwpfRun.setBold(true);
         XWPFParagraph xwpfParagraph = (XWPFParagraph) xwpfRun.getParent();
         xwpfParagraph.setAlignment(this.htmlAlignment.paragraphAlignment());
-        if (!htmlBackGround.value().equals("auto"))xwpfRun.getCTR().addNewRPr().addNewHighlight().setVal(new DOCXBackGroundColor(htmlBackGround).color());
+        if (!htmlBackGround.value().equals("auto")){
+            CTShd cTShd = xwpfRun.getCTR().addNewRPr().addNewShd();
+            //cTShd.setVal(STShd.CLEAR);
+            //cTShd.setColor("auto");
+            cTShd.setFill(htmlBackGround.value());
+        }
     }
 
 

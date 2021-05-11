@@ -3,6 +3,8 @@ package ru.durnov.HtmlConvertService.table;
 import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.xssf.usermodel.DefaultIndexedColorMap;
 import org.apache.poi.xssf.usermodel.XSSFColor;
+import org.openxmlformats.schemas.spreadsheetml.x2006.main.CTColor;
+import org.openxmlformats.schemas.spreadsheetml.x2006.main.impl.CTColorImpl;
 import ru.durnov.HtmlConvertService.style.HtmlBackGround;
 
 import java.awt.*;
@@ -29,5 +31,17 @@ public class XLSXBackGroundColor {
 
     public XSSFColor color() {
         return this.colorMap.get(this.htmlBackGround.value());
+    }
+
+    public XSSFColor colorFromRGB(){
+        XSSFColor xssfColor = null;
+        try {
+            xssfColor = new XSSFColor(
+                    new Color(Integer.parseInt(this.htmlBackGround.value(), 16)));
+        } catch (NumberFormatException e) {
+            return color();
+        }
+        return xssfColor;
+
     }
 }
