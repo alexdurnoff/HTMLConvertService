@@ -20,9 +20,11 @@ class HtmlStyleTest {
         Attributes attributes1 = new Attributes();
         attributes1.add("style", "font-size: 24px;");
         attributes1.add("style", "font-weight: bolder;");
+        attributes1.add("style", "color:#ffffff");
         HtmlFont htmlFont = new HtmlFont(
                 new FontSize(attributes1),
-                new FontWeight(attributes1)
+                new FontWeight(attributes1),
+                new HtmlColor(attributes1)
         );
         Style htmlStyle1 = this.htmlStyle.withFont(htmlFont);
         Assertions.assertTrue(htmlStyle1.toString().contains("fontSize is 24"));

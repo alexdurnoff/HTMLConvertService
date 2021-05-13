@@ -15,7 +15,8 @@ class HtmlFontTest {
         Attributes attributes = new TestAttributes().attributes();
         this.htmlFont = new HtmlFont(
                 new FontSize(attributes),
-                new FontWeight(attributes)
+                new FontWeight(attributes),
+                new HtmlColor(attributes)
         );
     }
 

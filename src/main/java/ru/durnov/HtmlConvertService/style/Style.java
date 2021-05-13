@@ -26,5 +26,4 @@ public interface Style {
 
    void applyToRun(XWPFRun xwpfRun);
 
-
 }

@@ -23,7 +23,7 @@ public class HtmlBackGroundFromHexRGB extends StringAttributeValue{
                 Matcher matcher = pattern.matcher(attribute.getValue());
                 if (matcher.matches()) {
                     String value = attribute.getValue();
-                    value = new ColorValueFromBackGroundString(value).hexValue();
+                    value = new ColorValueWithOutSharp(value).hexValue();
                     if (value.length() <= 4){
                         value = new FullHexColorValue(value).fullValue();
                     }

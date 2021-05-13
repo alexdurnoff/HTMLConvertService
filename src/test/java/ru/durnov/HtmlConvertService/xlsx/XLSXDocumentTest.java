@@ -47,4 +47,22 @@ class XLSXDocumentTest {
                 new XSSFWorkbook()
         ).save();
     }
+
+    @Test
+    public void test5htmlSave() throws IOException {
+        new XLSXDocument(
+                "Test/for xlsx/5.html",
+                "Test/xlsx/5.xlsx",
+                new XSSFWorkbook()
+        ).save();
+    }
+
+    @Test
+    public void testPTagFontColor() throws IOException {
+        new XLSXDocument(
+                "Test/for xlsx/p_tag_font_color_test.html",
+                "Test/xlsx/p_tag_font_color_test.xlsx",
+                new XSSFWorkbook()
+        ).save();
+    }
 }

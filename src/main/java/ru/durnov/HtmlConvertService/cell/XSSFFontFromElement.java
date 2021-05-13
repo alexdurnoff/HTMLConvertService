@@ -1,10 +1,13 @@
 package ru.durnov.HtmlConvertService.cell;
 
 import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFColor;
 import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.jsoup.nodes.Element;
-import ru.durnov.HtmlConvertService.style.FontSize;
-import ru.durnov.HtmlConvertService.style.FontWeight;
+import ru.durnov.HtmlConvertService.style.*;
+import ru.durnov.HtmlConvertService.table.XlsxCellFont;
+
+import java.awt.*;
 
 /**
  * Класс возвращает либо старый шрифт,
@@ -31,6 +34,13 @@ public class XSSFFontFromElement {
             font.setFontHeight(this.xssfFont.getFontHeight());
             font.setBold(xssfFont.getBold());
         }
+        new XlsxCellFont(
+                new HtmlFont(
+                        new FontSize(element.attributes()),
+                        new FontWeight(element.attributes()),
+                        new HtmlColor(element.attributes())
+                )
+        ).setupFont(font);
         if (element.nodeName().equals("b") || element.nodeName().equals("strong")) font.setBold(true);
         return font;
     }

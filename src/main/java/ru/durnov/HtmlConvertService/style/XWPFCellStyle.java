@@ -19,7 +19,8 @@ public class XWPFCellStyle implements CellStyle{
     public void applyToXWPFCell(XWPFTableCell xwpfTableCell) {
         HtmlFont htmlFont = new HtmlFont(
                 new FontSize(element.attributes()),
-                new FontWeight(element.attributes())
+                new FontWeight(element.attributes()),
+                new HtmlColor(element.attributes())
         );
         HtmlAlignment htmlAlignment = new HtmlAlignment(element.attributes());
         HtmlBackGround htmlBackGround = new HtmlBackGround(element.attributes());

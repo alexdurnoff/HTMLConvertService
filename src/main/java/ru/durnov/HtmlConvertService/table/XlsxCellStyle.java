@@ -29,7 +29,8 @@ public class XlsxCellStyle implements XlsxStyle {
         this.tableBorder = new TableBorder(attributes);
         this.htmlFont = new HtmlFont(
                 new FontSize(attributes),
-                new FontWeight(attributes)
+                new FontWeight(attributes),
+                new HtmlColor(attributes)
         );
         this.htmlWidth = new HtmlWidth(attributes);
     }
@@ -111,7 +112,8 @@ public class XlsxCellStyle implements XlsxStyle {
                 xlsxStyle1 = xlsxStyle1.withFont(
                         new HtmlFont(
                                 new FontSize(attributes),
-                                new FontWeight(attributes)
+                                new FontWeight(attributes),
+                                new HtmlColor(attributes)
                         )
                 );
             }
@@ -120,10 +122,23 @@ public class XlsxCellStyle implements XlsxStyle {
                         new HtmlAlignment(attributes)
                 );
             }
-            if (attribute.getValue().contains("background-color")){
-                xlsxStyle1 = xlsxStyle1.withBackGround(
-                        new HtmlBackGround(attributes)
-                );
+
+
+            if (attribute.getValue().contains("color")){
+                if (attribute.getValue().contains("background-color")){
+                    xlsxStyle1 = xlsxStyle1.withBackGround(
+                            new HtmlBackGround(attributes)
+                    );
+                } else {
+                    xlsxStyle1 = xlsxStyle1.withFont(
+                            new HtmlFont(
+                                    new FontSize(attributes),
+                                    new FontWeight(attributes),
+                                    new HtmlColor(attributes)
+                            )
+                    );
+                }
+
             }
 
         }
@@ -218,4 +233,5 @@ public class XlsxCellStyle implements XlsxStyle {
     public void applyToRun(XWPFRun xwpfRun) {
 
     }
+
 }

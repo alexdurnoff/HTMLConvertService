@@ -1,15 +1,14 @@
 package ru.durnov.HtmlConvertService.style;
 
-import org.apache.poi.ss.usermodel.FontFamily;
-import org.apache.poi.xssf.usermodel.XSSFFont;
-
 public class HtmlFont {
     private final FontSize fontSize;
     private final FontWeight fontWeight;
+    private final HtmlColor htmlColor;
 
-    public HtmlFont(FontSize fontSize, FontWeight fontWeight) {
+    public HtmlFont(FontSize fontSize, FontWeight fontWeight, HtmlColor htmlColor) {
         this.fontSize = fontSize;
         this.fontWeight = fontWeight;
+        this.htmlColor = htmlColor;
     }
 
     public FontSize fontSize(){
@@ -20,12 +19,18 @@ public class HtmlFont {
        return this.fontWeight;
     }
 
+    public HtmlColor htmlColor(){return this.htmlColor;}
+
     public HtmlFont withFontSize(FontSize fontSize){
-        return new HtmlFont(fontSize, this.fontWeight);
+        return new HtmlFont(fontSize, this.fontWeight, this.htmlColor);
     }
 
     public HtmlFont withFontWeight(FontWeight fontWeight){
-        return new HtmlFont(this.fontSize, fontWeight);
+        return new HtmlFont(this.fontSize, fontWeight, this.htmlColor);
+    }
+
+    public HtmlFont withColor(HtmlColor htmlColor){
+        return new HtmlFont(this.fontSize, this.fontWeight, htmlColor);
     }
 
     @Override
@@ -33,6 +38,7 @@ public class HtmlFont {
         return "HtmlFont{" +
                 "fontSize=" + fontSize +
                 ", fontWeight=" + fontWeight +
+                ", fontColor= " + htmlColor.value() +
                 '}';
     }
 

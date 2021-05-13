@@ -31,14 +31,18 @@ public class HtmlStyle implements Style {
     public HtmlStyle(Attributes attributes){
         this.htmlFont = new HtmlFont(
                 new FontSize(attributes),
-                new FontWeight(attributes)
+                new FontWeight(attributes),
+                new HtmlColor(attributes)
         );
         this.htmlAlignment = new HtmlAlignment(attributes);
         this.htmlBackGround = new HtmlBackGround(attributes);
         this.htmlWidth = new HtmlWidth(attributes);
     }
 
-    public HtmlStyle(HtmlFont htmlFont, HtmlAlignment htmlAlignment, HtmlBackGround htmlBackGround, HtmlWidth htmlWidth) {
+    public HtmlStyle(HtmlFont htmlFont,
+                     HtmlAlignment htmlAlignment,
+                     HtmlBackGround htmlBackGround,
+                     HtmlWidth htmlWidth) {
         this.htmlFont = htmlFont;
         this.htmlAlignment = htmlAlignment;
         this.htmlBackGround = htmlBackGround;
@@ -79,7 +83,8 @@ public class HtmlStyle implements Style {
                 htmlStyle1 = htmlStyle1.withFont(
                         new HtmlFont(
                                 new FontSize(attributes),
-                                new FontWeight(attributes)
+                                new FontWeight(attributes),
+                                new HtmlColor(attributes)
                         )
                 );
             }
@@ -103,6 +108,7 @@ public class HtmlStyle implements Style {
     public void applyToRun(XWPFRun xwpfRun) {
         xwpfRun.setFontFamily("Times new Roman");
         xwpfRun.setFontSize(this.htmlFont.fontSize().value());
+        xwpfRun.setColor(this.htmlFont.htmlColor().value());
         if (this.htmlFont.fontWeight().value().equals("bolder")) xwpfRun.setBold(true);
         XWPFParagraph xwpfParagraph = (XWPFParagraph) xwpfRun.getParent();
         xwpfParagraph.setAlignment(this.htmlAlignment.paragraphAlignment());
