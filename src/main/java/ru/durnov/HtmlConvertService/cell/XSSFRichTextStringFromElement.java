@@ -36,10 +36,8 @@ public class XSSFRichTextStringFromElement {
                     font,
                     xssfCell
             ).xssfFont();
-            log.debug("bold is " + font.getBold());
             if (!element1.ownText().equals("")) {
                 xssfRichTextString.append(new OwnTextFromElement(element1).text(), font);
-                log.debug("append " + new OwnTextFromElement(element1).text() + "with bold " + font.getBold());
             }
         }
         return xssfRichTextString;

@@ -32,16 +32,14 @@ import java.util.List;
 public class HtmlTableCell {
     private final Element cellElement;
     private final Style htmlStyle;
+    private final Element ownElement;
 
     public HtmlTableCell (Element element, Style style) {
         this.cellElement = element;
+        this.ownElement = element.parent();
         this.htmlStyle = style.withAttributes(this.cellElement.attributes());
     }
 
-    public HtmlTableCell(Element cellElement){
-        this.cellElement = cellElement;
-        this.htmlStyle = new HtmlStyle(this.cellElement.attributes());
-    }
     @Deprecated
     public String content(){
         return cellElement.text();
@@ -62,6 +60,7 @@ public class HtmlTableCell {
     }
 
     public void addTextToXSSFCell(XSSFCell xssfCell, XlsxStyle xlsxStyle){
+        xlsxStyle.withAttributes(ownElement.attributes()).applyToXlsxTableCell(xssfCell);
         xlsxStyle.withAttributes(cellElement.attributes()).applyToXlsxTableCell(xssfCell);
         new CellColumnWidth(cellElement,xssfCell).setUpColumnWidth();
         new CellRowHeight(cellElement,xssfCell).setUpRowHeight();

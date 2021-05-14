@@ -1,6 +1,6 @@
 package ru.durnov.HtmlConvertService.css;
 
-import ru.durnov.HtmlConvertService.style.TableBorder;
+import ru.durnov.HtmlConvertService.style.border.TableBorder;
 
 import java.util.List;
 

@@ -65,4 +65,15 @@ class XLSXDocumentTest {
                 new XSSFWorkbook()
         ).save();
     }
+
+    @Test
+    public void testTDWithBorderColor() throws IOException {
+        new XLSXDocument(
+                "Test/for xlsx/td_with_border_color.html",
+                "Test/xlsx/td_with_border_color.xlsx",
+                new XSSFWorkbook()
+        ).save();
+    }
+
+
 }

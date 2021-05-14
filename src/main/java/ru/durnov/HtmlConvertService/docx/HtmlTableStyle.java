@@ -1,13 +1,11 @@
 package ru.durnov.HtmlConvertService.docx;
 
-import org.apache.poi.ss.formula.functions.T;
-import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFRichTextString;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
 import org.apache.poi.xwpf.usermodel.XWPFTable;
 import org.jsoup.nodes.Attributes;
 import org.jsoup.nodes.Element;
 import ru.durnov.HtmlConvertService.style.*;
+import ru.durnov.HtmlConvertService.style.border.TableBorder;
 
 /**
  * Стиль Html таблицы. Включает в себя html-стиль и добавляет

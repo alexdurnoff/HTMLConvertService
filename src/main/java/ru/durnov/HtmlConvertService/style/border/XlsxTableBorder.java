@@ -1,10 +1,15 @@
-package ru.durnov.HtmlConvertService.style;
+package ru.durnov.HtmlConvertService.style.border;
 
 import org.apache.poi.ss.usermodel.BorderStyle;
+import org.apache.poi.xssf.usermodel.DefaultIndexedColorMap;
+import org.apache.poi.xssf.usermodel.XSSFColor;
 import org.jsoup.nodes.Attribute;
 import org.jsoup.nodes.Attributes;
 import org.jsoup.nodes.Element;
+import ru.durnov.HtmlConvertService.cell.XLSXBorderColor;
+import ru.durnov.HtmlConvertService.style.HtmlColor;
 
+import java.awt.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -44,5 +49,11 @@ public class XlsxTableBorder {
         BorderStyle borderStyle = map.get(border);
         if (borderStyle != null) return borderStyle;
         return BorderStyle.NONE;
+    }
+
+    public XSSFColor xssfColor(){
+        return new XLSXBorderColor(
+                new BorderAttribute(attributes)
+        ).colorFromRGB();
     }
 }

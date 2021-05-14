@@ -1,6 +1,6 @@
 package ru.durnov.HtmlConvertService.css;
 
-import ru.durnov.HtmlConvertService.style.TableBorder;
+import ru.durnov.HtmlConvertService.style.border.TableBorder;
 import ru.durnov.HtmlConvertService.xlsx.XlsxStyle;
 
 import java.util.List;
