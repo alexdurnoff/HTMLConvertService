@@ -1,6 +1,6 @@
 package ru.durnov.HtmlConvertService.css;
 
-import ru.durnov.HtmlConvertService.style.border.TableBorder;
+import ru.durnov.HtmlConvertService.style.border.HtmlTableBorder;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ public class TableBorderFromCSS {
         this.styleStringList = styleStringList;
     }
 
-    public TableBorder tableBorder() {
+    public HtmlTableBorder tableBorder() {
         return null;
     }
 }

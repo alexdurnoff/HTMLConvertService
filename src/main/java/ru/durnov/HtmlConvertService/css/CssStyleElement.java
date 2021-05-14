@@ -1,6 +1,6 @@
 package ru.durnov.HtmlConvertService.css;
 
-import ru.durnov.HtmlConvertService.style.border.TableBorder;
+import ru.durnov.HtmlConvertService.style.border.HtmlTableBorder;
 import ru.durnov.HtmlConvertService.xlsx.XlsxStyle;
 
 import java.util.List;
@@ -27,7 +27,7 @@ public class CssStyleElement {
         List<String> styleStringList =
                 new KeyValueCSSCollections(source)
                         .keyValueStringList();
-        TableBorder tableBorder = new TableBorderFromCSS(styleStringList).tableBorder();
+        HtmlTableBorder htmlTableBorder = new TableBorderFromCSS(styleStringList).tableBorder();
 
 
 

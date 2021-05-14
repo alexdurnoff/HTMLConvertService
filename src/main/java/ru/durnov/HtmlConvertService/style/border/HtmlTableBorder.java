@@ -8,7 +8,6 @@ import org.jsoup.nodes.Attribute;
 import org.jsoup.nodes.Attributes;
 import org.jsoup.nodes.Element;
 import ru.durnov.HtmlConvertService.cell.XLSXBorderColor;
-import ru.durnov.HtmlConvertService.style.HtmlColor;
 
 import java.util.HashMap;
 import java.util.List;
@@ -18,17 +17,17 @@ import java.util.Map;
  * Параметры обрамления таблицы.
  */
 @Slf4j
-public class TableBorder {
+public class HtmlTableBorder {
     private final Attributes attributes;
     private final Map<Integer, XWPFTable.XWPFBorderType> docxMap;
 
 
 
-    public TableBorder(Element element) {
+    public HtmlTableBorder(Element element) {
         this(element.attributes());
     }
 
-    public TableBorder(Attributes attributes) {
+    public HtmlTableBorder(Attributes attributes) {
         this.attributes = attributes;
         this.docxMap = new HashMap<>();
         this.docxMap.put(1, XWPFTable.XWPFBorderType.SINGLE);

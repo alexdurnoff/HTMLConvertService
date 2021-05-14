@@ -5,7 +5,7 @@ import org.apache.poi.xwpf.usermodel.XWPFTable;
 import org.jsoup.nodes.Attributes;
 import org.jsoup.nodes.Element;
 import ru.durnov.HtmlConvertService.style.*;
-import ru.durnov.HtmlConvertService.style.border.TableBorder;
+import ru.durnov.HtmlConvertService.style.border.HtmlTableBorder;
 
 /**
  * Стиль Html таблицы. Включает в себя html-стиль и добавляет
@@ -14,18 +14,18 @@ import ru.durnov.HtmlConvertService.style.border.TableBorder;
 public class HtmlTableStyle implements Style {
     private final Element element;
     private final Style style;
-    private final TableBorder tableBorder;
+    private final HtmlTableBorder htmlTableBorder;
 
     public HtmlTableStyle(Element element, Style style) {
         this.element = element;
         this.style = style;
-        this.tableBorder = new TableBorder(element);
+        this.htmlTableBorder = new HtmlTableBorder(element);
     }
 
-    public HtmlTableStyle(Element element, Style style, TableBorder tableBorder){
+    public HtmlTableStyle(Element element, Style style, HtmlTableBorder htmlTableBorder){
         this.element = element;
         this.style = style;
-        this.tableBorder = tableBorder;
+        this.htmlTableBorder = htmlTableBorder;
     }
 
     @Override
@@ -46,7 +46,7 @@ public class HtmlTableStyle implements Style {
     @Override
     public Style withAttributes(Attributes attributes) {
         Style htmlStyle = this.style.withAttributes(attributes);
-        return new HtmlTableStyle(element, htmlStyle, tableBorder);
+        return new HtmlTableStyle(element, htmlStyle, htmlTableBorder);
     }
 
     @Override
@@ -65,12 +65,12 @@ public class HtmlTableStyle implements Style {
     }
 
     public void applyToXWPFTable(XWPFTable xwpfTable){
-        xwpfTable.setBottomBorder(this.tableBorder.borderType(), 12, 0, "auto");
-        xwpfTable.setLeftBorder(this.tableBorder.borderType(), 12, 0, "auto");
-        xwpfTable.setRightBorder(this.tableBorder.borderType(), 12, 0, "auto");
-        xwpfTable.setTopBorder(this.tableBorder.borderType(), 12, 0, "auto");
-        xwpfTable.setInsideHBorder(this.tableBorder.borderType(), 12, 0, "auto");
-        xwpfTable.setInsideVBorder(this.tableBorder.borderType(), 12, 0, "auto");
+        xwpfTable.setBottomBorder(this.htmlTableBorder.borderType(), 12, 0, "auto");
+        xwpfTable.setLeftBorder(this.htmlTableBorder.borderType(), 12, 0, "auto");
+        xwpfTable.setRightBorder(this.htmlTableBorder.borderType(), 12, 0, "auto");
+        xwpfTable.setTopBorder(this.htmlTableBorder.borderType(), 12, 0, "auto");
+        xwpfTable.setInsideHBorder(this.htmlTableBorder.borderType(), 12, 0, "auto");
+        xwpfTable.setInsideVBorder(this.htmlTableBorder.borderType(), 12, 0, "auto");
     }
 
 }

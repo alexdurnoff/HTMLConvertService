@@ -1,9 +1,7 @@
 package ru.durnov.HtmlConvertService.style.border;
 
-import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.ss.usermodel.BorderStyle;
 
-@Slf4j
 public class HtmlBorderStyle {
     private final String value;
     private int weight;
@@ -21,8 +19,6 @@ public class HtmlBorderStyle {
         } catch (NumberFormatException e) {
             this.weight = 0;
         }
-        log.debug("value = " + value);
-        log.debug("weight = " + weight);
     }
 
     public BorderStyle borderStyle() {

@@ -4,11 +4,8 @@ import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.jsoup.nodes.Attributes;
-import ru.durnov.HtmlConvertService.style.FontWeight;
-import ru.durnov.HtmlConvertService.style.HtmlStyle;
 import ru.durnov.HtmlConvertService.style.Style;
-import ru.durnov.HtmlConvertService.style.border.TableBorder;
-import ru.durnov.HtmlConvertService.table.XlsxCellStyle;
+import ru.durnov.HtmlConvertService.style.border.HtmlTableBorder;
 
 public interface XlsxStyle extends Style {
     void applyToXlsxTableCell(XSSFCell xssfCell);
@@ -20,5 +17,5 @@ public interface XlsxStyle extends Style {
 
     XlsxStyle withStyle(XlsxStyle xlsxStyle);
 
-    XlsxStyle withTableBorder(TableBorder tableBorder);
+    XlsxStyle withTableBorder(HtmlTableBorder htmlTableBorder);
 }

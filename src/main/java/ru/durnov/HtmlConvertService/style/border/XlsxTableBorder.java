@@ -1,59 +1,34 @@
 package ru.durnov.HtmlConvertService.style.border;
 
 import org.apache.poi.ss.usermodel.BorderStyle;
-import org.apache.poi.xssf.usermodel.DefaultIndexedColorMap;
-import org.apache.poi.xssf.usermodel.XSSFColor;
-import org.jsoup.nodes.Attribute;
-import org.jsoup.nodes.Attributes;
-import org.jsoup.nodes.Element;
-import ru.durnov.HtmlConvertService.cell.XLSXBorderColor;
-import ru.durnov.HtmlConvertService.style.HtmlColor;
-
-import java.awt.*;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import org.apache.poi.xssf.usermodel.XSSFCellStyle;
+import org.apache.poi.xssf.usermodel.extensions.XSSFCellBorder;
 
 /**
  * Параметры обрамления xlsx-таблицы,
- * ячеек, строк.
+ * ячеек, строк. Инкапсулирует HtmlTableBorder.
+ * Настраивает стиль ячейки в xlsx-документе.
  */
 public class XlsxTableBorder {
-    private final Attributes attributes;
-    private final Map<Integer, BorderStyle> map;
+    private final HtmlTableBorder htmlTableBorder;
 
-    public XlsxTableBorder(Attributes attributes) {
-        this.attributes = attributes;
-        this.map = new HashMap<>();
-        this.map.put(0, BorderStyle.NONE);
-        this.map.put(1, BorderStyle.THIN);
-        this.map.put(2,BorderStyle.MEDIUM);
-        this.map.put(3, BorderStyle.THICK);
+    public XlsxTableBorder(HtmlTableBorder htmlTableBorder) {
+        this.htmlTableBorder = htmlTableBorder;
     }
 
-    public XlsxTableBorder(Element element){
-        this(element.attributes());
-    }
-
-    public BorderStyle borderStyle(){
-        int border = 0;
-        List<Attribute> attributes = this.attributes.asList();
-        for (Attribute attribute : attributes) {
-            if (attribute.getKey().equals("border")){
-                try {
-                    border = Integer.parseInt(attribute.getValue());
-                } catch (NumberFormatException ignored) {
-                }
-            }
+    public void setupBorders(XSSFCellStyle xssfCellStyle){
+        if (htmlTableBorder.borderStyle() != BorderStyle.NONE) {
+            xssfCellStyle.setBorderLeft(htmlTableBorder.borderStyle());
+            xssfCellStyle.setBorderRight(htmlTableBorder.borderStyle());
+            xssfCellStyle.setBorderTop(htmlTableBorder.borderStyle());
+            xssfCellStyle.setBorderBottom(htmlTableBorder.borderStyle());
         }
-        BorderStyle borderStyle = map.get(border);
-        if (borderStyle != null) return borderStyle;
-        return BorderStyle.NONE;
-    }
+        if (htmlTableBorder.borderStyle() != BorderStyle.NONE) {
+            xssfCellStyle.setBorderColor(XSSFCellBorder.BorderSide.BOTTOM, htmlTableBorder.xssfColor());
+            xssfCellStyle.setBorderColor(XSSFCellBorder.BorderSide.LEFT, htmlTableBorder.xssfColor());
+            xssfCellStyle.setBorderColor(XSSFCellBorder.BorderSide.RIGHT, htmlTableBorder.xssfColor());
+            xssfCellStyle.setBorderColor(XSSFCellBorder.BorderSide.TOP, htmlTableBorder.xssfColor());
+        }
 
-    public XSSFColor xssfColor(){
-        return new XLSXBorderColor(
-                new BorderAttribute(attributes)
-        ).colorFromRGB();
     }
 }

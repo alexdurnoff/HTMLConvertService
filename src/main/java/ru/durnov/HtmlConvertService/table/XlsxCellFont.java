@@ -2,9 +2,7 @@ package ru.durnov.HtmlConvertService.table;
 
 import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.usermodel.FontFamily;
-import org.apache.poi.xssf.usermodel.DefaultIndexedColorMap;
-import org.apache.poi.xssf.usermodel.XSSFColor;
-import org.apache.poi.xssf.usermodel.XSSFFont;
+import org.apache.poi.xssf.usermodel.*;
 import ru.durnov.HtmlConvertService.style.FontSize;
 import ru.durnov.HtmlConvertService.style.FontWeight;
 import ru.durnov.HtmlConvertService.style.HtmlColor;
