@@ -17,7 +17,7 @@ public class ComplexTextCellValue implements CellValue{
                 new XSSFRichTextStringFromElement(
                         cellElement,
                         xssfCell
-                ).xssfRichTextString()
+                ).xssfRichTextStringByOrder()
         );
 
     }

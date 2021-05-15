@@ -75,5 +75,14 @@ class XLSXDocumentTest {
         ).save();
     }
 
+    @Test
+    public void testNumber7Tag() throws IOException {
+        new XLSXDocument(
+                "Test/for xlsx/number7.html",
+                "Test/xlsx/number7.xlsx",
+                new XSSFWorkbook()
+        ).save();
+    }
+
 
 }
